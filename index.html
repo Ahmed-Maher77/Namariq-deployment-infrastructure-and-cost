@@ -4,191 +4,322 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Namariq Hosting Cost</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f7f9; --card:#ffffff; --text:#1c2430; --muted:#6b7686; --line:#e3e7ec;
-  --accent:#0f766e; --accent-soft:#e6f4f2; --accent-line:#5eb8ad;
-  --warn:#9a5b00; --warn-soft:#fff4e0; --danger:#b42318; --danger-soft:#fdecea;
-  --info-soft:#eef3fb; --info:#1d4f91; --chip:#eef0f3; --good:#13795b;
+  --page:#EEF2F4; --sheet:#FFFFFF; --ink:#17262F; --muted:#5D6B76; --rule:#D3DBE1; --rule-strong:#9AA8B2;
+  --green:#0B6E4F; --green-soft:#E3F1EB; --green-ink:#0A5A41;
+  --amber:#A86412; --amber-soft:#FBF0E1;
+  --red:#A3261B; --red-soft:#FBE9E7;
+  --blue:#24557F; --blue-soft:#E6EEF6;
+  --field:#F6F8F9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --text:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --code:ui-monospace, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#11151a; --card:#181e25; --text:#e6eaf0; --muted:#97a2b0; --line:#2a333d;
-    --accent:#4fd1c0; --accent-soft:#12302d; --accent-line:#2c8075;
-    --warn:#f2b45a; --warn-soft:#33270f; --danger:#ff8a80; --danger-soft:#3a1714;
-    --info-soft:#16243a; --info:#8db6f0; --chip:#222a33; --good:#5fd3a4;
+    --page:#14212B; --sheet:#1B2A35; --ink:#E7EDF1; --muted:#9BAAB5; --rule:#2E3F4B; --rule-strong:#5A6E7C;
+    --green:#4CC79A; --green-soft:#173A31; --green-ink:#7DDDB8;
+    --amber:#E8A955; --amber-soft:#3A2C17;
+    --red:#F08C80; --red-soft:#3D2120;
+    --blue:#8FB8E0; --blue-soft:#1C3145; --field:#16242E;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#11151a; --card:#181e25; --text:#e6eaf0; --muted:#97a2b0; --line:#2a333d;
-  --accent:#4fd1c0; --accent-soft:#12302d; --accent-line:#2c8075;
-  --warn:#f2b45a; --warn-soft:#33270f; --danger:#ff8a80; --danger-soft:#3a1714;
-  --info-soft:#16243a; --info:#8db6f0; --chip:#222a33; --good:#5fd3a4;
+  --page:#14212B; --sheet:#1B2A35; --ink:#E7EDF1; --muted:#9BAAB5; --rule:#2E3F4B; --rule-strong:#5A6E7C;
+  --green:#4CC79A; --green-soft:#173A31; --green-ink:#7DDDB8;
+  --amber:#E8A955; --amber-soft:#3A2C17;
+  --red:#F08C80; --red-soft:#3D2120;
+  --blue:#8FB8E0; --blue-soft:#1C3145; --field:#16242E;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:1280px;margin:0 auto;padding:20px 16px 60px}
-h1{font-size:22px;margin:0 0 4px}
-h2{font-size:17px;margin:28px 0 10px}
-h3{font-size:15px;margin:18px 0 8px}
-.sub{color:var(--muted);margin:0 0 14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
-.banner{padding:10px 14px;border-radius:8px;margin:10px 0;border:1px solid var(--line);font-size:13px}
-.banner.ok{background:var(--accent-soft);border-color:var(--accent-line)}
-.banner.warn{background:var(--warn-soft);border-color:var(--warn)}
-.banner.danger{background:var(--danger-soft);border-color:var(--danger)}
-.banner.info{background:var(--info-soft);border-color:var(--info)}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 0;border-bottom:2px solid var(--line)}
-.tab{border:1px solid var(--line);border-bottom:none;background:var(--chip);color:var(--text);padding:9px 14px;border-radius:8px 8px 0 0;cursor:pointer;font:inherit;font-weight:600}
-.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
-:root[data-theme="dark"] .tab[aria-selected="true"]{color:#0b1a18}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tab[aria-selected="true"]{color:#0b1a18}}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 14px}
-label.f{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
-label.f input,label.f select{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
-.users{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.ubtn{font:inherit;border:1px solid var(--line);background:var(--bg);color:var(--text);padding:6px 12px;border-radius:999px;cursor:pointer}
-.ubtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-.ubtn input{width:70px;border:none;background:transparent;color:inherit;font:inherit;padding:0 2px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
-.kpi .l{font-size:12px;color:var(--muted)}
-.kpi .v{font-size:22px;font-weight:700;margin-top:2px}
-.kpi .b{font-size:12px;color:var(--muted)}
-.kpi.main{border-color:var(--accent-line);background:var(--accent-soft)}
-.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
-table{border-collapse:collapse;width:100%;min-width:900px}
-th,td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
-th{font-size:12px;color:var(--muted);font-weight:600;background:var(--bg);position:sticky;top:0}
-td.num,th.num{text-align:right;white-space:nowrap}
-tr.on{background:var(--accent-soft)}
-tr.on td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
-tr.off{color:var(--muted)}
-tr.off .money{text-decoration:line-through;opacity:.7}
-tr.group td{background:var(--chip);font-weight:700;color:var(--text)}
-.money{font-weight:600}
-.vat{display:block;font-size:11px;color:var(--muted);font-weight:400}
-.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:1px;background:var(--chip);color:var(--muted)}
-.tag.future{background:var(--warn-soft);color:var(--warn)}
-.tag.free{background:var(--accent-soft);color:var(--good)}
-.tag.code{background:var(--danger-soft);color:var(--danger)}
-.tag.rec{background:var(--accent);color:#fff}
-.small{font-size:12px;color:var(--muted)}
-.cap{font-size:12px}
-.cap b{color:var(--text)}
-code,pre{font-family:ui-monospace,Consolas,monospace;font-size:12px}
-pre{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;margin:6px 0}
-input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer}
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-button.act{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 12px;border-radius:6px;cursor:pointer}
-.ok{color:var(--good)} .bad{color:var(--danger)}
-details summary{cursor:pointer;font-weight:600}
-ul{margin:6px 0;padding-left:20px}
-a{color:var(--info)}
-@media (max-width:640px){.kpi .v{font-size:19px}}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 var(--text);font-variant-numeric:tabular-nums}
+a{color:var(--blue)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px 72px}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:600;font-size:17px;letter-spacing:-.01em}
+.brand span{color:var(--muted);font-weight:400}
+.top-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.source{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);padding:5px 12px;border:1px solid var(--rule);border-radius:999px;background:var(--sheet)}
+.source::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rule-strong)}
+.source.live::before{background:var(--green)}
+.source.snap::before{background:var(--amber)}
+.ghost{font:inherit;font-size:13px;color:var(--ink);background:transparent;border:1px solid var(--rule);border-radius:999px;padding:5px 12px;cursor:pointer}
+.ghost:hover{border-color:var(--rule-strong)}
+.icon-btn{display:inline-grid;place-items:center;width:34px;height:34px;padding:0;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:50%;cursor:pointer}
+.icon-btn:hover{border-color:var(--rule-strong)}
+.icon-btn .i-sun{display:none}
+.icon-btn.dark .i-sun{display:block}
+.icon-btn.dark .i-moon{display:none}
+
+/* hero sentence */
+.hero{padding:34px 0 30px;border-bottom:1px solid var(--rule)}
+.hero-q{font-size:14px;color:var(--muted);margin:0 0 14px}
+.sentence{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,44px);line-height:1.32;letter-spacing:-.02em;margin:0;max-width:30ch}
+.sentence .pick{display:inline-flex;flex-wrap:wrap;gap:6px;vertical-align:middle;margin:2px 0}
+.sentence #tabs::after{content:",";align-self:flex-end;margin-left:-4px}
+.chip{font:inherit;font-family:var(--text);font-size:15px;font-weight:500;letter-spacing:0;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:999px;padding:6px 14px;cursor:pointer;line-height:1.3}
+.chip:hover{border-color:var(--rule-strong)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.chip.custom{display:inline-flex;align-items:center;gap:6px;cursor:text}
+.chip.custom input{width:64px;font:inherit;color:inherit;background:transparent;border:none;padding:0;outline:none}
+.chip.custom:focus-within{outline:2px solid var(--blue);outline-offset:2px}
+.total{font-weight:700;color:var(--green);white-space:nowrap;border-radius:6px;padding:0 2px;transition:background-color .6s}
+.total.flash{background:var(--green-soft);transition:none}
+.hero-foot{margin:18px 0 0;color:var(--muted);font-size:15px;max-width:70ch}
+.hero-foot b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion: reduce){.total{transition:none}}
+
+/* hosting model note */
+.model-note{margin:22px 0 0;padding:14px 18px;border-left:4px solid var(--green);background:var(--green-soft);border-radius:0 8px 8px 0;max-width:86ch}
+.model-note.amber{border-color:var(--amber);background:var(--amber-soft)}
+.model-note.red{border-color:var(--red);background:var(--red-soft)}
+.model-note p{margin:0 0 6px;font-weight:600}
+.model-note ul{margin:0;padding-left:20px}
+.model-note li{margin:3px 0}
+
+/* layout */
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:start;margin-top:30px}
+@media (max-width:1100px){.layout{grid-template-columns:minmax(0,1fr)}.aside{order:-1}}
+.section{margin:0 0 40px}
+.section > h2{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.01em;margin:0 0 4px}
+.section > .lead{color:var(--muted);margin:0 0 16px;max-width:72ch}
+
+/* sizing */
+.sizes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;background:var(--sheet);border:1px solid var(--rule);border-radius:10px}
+.size{padding:16px 18px;border-right:1px solid var(--rule)}
+.size:last-child{border-right:none}
+@media (max-width:760px){.size{border-right:none;border-bottom:1px solid var(--rule)}.size:last-child{border-bottom:none}}
+.size h3{font-size:15px;margin:0 0 2px}
+.size .shape{font-family:var(--display);font-size:20px;font-weight:600;margin:0 0 8px}
+.size dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:14px}
+.size dt{color:var(--muted)}
+.size dd{margin:0}
+.size pre{font-family:var(--code);font-size:12.5px;background:var(--field);border:1px solid var(--rule);border-radius:6px;padding:8px 10px;margin:10px 0 0;overflow-x:auto}
+.size .rules{font-size:13px;color:var(--muted);margin:0}
+
+/* the bill */
+.bill{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;overflow-x:auto}
+.bill table{width:100%;border-collapse:collapse;min-width:720px}
+@media (max-width:760px){.bill table{min-width:0}}
+.bill th{font-size:13px;font-weight:500;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.bill td{padding:12px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+.bill .num{text-align:right;white-space:nowrap}
+.bill tr.grp td{padding-top:22px;border-bottom:1px solid var(--rule-strong)}
+.bill tr.grp .gname{font-family:var(--display);font-weight:600;font-size:17px}
+.bill tr.grp .gsub{display:block;font-size:13px;color:var(--muted);font-weight:400;font-family:var(--text)}
+.bill tr.sub td{border-bottom:2px solid var(--rule-strong);font-weight:600;background:var(--field)}
+.bill tr.grand td{border-bottom:none;padding-top:16px;padding-bottom:16px;font-family:var(--display);font-size:18px;font-weight:700}
+.bill tr.grand .num span.amt{border-bottom:4px double var(--ink);padding-bottom:2px}
+.bill .ck{width:44px}
+.bill input[type=checkbox]{width:18px;height:18px;margin:2px 0 0;accent-color:var(--green);cursor:pointer}
+.item-name{font-weight:600}
+.item-spec{color:var(--muted);font-size:14px;margin-top:2px}
+.item-note{font-size:13px;margin-top:6px;padding:6px 10px;border-radius:6px;background:var(--amber-soft);color:var(--ink)}
+.svc{font-size:14px}
+.cap{font-size:13px;color:var(--muted);margin-top:4px}
+.cap b{color:var(--ink);font-weight:600}
+.detail{margin-top:6px;font-size:13px;color:var(--muted)}
+.detail summary{cursor:pointer;color:var(--blue);width:max-content}
+.amt{font-weight:600}
+.vat{display:block;font-size:12px;color:var(--muted);font-weight:400}
+tr.on td.ck{box-shadow:inset 4px 0 0 var(--green)}
+tr.on .amt{color:var(--green-ink)}
+tr.off .item-name, tr.off .svc{color:var(--muted)}
+tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.badge{display:inline-block;font-size:12px;font-weight:500;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.badge.future{background:var(--amber-soft);color:var(--amber)}
+.badge.free{background:var(--green-soft);color:var(--green-ink)}
+.badge.code{background:var(--red-soft);color:var(--red)}
+.badge.rec{background:var(--green);color:var(--sheet)}
+
+/* phone: rows become blocks */
+@media (max-width:760px){
+  .bill table, .bill tbody{display:block;width:100%}
+  .bill thead{display:none}
+  .bill tr{display:grid;grid-template-columns:36px 1fr 1fr;gap:4px 8px;padding:12px;border-bottom:1px solid var(--rule)}
+  .bill td{display:block;padding:0;border:none}
+  .bill td.ck{grid-row:span 4}
+  .bill td.main, .bill td.svc{grid-column:2 / 4}
+  .bill td.num{text-align:left;font-size:13px}
+  .bill td.num::before{content:attr(data-l);display:block;color:var(--muted);font-size:12px}
+  .bill td.num.hr{display:none}
+  .bill tr.grp, .bill tr.sub, .bill tr.grand{grid-template-columns:1fr auto}
+  .bill tr.grp td:empty, .bill tr.sub td:empty, .bill tr.grand td:empty{display:none}
+  .bill tr.grp td.num.hr, .bill tr.sub td.num.hr, .bill tr.grand td.num.hr{display:none}
+  tr.on td.ck{box-shadow:none}
+  tr.on{box-shadow:inset 4px 0 0 var(--green)}
+}
+
+/* assumptions panel */
+.aside{position:sticky;top:16px}
+@media (max-width:1100px){
+  .aside{position:static}
+  .panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 18px}
+  .panel h2, .panel details{grid-column:1 / -1}
+  .panel details[open]{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 18px}
+  .panel details summary{grid-column:1 / -1}
+}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.panel h2{font-family:var(--display);font-weight:600;font-size:18px;margin:0 0 12px}
+.panel h3{font-size:14px;margin:18px 0 8px;color:var(--muted);font-weight:500}
+.field{display:flex;flex-direction:column;gap:4px;margin:0 0 12px;font-size:13px;color:var(--muted)}
+.field input,.field select{font:inherit;font-size:15px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:6px;padding:7px 9px;width:100%}
+.field input:focus,.field select:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 2px var(--blue-soft)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.panel details summary{cursor:pointer;font-weight:600;font-size:14px;margin:6px 0 10px}
+
+/* domains & check */
+.cmp{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;overflow-x:auto;margin:0 0 18px}
+.cmp table{width:100%;border-collapse:collapse;min-width:700px}
+.cmp th{font-size:13px;font-weight:500;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule)}
+.cmp td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:14px}
+.cmp tr:last-child td{border-bottom:none}
+.cmp .num{text-align:right;white-space:nowrap}
+.cmp tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--green)}
+.cmp h3{margin:0}
+.section h3.sm{font-size:15px;margin:0 0 8px}
+.ok{color:var(--green-ink)} .bad{color:var(--red)}
+.btn{font:inherit;font-size:14px;font-weight:500;color:var(--ink);background:var(--sheet);border:1px solid var(--rule-strong);border-radius:6px;padding:7px 14px;cursor:pointer}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.small{font-size:13px;color:var(--muted)}
+.notes{font-size:14px;color:var(--muted);max-width:80ch}
+.notes li{margin:6px 0}
+.notes b{color:var(--ink)}
+.fallback{margin:14px 0 0;padding:10px 14px;border-radius:8px;background:var(--amber-soft);font-size:14px;max-width:86ch}
+code{font-family:var(--code);font-size:.9em}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="row" style="justify-content:space-between">
-    <div>
-      <h1>Namariq Matrix · hosting cost calculator</h1>
-      <p class="sub">Monthly operating cost per client and per user on Oracle Cloud (OCI). All money in USD, VAT shown on every price.</p>
+  <header class="top">
+    <div class="brand">Namariq Matrix <span>hosting cost</span></div>
+    <div class="top-right">
+      <span class="source" id="source">Loading Oracle prices…</span>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
     </div>
-    <button class="act" id="themeBtn" type="button">Light / dark</button>
-  </div>
+  </header>
+  <div id="fallback" class="fallback" hidden></div>
 
-  <div id="priceBanner" class="banner info">Loading prices from Oracle…</div>
+  <section class="hero" aria-labelledby="sentence">
+    <p class="hero-q">What does one client cost us to host each month?</p>
+    <p class="sentence" id="sentence">
+      With
+      <span class="pick" role="group" aria-label="Users per client" id="usersBox">
+        <button class="chip" type="button" data-u="20">20</button>
+        <button class="chip" type="button" data-u="50">50</button>
+        <button class="chip" type="button" data-u="100">100</button>
+        <button class="chip" type="button" data-u="150">150</button>
+        <label class="chip custom" data-u="custom">other <input id="uCustom" type="number" min="1" max="2000" value="75" aria-label="Custom number of users"></label>
+      </span>
+      users, when
+      <span class="pick" role="group" aria-label="Who hosts" id="tabs">
+        <button class="chip" type="button" data-tab="oracle">we host everything</button>
+        <button class="chip" type="button" data-tab="client">the client hosts everything</button>
+        <button class="chip" type="button" data-tab="split">the client hosts the database and files</button>
+      </span>
+      one client costs us <span class="total" id="tMonth">$0</span> a month, or <span class="total" id="tUser">$0</span> per user.
+    </p>
+    <p class="hero-foot" id="heroFoot"></p>
+    <div id="tabNotes"></div>
+  </section>
 
-  <div class="card">
-    <h3 style="margin-top:0">Users per client</h3>
-    <div class="users" id="usersBox">
-      <button class="ubtn" data-u="20">20 users</button>
-      <button class="ubtn" data-u="50">50 users</button>
-      <button class="ubtn" data-u="100">100 users</button>
-      <button class="ubtn" data-u="150">150 users</button>
-      <span class="ubtn" data-u="custom" role="button" tabindex="0">Custom: <input id="uCustom" type="number" min="1" max="2000" value="75" aria-label="Custom users"></span>
-    </div>
-    <h3>Assumptions</h3>
-    <div class="grid">
-      <label class="f">Number of clients (shares the shared costs)<input id="clients" type="number" min="1" value="10"></label>
-      <label class="f">Database size per client (GB)<input id="dbGB" type="number" min="1" value="1024"></label>
-      <label class="f">Uploaded files per client (GB)<input id="filesGB" type="number" min="0" value="1024"></label>
-      <label class="f">VAT
-        <select id="vat"><option value="14">Egypt 14%</option><option value="15">Saudi Arabia 15%</option><option value="0">No VAT (0%)</option><option value="custom">Custom…</option></select>
-      </label>
-      <label class="f" id="vatCustomWrap" hidden>Custom VAT %<input id="vatCustom" type="number" min="0" step="0.1" value="5"></label>
-      <label class="f">Backup plan
-        <select id="plan"><option value="basic">Basic: 14 days, 3 monthly</option><option value="standard" selected>Standard: 30 days, 12 monthly, 3 yearly</option><option value="premium">Premium: 90 days, 12 monthly, 7 yearly</option></select>
-      </label>
-      <label class="f">Database disk speed
-        <select id="perf"><option value="20" selected>Higher Performance (20 VPU)</option><option value="10">Balanced (10 VPU)</option></select>
-      </label>
-      <label class="f">Region (only changes data-transfer price above 10 TB)
-        <select id="region"><option value="me">Jeddah / Riyadh (Middle East)</option><option value="eu">Frankfurt (Europe)</option></select>
-      </label>
-      <label class="f">Hours per month (Oracle bills by the hour)<input id="hours" type="number" min="1" max="744" value="744"></label>
-    </div>
-    <details style="margin-top:12px"><summary>More assumptions (usage)</summary>
-      <div class="grid" style="margin-top:10px">
-        <label class="f">Backup compression (backup size ÷ DB size)<input id="compress" type="number" min="0.05" max="1" step="0.05" value="0.5"></label>
-        <label class="f">Daily data change (% of DB)<input id="changePct" type="number" min="0" step="0.5" value="2"></label>
-        <label class="f">Oracle volume backups kept (weekly)<input id="volKept" type="number" min="1" value="2"></label>
-        <label class="f">Old file versions kept (% of files)<input id="verPct" type="number" min="0" value="5"></label>
-        <label class="f">New files per month (% of files)<input id="growPct" type="number" min="0" value="5"></label>
-        <label class="f">System e-mails per client per month<input id="emails" type="number" min="0" value="2000"></label>
-        <label class="f">Requests per user per day (for WAF)<input id="reqDay" type="number" min="0" value="1000"></label>
-        <label class="f">Internet traffic out per client (GB/month)<input id="outGB" type="number" min="0" value="50"></label>
-        <label class="f">Logs per client sent to OCI Logging (GB/month)<input id="logGB" type="number" min="0" step="0.1" value="0.5"></label>
-        <label class="f">Our team mailboxes<input id="mailboxes" type="number" min="0" value="3"></label>
-        <label class="f">Domain registrar
-          <select id="registrar"></select>
+  <div class="layout">
+    <main>
+      <section class="section" aria-labelledby="hSizes">
+        <h2 id="hSizes">Server sizes for <span id="sizeUsers"></span> users</h2>
+        <p class="lead">Sizes and gunicorn settings follow the user count. Copy the settings into each server's <code>.env</code>.</p>
+        <div class="sizes" id="sizing"></div>
+      </section>
+
+      <section class="section" aria-labelledby="hBill">
+        <h2 id="hBill">Cost breakdown</h2>
+        <p class="lead">Untick a part to leave it out of the total. Optional and future parts start unticked. Every amount includes VAT; the line under it shows the price before VAT and the VAT.</p>
+        <div class="bill"><table id="tbl"></table></div>
+      </section>
+
+      <section class="section" aria-labelledby="hDom">
+        <h2 id="hDom">Domain and company e-mail</h2>
+        <div id="domains"></div>
+      </section>
+
+      <section class="section" aria-labelledby="hCheck">
+        <h2 id="hCheck">Price check against Oracle</h2>
+        <p class="lead">Each Oracle price used above, with its part number. The snapshot was checked on 2026-11-23 against Oracle's price list of 2026-11-02; "live" is what Oracle returns now.</p>
+        <div class="row"><button class="btn" id="reloadBtn" type="button">Reload live prices</button><span class="small" id="checkSummary"></span></div>
+        <div class="cmp"><table id="checkTbl"></table></div>
+      </section>
+
+      <section class="section" aria-labelledby="hNotes">
+        <h2 id="hNotes">How the numbers are worked out</h2>
+        <ul class="notes">
+          <li>Oracle charges the same price in every commercial region and quotes prices before tax. The VAT you choose is added to everything, Oracle and other providers. Check with your accountant whether VAT applies to your Oracle invoice; it depends on the billing country and VAT registration.</li>
+          <li>Free allowances (Always Free, the first 10 GB, the first 3,000 e-mails) apply <b>once per Oracle account</b>. The calculator adds up every client's usage, applies the free allowance once, and spreads the result over the parts that use that service. A client with their own Oracle account gets their own free allowances.</li>
+          <li><b>Always Free Arm server:</b> Oracle's Always Free page says 1,500 OCPU-hours and 9,000 GB-hours a month (2 OCPU, 12 GB). The price list still shows 3,000 and 18,000. This page uses the lower number.</li>
+          <li>Always Free servers exist only in the account's <b>home region</b>, and Arm capacity is sometimes unavailable for a while. Keep the paid ClamAV fallback in mind.</li>
+          <li>User and request capacity are planning estimates for this Django app, about 50 active users per OCPU on the app server. Confirm them with <code>ops/loadtest.py</code> before promising numbers to a client.</li>
+          <li>Domain and e-mail prices are public list prices in USD before tax, checked 2026-11-23. Promotions and local prices differ.</li>
+          <li>Sources: <a href="https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/?currencyCode=USD" target="_blank" rel="noopener">Oracle price list API</a>, <a href="https://www.oracle.com/cloud/price-list/" target="_blank" rel="noopener">Oracle price list</a>, <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm" target="_blank" rel="noopener">Oracle Always Free resources</a>, <a href="https://www.oracle.com/cloud/costestimator.html" target="_blank" rel="noopener">Oracle cost estimator</a>.</li>
+        </ul>
+      </section>
+    </main>
+
+    <aside class="aside" aria-labelledby="hAssume">
+      <div class="panel">
+        <h2 id="hAssume">Assumptions</h2>
+        <label class="field">Number of clients sharing the shared costs<input id="clients" type="number" min="1" value="10"></label>
+        <div class="pair">
+          <label class="field">Database per client (GB)<input id="dbGB" type="number" min="1" value="1024"></label>
+          <label class="field">Files per client (GB)<input id="filesGB" type="number" min="0" value="1024"></label>
+        </div>
+        <label class="field">VAT
+          <select id="vat"><option value="14">Egypt, 14%</option><option value="15">Saudi Arabia, 15%</option><option value="0">No VAT</option><option value="custom">Other rate</option></select>
         </label>
-        <label class="f">Team e-mail provider
-          <select id="mailProv"></select>
+        <label class="field" id="vatCustomWrap" hidden>VAT rate (%)<input id="vatCustom" type="number" min="0" step="0.1" value="5"></label>
+        <label class="field">Backup plan
+          <select id="plan"><option value="basic">Basic: 14 days, 3 monthly copies</option><option value="standard" selected>Standard: 30 days, 12 monthly, 3 yearly</option><option value="premium">Premium: 90 days, 12 monthly, 7 yearly</option></select>
         </label>
+        <label class="field">Database disk speed
+          <select id="perf"><option value="20" selected>Higher Performance (20 VPU)</option><option value="10">Balanced (10 VPU)</option></select>
+        </label>
+        <label class="field">Region
+          <select id="region"><option value="me">Jeddah or Riyadh</option><option value="eu">Frankfurt</option></select>
+        </label>
+        <label class="field">Hours in the month<input id="hours" type="number" min="1" max="744" value="744"></label>
+        <details>
+          <summary>Usage details</summary>
+          <label class="field">Backup size as a share of the database<input id="compress" type="number" min="0.05" max="1" step="0.05" value="0.5"></label>
+          <div class="pair">
+            <label class="field">Daily data change (%)<input id="changePct" type="number" min="0" step="0.5" value="2"></label>
+            <label class="field">Volume backups kept<input id="volKept" type="number" min="1" value="2"></label>
+          </div>
+          <div class="pair">
+            <label class="field">Old file versions (%)<input id="verPct" type="number" min="0" value="5"></label>
+            <label class="field">New files a month (%)<input id="growPct" type="number" min="0" value="5"></label>
+          </div>
+          <label class="field">System e-mails per client a month<input id="emails" type="number" min="0" value="2000"></label>
+          <label class="field">Requests per user a day (for the firewall)<input id="reqDay" type="number" min="0" value="1000"></label>
+          <div class="pair">
+            <label class="field">Traffic out per client (GB)<input id="outGB" type="number" min="0" value="50"></label>
+            <label class="field">Logs per client (GB)<input id="logGB" type="number" min="0" step="0.1" value="0.5"></label>
+          </div>
+          <label class="field">Our team mailboxes<input id="mailboxes" type="number" min="0" value="3"></label>
+          <label class="field">Domain registrar<select id="registrar"></select></label>
+          <label class="field">Team e-mail provider<select id="mailProv"></select></label>
+        </details>
       </div>
-    </details>
-  </div>
-
-  <div class="tabs" role="tablist" id="tabs">
-    <button class="tab" role="tab" data-tab="oracle">1 · We host everything on Oracle</button>
-    <button class="tab" role="tab" data-tab="client">2 · Client hosts everything</button>
-    <button class="tab" role="tab" data-tab="split">3 · Client hosts DB + files</button>
-  </div>
-
-  <div id="tabNotes"></div>
-  <div class="kpis" id="kpis" style="margin-top:12px"></div>
-
-  <h2>Server sizes for <span id="sizeUsers"></span> users</h2>
-  <div class="card" id="sizing"></div>
-
-  <h2>Cost breakdown</h2>
-  <p class="small">Tick or untick a part to include or exclude it. Ticked parts are highlighted. Parts marked <span class="tag future">future / optional</span> start unticked. Per hour = per month ÷ hours per month.</p>
-  <div class="tblwrap"><table id="tbl"></table></div>
-
-  <h2>Domain, sub-domains and company e-mail</h2>
-  <div class="card" id="domains"></div>
-
-  <h2>Price check against Oracle</h2>
-  <div class="card">
-    <p class="small" style="margin-top:0">Every Oracle price used here, with its part number. "Snapshot" is the price saved in this page (checked 2026-11-23 against Oracle's price list dated 2026-11-02). "Live" is what Oracle's price list returns now.</p>
-    <div class="row"><button class="act" id="reloadBtn" type="button">Reload live prices</button><span class="small" id="checkSummary"></span></div>
-    <div class="tblwrap" style="margin-top:10px"><table id="checkTbl"></table></div>
-  </div>
-
-  <h2>Notes and sources</h2>
-  <div class="card small" id="notes">
-    <ul>
-      <li>Oracle charges the same price in every commercial region. Oracle prices exclude tax; the VAT you choose is added on top of everything (Oracle and other providers). Confirm with your accountant whether VAT applies to your Oracle invoice (it depends on the billing country and VAT registration).</li>
-      <li>Free allowances (Always Free, first 10 GB, first 3,000 e-mails…) apply <b>once per Oracle account</b>. The calculator adds up every client's usage, applies the free tiers once, and spreads the result over the parts that use that Oracle service. A client with their own Oracle account gets their own free allowances.</li>
-      <li><b>Always Free Arm (A1):</b> Oracle's Always Free page says 1,500 OCPU-hours and 9,000 GB-hours per month (2 OCPU + 12 GB). The price list still shows 3,000 / 18,000 free. This page uses the lower, safer number.</li>
-      <li>Always Free compute exists only in the account's <b>home region</b> and Arm capacity is sometimes temporarily unavailable ("out of host capacity"). Keep the paid ClamAV fallback in mind.</li>
-      <li>User and request capacity figures are planning estimates for this Django app (about 50 active users per OCPU on the app server). Confirm them with <code>ops/loadtest.py</code> before promising numbers to a client.</li>
-      <li>Domain and e-mail prices are public list prices in USD before tax, checked 2026-11-23; promotions and local prices differ.</li>
-      <li>Sources: <a href="https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/?currencyCode=USD" target="_blank" rel="noopener">Oracle price list API</a> · <a href="https://www.oracle.com/cloud/price-list/" target="_blank" rel="noopener">Oracle price list</a> · <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm" target="_blank" rel="noopener">Oracle Always Free resources</a> · <a href="https://www.oracle.com/cloud/costestimator.html" target="_blank" rel="noopener">Oracle cost estimator</a></li>
-    </ul>
+    </aside>
   </div>
 </div>
 
@@ -198,26 +329,26 @@ a{color:var(--info)}
    tiers: [from, to, USD per unit], to = null means no upper limit. Units follow Oracle's metric for each part. */
 const SNAPSHOT_DATE = "2026-11-02";
 const SKUS = {
-  E5_OCPU:   {pn:"B97384", name:"Compute E5 Flex – OCPU", unit:"OCPU-hour", tiers:[[0,null,0.03]]},
-  E5_MEM:    {pn:"B97385", name:"Compute E5 Flex – memory", unit:"GB-hour", tiers:[[0,null,0.002]]},
-  A1_OCPU:   {pn:"B93297", name:"Compute A1 Arm – OCPU (Always Free first 1,500 h)", unit:"OCPU-hour", tiers:[[0,1500,0],[1500,null,0.01]], freeCap:1500},
-  A1_MEM:    {pn:"B93298", name:"Compute A1 Arm – memory (Always Free first 9,000 GB-h)", unit:"GB-hour", tiers:[[0,9000,0],[9000,null,0.0015]], freeCap:9000},
-  BV:        {pn:"B91961", name:"Block Volume – storage (first 200 GB Always Free)", unit:"GB-month", tiers:[[0,200,0],[200,null,0.0255]], fixedFree:200},
-  VPU:       {pn:"B91962", name:"Block Volume – performance units", unit:"VPU per GB-month", tiers:[[0,2000,0],[2000,null,0.0017]], fixedFree:2000},
-  OBJ:       {pn:"B91628", name:"Object Storage – standard", unit:"GB-month", tiers:[[0,10,0],[10,null,0.0255]]},
+  E5_OCPU:   {pn:"B97384", name:"Compute E5 Flex, OCPU", unit:"OCPU-hour", tiers:[[0,null,0.03]]},
+  E5_MEM:    {pn:"B97385", name:"Compute E5 Flex, memory", unit:"GB-hour", tiers:[[0,null,0.002]]},
+  A1_OCPU:   {pn:"B93297", name:"Compute A1 Arm, OCPU (first 1,500 h free)", unit:"OCPU-hour", tiers:[[0,1500,0],[1500,null,0.01]], freeCap:1500},
+  A1_MEM:    {pn:"B93298", name:"Compute A1 Arm, memory (first 9,000 GB-h free)", unit:"GB-hour", tiers:[[0,9000,0],[9000,null,0.0015]], freeCap:9000},
+  BV:        {pn:"B91961", name:"Block Volume storage (first 200 GB free)", unit:"GB-month", tiers:[[0,200,0],[200,null,0.0255]], fixedFree:200},
+  VPU:       {pn:"B91962", name:"Block Volume performance units", unit:"VPU per GB-month", tiers:[[0,2000,0],[2000,null,0.0017]], fixedFree:2000},
+  OBJ:       {pn:"B91628", name:"Object Storage, standard", unit:"GB-month", tiers:[[0,10,0],[10,null,0.0255]]},
   ARCH:      {pn:"B91633", name:"Archive Storage", unit:"GB-month", tiers:[[0,10,0],[10,null,0.0026]]},
-  OBJREQ:    {pn:"B91627", name:"Object Storage – requests", unit:"10,000 requests", tiers:[[0,5,0],[5,null,0.0034]]},
-  LB:        {pn:"B93030", name:"Flexible Load Balancer – base", unit:"LB-hour", tiers:[[0,744,0],[744,null,0.0113]]},
-  LBBW:      {pn:"B93031", name:"Flexible Load Balancer – bandwidth", unit:"Mbps-hour", tiers:[[0,7440,0],[7440,null,0.0001]]},
-  WAF:       {pn:"B94579", name:"Web Application Firewall – instance", unit:"instance-month", tiers:[[0,1,0],[1,null,5]]},
-  WAFREQ:    {pn:"B94277", name:"Web Application Firewall – requests", unit:"1M requests", tiers:[[0,10,0],[10,null,0.6]]},
+  OBJREQ:    {pn:"B91627", name:"Object Storage requests", unit:"10,000 requests", tiers:[[0,5,0],[5,null,0.0034]]},
+  LB:        {pn:"B93030", name:"Flexible Load Balancer, base", unit:"LB-hour", tiers:[[0,744,0],[744,null,0.0113]]},
+  LBBW:      {pn:"B93031", name:"Flexible Load Balancer, bandwidth", unit:"Mbps-hour", tiers:[[0,7440,0],[7440,null,0.0001]]},
+  WAF:       {pn:"B94579", name:"Web Application Firewall, instance", unit:"instance-month", tiers:[[0,1,0],[1,null,5]]},
+  WAFREQ:    {pn:"B94277", name:"Web Application Firewall, requests", unit:"1M requests", tiers:[[0,10,0],[10,null,0.6]]},
   EMAIL:     {pn:"B88523", name:"Email Delivery", unit:"1,000 e-mails", tiers:[[0,3,0],[3,null,0.085]]},
-  NOTIF:     {pn:"B90941", name:"Notifications – e-mail", unit:"1,000 e-mails", tiers:[[0,1,0],[1,null,0.02]]},
-  MON:       {pn:"B90925", name:"Monitoring – ingestion", unit:"1M datapoints", tiers:[[0,500,0],[500,null,0.0025]]},
-  LOG:       {pn:"B92593", name:"Logging – storage", unit:"GB-month", tiers:[[0,10,0],[10,null,0.05]]},
-  OUT_ME:    {pn:"B93456", name:"Outbound data – Middle East & Africa", unit:"GB", tiers:[[0,10240,0],[10240,null,0.05]]},
-  OUT_EU:    {pn:"B88327", name:"Outbound data – North America & Europe", unit:"GB", tiers:[[0,10240,0],[10240,null,0.0085]]},
-  HEALTH:    {pn:"B90323", name:"Health Checks – basic", unit:"endpoint-month", tiers:[[0,null,0.3]]},
+  NOTIF:     {pn:"B90941", name:"Notifications, e-mail", unit:"1,000 e-mails", tiers:[[0,1,0],[1,null,0.02]]},
+  MON:       {pn:"B90925", name:"Monitoring, ingestion", unit:"1M datapoints", tiers:[[0,500,0],[500,null,0.0025]]},
+  LOG:       {pn:"B92593", name:"Logging, storage", unit:"GB-month", tiers:[[0,10,0],[10,null,0.05]]},
+  OUT_ME:    {pn:"B93456", name:"Outbound data, Middle East and Africa", unit:"GB", tiers:[[0,10240,0],[10240,null,0.05]]},
+  OUT_EU:    {pn:"B88327", name:"Outbound data, North America and Europe", unit:"GB", tiers:[[0,10240,0],[10240,null,0.0085]]},
+  HEALTH:    {pn:"B90323", name:"Health Checks, basic", unit:"endpoint-month", tiers:[[0,null,0.3]]},
 };
 const SNAP = JSON.parse(JSON.stringify(SKUS));      // untouched copy for the price check
 const LIVE = {};                                    // part number -> live tiers
@@ -226,27 +357,27 @@ let priceSource = "snapshot", liveDate = "";
 /* ---------------- Domain registrars and e-mail providers (USD, before tax, checked 2026-11-23) ---------------- */
 const REGISTRARS = [
   {id:"cloudflare", name:"Cloudflare Registrar", year:11.17, rec:true,
-   pros:"Sells at Oracle-like wholesale cost (no mark-up) · free DNS, free WHOIS privacy · free e-mail forwarding (Email Routing) · unlimited sub-domains",
-   cons:"Domain must use Cloudflare's name servers (use DNS-only, no proxy needed) · no mailbox hosting"},
+   pros:"Sold at wholesale cost with no mark-up. Free DNS, WHOIS privacy and e-mail forwarding. Unlimited sub-domains.",
+   cons:"The domain must use Cloudflare's name servers (DNS-only is fine). No mailbox hosting."},
   {id:"porkbun", name:"Porkbun", year:11.81,
-   pros:"Close to wholesale price · free WHOIS privacy, DNS and e-mail forwarding · unlimited sub-domains",
-   cons:"Smaller company · mailbox hosting is a paid add-on"},
+   pros:"Close to wholesale price. Free WHOIS privacy, DNS and e-mail forwarding. Unlimited sub-domains.",
+   cons:"Smaller company. Mailboxes are a paid add-on."},
   {id:"namecheap", name:"Namecheap", year:19.98,
-   pros:"Cheap first-year promotions · free WHOIS privacy · simple dashboard",
-   cons:"Renewal about 80% more than Cloudflare"},
+   pros:"Cheap first-year offers, free WHOIS privacy, simple dashboard.",
+   cons:"Renewal costs about 80% more than Cloudflare."},
   {id:"godaddy", name:"GoDaddy", year:22.99,
-   pros:"Well known, local support",
-   cons:"Most expensive renewal · many paid upsells"},
+   pros:"Well known, with phone support.",
+   cons:"Most expensive renewal and many paid extras."},
 ];
 const MAILPROVS = [
   {id:"zoho", name:"Zoho Mail Lite", user:1.00, rec:true,
-   pros:"$1 per mailbox per month (yearly) · your domain · webmail + mobile apps", cons:"Cheapest plan has small storage (5 GB); fewer office tools"},
+   pros:"$1 per mailbox a month on a yearly plan. Webmail and mobile apps on your domain.", cons:"The cheapest plan has 5 GB storage and few office tools."},
   {id:"google", name:"Google Workspace Business Starter", user:7.00,
-   pros:"Gmail on your domain · 30 GB · Docs/Drive/Meet", cons:"$7 yearly plan, $8.40 month-to-month"},
+   pros:"Gmail on your domain with 30 GB, Docs, Drive and Meet.", cons:"$7 on a yearly plan, $8.40 month to month."},
   {id:"m365", name:"Microsoft 365 Business Basic", user:7.00,
-   pros:"Outlook/Exchange on your domain · Teams · web Office", cons:"Rose from $6 to $7 on 1 July 2026"},
-  {id:"cfrouting", name:"Cloudflare Email Routing (forwarding only)", user:0,
-   pros:"Free · forwards info@namariq.com to an existing inbox", cons:"No mailbox and cannot send as your domain"},
+   pros:"Outlook on your domain, Teams and web Office.", cons:"Went up from $6 to $7 on 1 July 2026."},
+  {id:"cfrouting", name:"Cloudflare Email Routing", user:0,
+   pros:"Free. Forwards info@namariq.com to an inbox you already have.", cons:"Forwarding only: no mailbox, and you can't send as your domain."},
 ];
 
 /* ---------------- helpers ---------------- */
@@ -280,6 +411,7 @@ function cfg(){
     clients: Math.max(1, Math.round(n("clients"))),
     dbGB: Math.max(1, n("dbGB")), filesGB: Math.max(0, n("filesGB")),
     vat: (vatSel==="custom" ? n("vatCustom") : parseFloat(vatSel)) / 100,
+    vatLabel: vatSel==="custom" ? n("vatCustom")+"%" : vatSel+"%",
     plan: $("plan").value, vpu: parseInt($("perf").value,10), region: $("region").value,
     hours: Math.min(744, Math.max(1, n("hours"))),
     compress: n("compress"), changePct: n("changePct"), volKept: Math.max(1, Math.round(n("volKept"))),
@@ -318,102 +450,103 @@ function sizing(c){
     db:{comfortUsers:dbOcpu*40, upperUsers:dbOcpu*80}};
 }
 
-/* ---------------- parts per tab ----------------
-   scope: "client" = paid by us, once per client · "shared" = paid by us once, split over all clients ·
+/* ---------------- parts per hosting model ----------------
+   scope: "client" = paid by us, once per client; "shared" = paid by us once, split over all clients;
           "theirs" = paid by the client in their own Oracle account (each client has its own free allowances) */
 function buildItems(c, s){
   const h = c.hours, I = [];
   const OUT = c.region === "eu" ? "OUT_EU" : "OUT_ME";
   const add = o => I.push(Object.assign({on:true, future:false, lines:[], fixed:0, cap:"", note:""}, o));
-  const appCap = `Comfortable: <b>${s.app.comfortUsers} users</b> (~${s.app.comfortRps} req/s) · Upper limit: <b>${s.app.upperUsers} users</b> (~${s.app.upperRps} req/s, slower) · ${s.app.concurrent} requests at once`;
-  const dbCap = `Comfortable: <b>${s.db.comfortUsers} users</b> · Upper limit: <b>${s.db.upperUsers} users</b> (slower reports) · max_connections ${s.maxConn}`;
+  const appCap = `Comfortable up to <b>${s.app.comfortUsers} users</b> (about ${s.app.comfortRps} requests a second). Upper limit <b>${s.app.upperUsers} users</b> (about ${s.app.upperRps} a second, slower). Handles ${s.app.concurrent} requests at once.`;
+  const dbCap = `Comfortable up to <b>${s.db.comfortUsers} users</b>. Upper limit <b>${s.db.upperUsers} users</b>, with slower reports. max_connections ${s.maxConn}.`;
   const appServer = (scope, extraRam=0, idp="app") => {
-    add({id:idp+"Compute", scope, name:"App server (api + scheduler + portal + Caddy containers)", service:"Compute VM.Standard.E5.Flex",
-      spec:`${s.appOcpu} OCPU (${s.appOcpu*2} vCPU) · ${s.appRam+extraRam} GB RAM · gunicorn ${s.workers} workers × ${s.threads} threads`+(extraRam?` · +${extraRam} GB for ClamAV`:""),
+    add({id:idp+"Compute", scope, name:"App server", service:"Compute VM.Standard.E5.Flex",
+      spec:`Runs the api, scheduler, portal and Caddy containers. ${s.appOcpu} OCPU (${s.appOcpu*2} vCPU), ${s.appRam+extraRam} GB RAM, gunicorn ${s.workers} workers × ${s.threads} threads`+(extraRam?`, including ${extraRam} GB for ClamAV`:"")+".",
       cap:appCap, lines:[["E5_OCPU", s.appOcpu*h], ["E5_MEM", (s.appRam+extraRam)*h]]});
-    add({id:idp+"Boot", scope, name:"App server boot disk", service:"Block Volume (Balanced, 10 VPU)", spec:"50 GB system disk (OS + Docker images)",
+    add({id:idp+"Boot", scope, name:"App server system disk", service:"Block Volume, Balanced (10 VPU)", spec:"50 GB for the operating system and Docker images.",
       lines:[["BV",50],["VPU",50*10]]});
   };
   const dbServer = (scope) => {
-    add({id:"dbCompute", scope, name:"Database server (PostgreSQL 16 + pgBackRest)", service:"Compute VM.Standard.E5.Flex",
-      spec:`${s.dbOcpu} OCPU (${s.dbOcpu*2} vCPU) · ${s.dbRam} GB RAM · shared_buffers ${Math.round(s.dbRam/4)} GB`, cap:dbCap,
+    add({id:"dbCompute", scope, name:"Database server", service:"Compute VM.Standard.E5.Flex",
+      spec:`PostgreSQL 16 with pgBackRest. ${s.dbOcpu} OCPU (${s.dbOcpu*2} vCPU), ${s.dbRam} GB RAM, shared_buffers ${Math.round(s.dbRam/4)} GB.`, cap:dbCap,
       lines:[["E5_OCPU", s.dbOcpu*h], ["E5_MEM", s.dbRam*h]]});
-    add({id:"dbBoot", scope, name:"Database server boot disk", service:"Block Volume (Balanced, 10 VPU)", spec:"50 GB system disk", lines:[["BV",50],["VPU",500]]});
-    add({id:"dbDisk", scope, name:"Database data disk", service:`Block Volume (${c.vpu===20?"Higher Performance, 20":"Balanced, 10"} VPU)`,
-      spec:`${s.dbDisk} GB (DB ${c.dbGB} GB + 30% free space) · grows online, cannot shrink`, lines:[["BV",s.dbDisk],["VPU",s.dbDisk*c.vpu]]});
+    add({id:"dbBoot", scope, name:"Database server system disk", service:"Block Volume, Balanced (10 VPU)", spec:"50 GB for the operating system.", lines:[["BV",50],["VPU",500]]});
+    add({id:"dbDisk", scope, name:"Database data disk", service:`Block Volume, ${c.vpu===20?"Higher Performance (20":"Balanced (10"} VPU)`,
+      spec:`${s.dbDisk} GB: the ${c.dbGB} GB database plus 30% free space. Can grow while running but can't shrink.`, lines:[["BV",s.dbDisk],["VPU",s.dbDisk*c.vpu]]});
   };
   const storage = (scope) => {
-    add({id:"files", scope, name:"Uploaded files (documents, images)", service:"Object Storage (standard)",
-      spec:`${c.filesGB} GB + ${c.verPct}% old versions (versioning on) = ${Math.round(s.filesObj)} GB`, tag:"code",
-      note:"Needs a code change: the app saves files on the server's own disk today (about 15 places use local file paths). Until then, use the block-volume option below.",
+    add({id:"files", scope, name:"Uploaded files", service:"Object Storage, standard",
+      spec:`${c.filesGB} GB of documents and images, plus ${c.verPct}% kept as old versions: ${Math.round(s.filesObj)} GB.`, tag:"code",
+      note:"Needs a code change: the app saves files on the server's own disk today (about 15 places use local file paths). Until then, use the disk option below.",
       lines:[["OBJ", s.filesObj], ["OBJREQ", c.users*300/10000]]});
-    add({id:"filesDisk", scope, on:false, name:"Uploaded files on a disk (works today, no code change)", service:"Block Volume (Balanced, 10 VPU)",
-      spec:`${Math.max(50,Math.ceil(c.filesGB*1.2/50)*50)} GB disk on the app server, backed up by Oracle volume backups`,
-      lines:[["BV",Math.max(50,Math.ceil(c.filesGB*1.2/50)*50)],["VPU",Math.max(50,Math.ceil(c.filesGB*1.2/50)*50)*10]]});
-    add({id:"pgbr", scope, name:"Database backups (pgBackRest)", service:"Object Storage (standard)",
-      spec:`${s.plan.label} plan: ${s.plan.fulls} weekly full backups + ${s.plan.walDays} days of changes (restore to any minute) ≈ ${Math.round(s.backupStd)} GB`,
+    const fd = Math.max(50,Math.ceil(c.filesGB*1.2/50)*50);
+    add({id:"filesDisk", scope, on:false, name:"Uploaded files on a disk", service:"Block Volume, Balanced (10 VPU)",
+      spec:`Works today with no code change: a ${fd} GB disk on the app server, protected by Oracle volume backups.`,
+      lines:[["BV",fd],["VPU",fd*10]]});
+    add({id:"pgbr", scope, name:"Database backups", service:"Object Storage, standard",
+      spec:`pgBackRest, ${s.plan.label} plan: ${s.plan.fulls} weekly full backups and ${s.plan.walDays} days of changes, so you can restore to any minute. About ${Math.round(s.backupStd)} GB.`,
       lines:[["OBJ", s.backupStd], ["OBJREQ", 200]]});
-    add({id:"pgbrArch", scope, name:"Monthly / yearly backup copies", service:"Archive Storage",
-      spec: s.plan.monthly+s.plan.yearly ? `${s.plan.monthly} monthly + ${s.plan.yearly} yearly full copies ≈ ${Math.round(s.backupArch)} GB (restore starts in ~1 hour)` : "none in this plan",
+    add({id:"pgbrArch", scope, name:"Monthly and yearly backup copies", service:"Archive Storage",
+      spec: s.plan.monthly+s.plan.yearly ? `${s.plan.monthly} monthly and ${s.plan.yearly} yearly full copies, about ${Math.round(s.backupArch)} GB. A restore takes about an hour to start.` : "None in this plan.",
       lines:[["ARCH", s.backupArch]]});
-    add({id:"volbk", scope, name:"Oracle volume backups of the DB disk", service:"Block Volume backups (billed as Object Storage)",
-      spec:`${c.volKept} weekly incremental backups ≈ ${Math.round(s.volBackup)} GB (extra safety net next to pgBackRest)`,
+    add({id:"volbk", scope, name:"Oracle volume backups of the database disk", service:"Block Volume backups, billed as Object Storage",
+      spec:`${c.volKept} weekly incremental backups, about ${Math.round(s.volBackup)} GB. A second safety net next to pgBackRest.`,
       lines:[["OBJ", s.volBackup]]});
-    add({id:"replica", scope, on:false, future:true, name:"Copy of files in a second region (e.g. Riyadh)", service:"Object Storage replication",
-      spec:`${Math.round(s.filesObj)} GB in the second region + ${Math.round(c.filesGB*c.growPct/100)} GB/month copied across regions`,
+    add({id:"replica", scope, on:false, future:true, name:"Copy of the files in a second region", service:"Object Storage replication",
+      spec:`${Math.round(s.filesObj)} GB kept in a second region such as Riyadh, with about ${Math.round(c.filesGB*c.growPct/100)} GB copied across each month.`,
       lines:[["OBJ", s.filesObj], [OUT, c.filesGB*c.growPct/100]]});
-    add({id:"bk2", scope, on:false, future:true, name:"Copy of database backups in a second region", service:"Object Storage + Archive (2nd region)",
-      spec:`Second pgBackRest repository ≈ ${Math.round(s.backupStd)} GB standard + ${Math.round(s.backupArch)} GB archive`,
+    add({id:"bk2", scope, on:false, future:true, name:"Copy of the database backups in a second region", service:"Object Storage and Archive, second region",
+      spec:`A second pgBackRest repository: about ${Math.round(s.backupStd)} GB standard and ${Math.round(s.backupArch)} GB archive.`,
       lines:[["OBJ", s.backupStd], ["ARCH", s.backupArch]]});
-    add({id:"standby", scope, on:false, future:true, name:"Standby database server (zero-downtime failover)", service:"Compute E5.Flex + Block Volume",
-      spec:`Same size as the main DB: ${s.dbOcpu} OCPU · ${s.dbRam} GB · ${s.dbDisk} GB disk, kept in sync by streaming replication`,
+    add({id:"standby", scope, on:false, future:true, name:"Standby database server", service:"Compute E5.Flex and Block Volume",
+      spec:`Takes over with no downtime if the main database fails. Same size as the main one: ${s.dbOcpu} OCPU, ${s.dbRam} GB, ${s.dbDisk} GB disk, kept in sync by streaming replication.`,
       lines:[["E5_OCPU", s.dbOcpu*h], ["E5_MEM", s.dbRam*h], ["BV", s.dbDisk+50], ["VPU", s.dbDisk*c.vpu+500]]});
   };
   const zeroPerClient = (scope) => {
-    add({id:"caddy", scope, name:"HTTPS: Caddy in front of the app + Let's Encrypt certificate", service:"Container on the app server", spec:"Automatic free certificate, renews itself", tag:"free"});
-    add({id:"ip", scope, name:"Reserved public IP", service:"Networking – reserved public IP", spec:"Keeps the same IP when the server is replaced (no DNS change)", tag:"free"});
-    add({id:"nsg", scope, name:"Firewall (Network Security Group)", service:"Networking – NSG", spec:"Only ports 80/443 open; no SSH from the internet", tag:"free"});
-    add({id:"patch", scope, name:"Automatic security updates (unattended-upgrades / dnf-automatic)", service:"Server setting", spec:"Daily OS security fixes · monthly restart at night", tag:"free"});
-    add({id:"agent", scope, name:"Oracle Monitoring agent + alarms (down, CPU > 80%, disk > 75%)", service:"Monitoring + Notifications", spec:"Usage counted in the shared Monitoring line", tag:"free"});
+    add({id:"caddy", scope, name:"HTTPS with Caddy", service:"Container on the app server", spec:"Gets and renews a free Let's Encrypt certificate by itself.", tag:"free"});
+    add({id:"ip", scope, name:"Reserved public IP", service:"Networking", spec:"Keeps the same address when the server is replaced, so DNS never changes.", tag:"free"});
+    add({id:"nsg", scope, name:"Firewall rules", service:"Network Security Group", spec:"Only ports 80 and 443 open. No SSH from the internet.", tag:"free"});
+    add({id:"patch", scope, name:"Automatic security updates", service:"unattended-upgrades or dnf-automatic", spec:"Installs operating-system security fixes daily. Restart once a month at night.", tag:"free"});
+    add({id:"agent", scope, name:"Monitoring agent and alarms", service:"Monitoring and Notifications", spec:"Alerts when the server is down, CPU is above 80% or the disk is 75% full. Usage is counted in the shared monitoring line.", tag:"free"});
   };
-  const out = (scope) => add({id:"out", scope, name:"Internet traffic out (pages, downloads)", service:"Networking – outbound data transfer",
-      spec:`${c.outGB} GB/month (first 10 TB per Oracle account is free)`, lines:[[OUT, c.outGB]]});
+  const out = (scope) => add({id:"out", scope, name:"Internet traffic out", service:"Outbound data transfer",
+      spec:`${c.outGB} GB a month of pages and downloads. The first 10 TB per Oracle account is free.`, lines:[[OUT, c.outGB]]});
   const lbWaf = (scope) => {
-    add({id:"lb", scope, on:false, future:true, name:"Load balancer in front of the app server (hides the server IP)", service:"Flexible Load Balancer, 10 Mbps",
-      spec:"First load balancer in the account is Always Free; each extra one is paid", lines:[["LB", h], ["LBBW", 10*h]]});
-    add({id:"waf", scope, on:false, future:true, name:"Web Application Firewall (needs the load balancer)", service:"OCI WAF",
-      spec:`1 WAF policy · ≈ ${(c.users*c.reqDay*30/1e6).toFixed(1)} M requests/month (first instance and 10 M requests per account free)`,
-      lines:[["WAF", 1], ["WAFREQ", c.users*c.reqDay*30/1e6]], note:"WAF only attaches to a load balancer; tick both."});
+    add({id:"lb", scope, on:false, future:true, name:"Load balancer", service:"Flexible Load Balancer, 10 Mbps",
+      spec:"Sits in front of the app server and hides its IP. The first load balancer in the account is free; each extra one is paid.", lines:[["LB", h], ["LBBW", 10*h]]});
+    add({id:"waf", scope, on:false, future:true, name:"Web Application Firewall", service:"OCI WAF",
+      spec:`One WAF policy for about ${(c.users*c.reqDay*30/1e6).toFixed(1)} million requests a month. The first instance and 10 million requests per account are free.`,
+      lines:[["WAF", 1], ["WAFREQ", c.users*c.reqDay*30/1e6]], note:"The firewall only attaches to a load balancer, so tick both."});
   };
   const sharedOurs = (withClam, withEmail, servers) => {
     if(withClam){
-      add({id:"clam", scope:"shared", name:"ClamAV file antivirus (one for all clients)", service:"Always Free Ampere A1 (Arm) VM",
-        spec:"2 OCPU · 12 GB · image clamav/clamav-debian (has an Arm build) · 50 GB boot disk", tag:"free",
-        cap:"Tested: 5 MB files ~0.7 s, 25 MB ~2.2 s each; large bursts queue up (scans retry later)",
-        note:"Arm capacity is sometimes out of stock and Always Free only exists in the home region. If you cannot get it, tick the paid fallback.",
+      add({id:"clam", scope:"shared", name:"ClamAV file antivirus, one for all clients", service:"Always Free Ampere A1 (Arm)",
+        spec:"2 OCPU, 12 GB and a 50 GB system disk, running the clamav/clamav-debian image (it has an Arm build).", tag:"free",
+        cap:"Load test: a 5 MB file takes about 0.7 s and a 25 MB file about 2.2 s. Big bursts queue up and retry later.",
+        note:"Arm capacity is sometimes unavailable, and Always Free only exists in the home region. If you can't get it, tick the paid fallback.",
         lines:[["A1_OCPU", 2*h], ["A1_MEM", 12*h], ["BV",50], ["VPU",500]]});
-      add({id:"clamPaid", scope:"shared", on:false, future:true, name:"ClamAV paid fallback (if Arm is out of stock)", service:"Compute VM.Standard.E5.Flex",
-        spec:"1 OCPU · 6 GB · 50 GB boot disk", lines:[["E5_OCPU", h], ["E5_MEM", 6*h], ["BV",50], ["VPU",500]]});
+      add({id:"clamPaid", scope:"shared", on:false, future:true, name:"ClamAV paid fallback", service:"Compute VM.Standard.E5.Flex",
+        spec:"Use if the Arm server isn't available: 1 OCPU, 6 GB and a 50 GB system disk.", lines:[["E5_OCPU", h], ["E5_MEM", 6*h], ["BV",50], ["VPU",500]]});
     }
-    if(withEmail) add({id:"email", scope:"shared", name:"System e-mails (Email Delivery)", service:"OCI Email Delivery",
-        spec:`${c.emails.toLocaleString()} e-mails × ${c.clients} clients = ${(c.emails*c.clients).toLocaleString()}/month (first 3,000 free)`,
+    if(withEmail) add({id:"email", scope:"shared", name:"System e-mails", service:"OCI Email Delivery",
+        spec:`${c.emails.toLocaleString()} e-mails per client for ${c.clients} clients: ${(c.emails*c.clients).toLocaleString()} a month. The first 3,000 are free.`,
         lines:[["EMAIL", c.emails*c.clients/1000]]});
-    add({id:"obs", scope:"shared", name:"Monitoring, alarms and logging", service:"OCI Monitoring + Notifications + Logging",
-      spec:`${servers} servers × ~1.3 M datapoints · ${(c.logGB*c.clients).toFixed(1)} GB logs · alarm e-mails (free tiers: 500 M datapoints, 10 GB logs, 1,000 e-mails)`,
+    add({id:"obs", scope:"shared", name:"Monitoring, alarms and logs", service:"OCI Monitoring, Notifications and Logging",
+      spec:`${servers} servers at about 1.3 million datapoints each, ${(c.logGB*c.clients).toFixed(1)} GB of logs and alarm e-mails. Free up to 500 million datapoints, 10 GB of logs and 1,000 e-mails.`,
       lines:[["MON", servers*1.34], ["LOG", c.logGB*c.clients], ["NOTIF", 0.2]]});
-    add({id:"kuma", scope:"shared", name:"Uptime monitoring (Uptime Kuma)", service:"Always Free VM.Standard.E2.1.Micro (AMD)",
-      spec:"Checks every client's site (acme.namariq.com/api/health/ready/) every minute and e-mails you when one is down · 50 GB boot disk", tag:"free",
+    add({id:"kuma", scope:"shared", name:"Uptime monitoring with Uptime Kuma", service:"Always Free VM.Standard.E2.1.Micro (AMD)",
+      spec:"Checks every client's site (acme.namariq.com/api/health/ready/) every minute and e-mails you when one is down. 50 GB system disk.", tag:"free",
       lines:[["BV",50],["VPU",500]]});
-    add({id:"health", scope:"shared", on:false, future:true, name:"Oracle Health Checks (instead of Uptime Kuma)", service:"OCI Health Checks – basic",
-      spec:`${c.clients} endpoints checked from Oracle's network`, lines:[["HEALTH", c.clients]]});
-    add({id:"free", scope:"shared", name:"Bastion (SSH access) · DDoS protection · Vault (secrets)", service:"OCI Bastion, built-in DDoS protection, Vault",
-      spec:"Bastion is free · DDoS protection is automatic and free · Vault: software keys free, 150 secrets free", tag:"free"});
-    add({id:"domain", scope:"shared", name:"Domain namariq.com (sub-domain per client: acme.namariq.com)", service:c.registrar.name,
-      spec:`${usd(c.registrar.year)} per year · sub-domains and DNS are free`, fixed:c.registrar.year/12});
-    add({id:"mail", scope:"shared", name:"Our company e-mail (e.g. support@namariq.com)", service:c.mailProv.name,
-      spec:`${c.mailboxes} mailboxes × ${usd(c.mailProv.user)} per month`, fixed:c.mailboxes*c.mailProv.user});
-    add({id:"staging", scope:"shared", on:false, future:true, name:"Staging / demo server (test updates before clients)", service:"Compute E5.Flex + Block Volume",
-      spec:"1 OCPU · 8 GB · app + database on one server · 50 GB boot + 200 GB data disk",
+    add({id:"health", scope:"shared", on:false, future:true, name:"Oracle Health Checks", service:"OCI Health Checks, basic",
+      spec:`An alternative to Uptime Kuma: ${c.clients} sites checked from Oracle's network.`, lines:[["HEALTH", c.clients]]});
+    add({id:"free", scope:"shared", name:"Bastion, DDoS protection and Vault", service:"OCI Bastion, built-in DDoS protection, Vault",
+      spec:"Bastion gives SSH access without opening port 22. DDoS protection is automatic. Vault stores up to 150 secrets free.", tag:"free"});
+    add({id:"domain", scope:"shared", name:"Domain namariq.com", service:c.registrar.name,
+      spec:`${usd(c.registrar.year)} a year. Each client gets a free sub-domain such as acme.namariq.com.`, fixed:c.registrar.year/12});
+    add({id:"mail", scope:"shared", name:"Our company e-mail", service:c.mailProv.name,
+      spec:`${c.mailboxes} mailboxes (such as support@namariq.com) at ${usd(c.mailProv.user)} a month each.`, fixed:c.mailboxes*c.mailProv.user});
+    add({id:"staging", scope:"shared", on:false, future:true, name:"Staging and demo server", service:"Compute E5.Flex and Block Volume",
+      spec:"For testing updates before they reach clients: app and database on one server, 1 OCPU, 8 GB, 50 GB system disk and 200 GB data disk.",
       lines:[["E5_OCPU", h], ["E5_MEM", 8*h], ["BV", 250], ["VPU", 2500]]});
   };
 
@@ -422,18 +555,17 @@ function buildItems(c, s){
     sharedOurs(true, true, 2*c.clients + 2);
   } else if(tab === "split"){
     appServer("client"); zeroPerClient("client"); out("client"); lbWaf("client");
-    add({id:"peer", scope:"client", name:"Private link to the client's network (Local Peering / DRG, same region)", service:"Networking – LPG / DRG",
-      spec:"App server talks to the client's database over Oracle's private network; database has no public IP", tag:"free"});
+    add({id:"peer", scope:"client", name:"Private link to the client's network", service:"Local Peering Gateway or DRG, same region",
+      spec:"The app server reaches the client's database over Oracle's private network. The database has no public IP.", tag:"free"});
     sharedOurs(true, true, c.clients + 2);
     dbServer("theirs"); storage("theirs");
-    I.filter(i => i.scope==="theirs" && i.id==="replica").forEach(i => i.on=false);
   } else {
-    add({id:"remote", scope:"client", name:"Remote access + uptime check of the client's server", service:"Bastion / VPN given by the client + Uptime Kuma",
-      spec:"We only monitor and maintain; the client pays all hosting", tag:"free"});
+    add({id:"remote", scope:"client", name:"Remote access and uptime check", service:"Client's Bastion or VPN, plus Uptime Kuma",
+      spec:"We only monitor and maintain the client's servers. The client pays for all hosting.", tag:"free"});
     sharedOurs(false, false, 2);
     appServer("theirs", 4, "capp"); dbServer("theirs"); storage("theirs");
-    add({id:"cOut", scope:"theirs", name:"Internet traffic out", service:"Client's network", spec:`${c.outGB} GB/month`, lines:[[OUT, c.outGB]]});
-    add({id:"cEmail", scope:"theirs", name:"E-mail sending", service:"Client's own e-mail (Microsoft 365, Google…) via SMTP", spec:"Usually already paid by the client", tag:"free"});
+    add({id:"cOut", scope:"theirs", name:"Internet traffic out", service:"Client's network", spec:`${c.outGB} GB a month.`, lines:[[OUT, c.outGB]]});
+    add({id:"cEmail", scope:"theirs", name:"E-mail sending", service:"Client's own e-mail over SMTP", spec:"Usually Microsoft 365 or Google, which the client already pays for.", tag:"free"});
   }
   return I;
 }
@@ -460,7 +592,7 @@ function compute(c, s, items){
     for(const [k,q] of it.lines){
       const r = isOn(it) ? rate(pool,k) : paidRate(SKUS[k].tiers);
       m += q*r;
-      detail.push(`${SKUS[k].name}: ${(+q.toFixed(2)).toLocaleString()} ${SKUS[k].unit} × ${usd4(r)}`);
+      detail.push(`${SKUS[k].name}: ${(+q.toFixed(2)).toLocaleString()} ${SKUS[k].unit} at ${usd4(r)}`);
     }
     return {it, monthly:m, detail, on:isOn(it)};
   });
@@ -470,130 +602,143 @@ function compute(c, s, items){
 }
 
 /* ---------------- rendering ---------------- */
-function money(net, vat, d){ const f = d===4 ? usd4 : usd; return `<span class="money">${f(net*(1+vat))}</span><span class="vat">${f(net)} + ${f(net*vat)} VAT</span>`; }
+// VAT shown as (rounded total − rounded net) so the three numbers always add up on screen
+function rnd(x, d){ const p = Math.pow(10, d); return Math.round(x*p)/p; }
+function vatPart(net, vat, d){ return rnd(net*(1+vat), d) - rnd(net, d); }
+function money(net, vat, d){ const f = d===4 ? usd4 : usd, dd = d===4 ? 4 : 2; return `<span class="amt">${f(net*(1+vat))}</span><span class="vat">${f(net)} + ${f(vatPart(net, vat, dd))} VAT</span>`; }
 
+const NOTES = {
+  oracle:{cls:"", head:"We pay for all hosting and include it in the subscription.",
+    items:["Each client gets its own app server, database server and storage in its own compartment, in the Oracle region nearest to them."]},
+  client:{cls:"red", head:"The client controls the servers.",
+    items:["The client <b>can read the source code</b> of our app server (backend), because it runs on their machine. Ship a compiled build (Cython or Nuitka) and protect it with the contract and licence.",
+      "The client <b>can remove us from the server</b> at any time and <b>remove our admin control from the database</b>, because they can edit users directly in PostgreSQL.",
+      "Our hosting cost is only the shared parts, so charge a one-time setup fee and a yearly support fee. The \"paid by the client\" part of the breakdown shows what the same setup costs them on Oracle."]},
+  split:{cls:"amber", head:"We host the app server; the client hosts the database and files.",
+    items:["The client <b>can remove us from their database server</b> at any time and <b>remove our admin control from the database</b>, because they can edit users directly in PostgreSQL. The source code stays on our server.",
+      "Both Oracle accounts must be in the <b>same region</b>, for example both in Jeddah. A different region slows every database query and adds traffic cost.",
+      "Link the two accounts with a <b>private connection</b> (Local Peering Gateway, or a DRG with cross-account policies). Give the database <b>no public IP</b>, allow port 5432 only from our app server's private IP, and turn on TLS for PostgreSQL.",
+      "Files in the client's Object Storage need an access key from their account, and the code change for object storage noted in the breakdown."]},
+};
 function renderNotes(){
-  const N = {
-    oracle:`<div class="banner ok"><b>We host everything on Oracle.</b> We pay all hosting and include it in the subscription. Each client gets its own app server, database server and storage in its own compartment, in the Oracle region nearest to them.</div>`,
-    client:`<div class="banner danger"><b>Important: the client controls the servers.</b><ul>
-      <li>The client <b>can access the source code</b> of our app server (backend) because it runs on their machine. Ship a compiled build (Cython / Nuitka) and protect it by contract and licence.</li>
-      <li>The client <b>can remove us from the server</b> at any time and <b>remove our admin control from the database</b> (they can edit users directly in PostgreSQL).</li>
-      <li>Our hosting cost is only the shared parts; charge a one-time setup fee and a yearly support fee instead. The "paid by the client" section shows what the same setup costs them if they rent it on Oracle.</li></ul></div>`,
-    split:`<div class="banner warn"><b>Client hosts the database and files; we host the app server.</b><ul>
-      <li>The client <b>can remove us from their database server</b> at any time and <b>remove our admin control from the database</b> (they can edit users directly in PostgreSQL). The source code stays on our server.</li>
-      <li>Both accounts must be in the <b>same Oracle region</b> (e.g. both Jeddah). A different region adds delay to every database query and cross-region traffic cost.</li>
-      <li>Link the two Oracle accounts with a <b>private connection</b> (Local Peering Gateway or DRG with cross-account policies). The database gets <b>no public IP</b>; allow port 5432 only from our app server's private IP, and turn on TLS for PostgreSQL.</li>
-      <li>Uploaded files in the client's Object Storage need an access key from their account, and the code change for object storage (see the files row).</li></ul></div>`
-  };
-  $("tabNotes").innerHTML = N[tab];
+  const N = NOTES[tab];
+  $("tabNotes").innerHTML = `<div class="model-note ${N.cls}" role="note"><p>${N.head}</p><ul>${N.items.map(i => `<li>${i}</li>`).join("")}</ul></div>`;
 }
 
 function renderSizing(c, s){
   $("sizeUsers").textContent = c.users;
-  const env = `WEB_WORKERS=${s.workers}\nWEB_THREADS=${s.threads}`;
   $("sizing").innerHTML = `
-    <div class="grid">
-      <div><b>App server</b><div class="small">${s.appOcpu} OCPU (${s.appOcpu*2} vCPU) · ${s.appRam} GB RAM</div>
-        <div class="cap">${`Comfortable: <b>${s.app.comfortUsers} users</b> (~${s.app.comfortRps} requests/s)<br>Upper limit (slower, still works): <b>${s.app.upperUsers} users</b> (~${s.app.upperRps} requests/s)<br>${s.app.concurrent} requests processed at the same time`}</div>
-        <pre>${env}</pre></div>
-      <div><b>Database server</b><div class="small">${s.dbOcpu} OCPU · ${s.dbRam} GB RAM · ${s.dbDisk} GB disk</div>
-        <div class="cap">Comfortable: <b>${s.db.comfortUsers} users</b><br>Upper limit: <b>${s.db.upperUsers} users</b> (heavy reports get slower)<br>RAM also grows with DB size (${c.dbGB} GB)</div>
-        <pre>max_connections = ${s.maxConn}\nshared_buffers = ${Math.round(s.dbRam/4)}GB\neffective_cache_size = ${Math.round(s.dbRam*3/4)}GB</pre></div>
-      <div><b>Rules used</b><div class="small">App: 1 OCPU per 50 users, 8 GB per OCPU, workers = 2 × OCPU + 1, 8 threads.<br>DB: 1 OCPU per 40 users; RAM = the larger of 8 GB per OCPU and 16/32/48/64 GB for DB under 100/300/700/more GB.<br>Disk = DB size + 30%. Change users and the sizes and prices update.</div></div>
-    </div>`;
+    <div class="size"><h3>App server</h3><p class="shape">${s.appOcpu} OCPU, ${s.appRam} GB</p>
+      <dl><dt>Comfortable</dt><dd>${s.app.comfortUsers} users, about ${s.app.comfortRps} requests a second</dd>
+      <dt>Upper limit</dt><dd>${s.app.upperUsers} users, slower but working</dd>
+      <dt>At once</dt><dd>${s.app.concurrent} requests</dd></dl>
+      <pre>WEB_WORKERS=${s.workers}\nWEB_THREADS=${s.threads}</pre></div>
+    <div class="size"><h3>Database server</h3><p class="shape">${s.dbOcpu} OCPU, ${s.dbRam} GB</p>
+      <dl><dt>Comfortable</dt><dd>${s.db.comfortUsers} users</dd>
+      <dt>Upper limit</dt><dd>${s.db.upperUsers} users, heavy reports get slower</dd>
+      <dt>Data disk</dt><dd>${s.dbDisk} GB for a ${c.dbGB} GB database</dd></dl>
+      <pre>max_connections = ${s.maxConn}\nshared_buffers = ${Math.round(s.dbRam/4)}GB\neffective_cache_size = ${Math.round(s.dbRam*3/4)}GB</pre></div>
+    <div class="size"><h3>How sizes are chosen</h3>
+      <p class="rules">App server: 1 OCPU for every 50 users, 8 GB per OCPU, workers = 2 × OCPU + 1, 8 threads each.</p>
+      <p class="rules" style="margin-top:8px">Database: 1 OCPU for every 40 users. RAM is the larger of 8 GB per OCPU and 16, 32, 48 or 64 GB for databases under 100, 300, 700 GB or larger.</p>
+      <p class="rules" style="margin-top:8px">Data disk: database size plus 30%.</p></div>`;
 }
 
-function renderKpis(c, s, r){
-  const v = c.vat;
-  const theirs = tab !== "oracle" ? `
-    <div class="kpi"><div class="l">Client's own Oracle cost per month (if they rent it there)</div><div class="v">${usd(r.theirsM*(1+v))}</div><div class="b">${usd(r.theirsM)} + ${usd(r.theirsM*v)} VAT · per user ${usd(r.theirsM*(1+v)/c.users)}</div></div>` : "";
-  $("kpis").innerHTML = `
-    <div class="kpi main"><div class="l">Our cost per client per month</div><div class="v">${usd(r.perClient*(1+v))}</div><div class="b">${usd(r.perClient)} + ${usd(r.perClient*v)} VAT</div></div>
-    <div class="kpi main"><div class="l">Our cost per user per month (${c.users} users)</div><div class="v">${usd(r.perClient*(1+v)/c.users)}</div><div class="b">${usd(r.perClient/c.users)} + ${usd(r.perClient*v/c.users)} VAT</div></div>
-    <div class="kpi"><div class="l">Our cost per client per hour</div><div class="v">${usd(r.perClient*(1+v)/c.hours)}</div><div class="b">per year ${usd(r.perClient*(1+v)*12)}</div></div>
-    <div class="kpi"><div class="l">Our total for all ${c.clients} clients per month</div><div class="v">${usd((r.clientM*c.clients + r.sharedM)*(1+v))}</div><div class="b">dedicated ${usd(r.clientM*c.clients*(1+v))} · shared ${usd(r.sharedM*(1+v))}</div></div>
-    ${theirs}`;
+let lastTotal = null;
+function renderHero(c, r){
+  const v = c.vat, t = r.perClient*(1+v);
+  $("tMonth").textContent = usd(t);
+  $("tUser").textContent = usd(t/c.users);
+  let foot = `That's <b>${usd(r.perClient)}</b> before ${c.vatLabel} VAT (${usd(vatPart(r.perClient, v, 2))}), <b>${usd4(t/c.hours)}</b> an hour and <b>${usd(t*12)}</b> a year. For all ${c.clients} clients we pay <b>${usd((r.clientM*c.clients + r.sharedM)*(1+v))}</b> a month.`;
+  if(tab !== "oracle") foot += ` The client pays about <b>${usd(r.theirsM*(1+v))}</b> a month (${usd(r.theirsM*(1+v)/c.users)} per user) on their own Oracle account.`;
+  $("heroFoot").innerHTML = foot;
+  if(lastTotal !== null && Math.abs(lastTotal - t) > 0.005){
+    for(const el of [$("tMonth"), $("tUser")]){ el.classList.add("flash"); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("flash"))); }
+  }
+  lastTotal = t;
 }
 
 function renderTable(c, r){
   const v = c.vat, hrs = c.hours;
   const groups = [
-    ["client", "Per client · paid by us (one set for every client)"],
-    ["shared", `Shared between all clients · paid by us once (split over ${c.clients} clients)`],
-    ["theirs", "Paid by the client · their own Oracle account (each client gets their own free allowances)"],
+    ["client", "Each client, paid by us", "One set for every client."],
+    ["shared", "Shared by all clients, paid by us", `Paid once, split over ${c.clients} clients.`],
+    ["theirs", "Paid by the client", "On their own Oracle account, with their own free allowances."],
   ];
-  let html = `<thead><tr><th style="width:34px"></th><th>Part</th><th>Size / what it does</th><th>Oracle service · capacity</th><th class="num">Per hour</th><th class="num">Per month</th>${""}<th class="num">Per client / month</th></tr></thead><tbody>`;
-  for(const [g, title] of groups){
+  let html = `<thead><tr><th class="ck"><span class="vh" hidden>Included</span></th><th>Part</th><th>Oracle service and capacity</th><th class="num hr">Per hour</th><th class="num">Per month</th><th class="num">Per client a month</th></tr></thead><tbody>`;
+  for(const [g, title, sub] of groups){
     const rows = r.res.filter(x => x.it.scope === g);
     if(!rows.length) continue;
-    const tot = rows.filter(x => x.on).reduce((a,x) => a + x.monthly, 0);
-    html += `<tr class="group"><td></td><td colspan="3">${title}</td><td class="num">${usd4(tot*(1+v)/hrs)}</td><td class="num">${usd(tot*(1+v))}</td><td class="num">${g==="shared" ? usd(tot*(1+v)/c.clients) : g==="client" ? usd(tot*(1+v)) : "–"}</td></tr>`;
+    html += `<tr class="grp"><td></td><td colspan="5"><span class="gname">${title}</span><span class="gsub">${sub}</span></td></tr>`;
     for(const x of rows){
       const it = x.it, k = keyOf(it);
-      const tags = (it.future?`<span class="tag future">future / optional</span>`:"") + (it.tag==="free"?`<span class="tag free">free</span>`:"") + (it.tag==="code"?`<span class="tag code">needs code change</span>`:"");
+      const tags = (it.future?`<span class="badge future">optional</span>`:"") + (it.tag==="free"?`<span class="badge free">free</span>`:"") + (it.tag==="code"?`<span class="badge code">needs code change</span>`:"");
       const per = g==="shared" ? x.monthly/c.clients : g==="client" ? x.monthly : null;
       html += `<tr class="${x.on?"on":"off"}">
-        <td><input type="checkbox" data-k="${esc(k)}" ${x.on?"checked":""} aria-label="Include ${esc(it.name)}"></td>
-        <td><b>${esc(it.name)}</b>${tags}${it.note?`<div class="small">${esc(it.note)}</div>`:""}</td>
-        <td>${it.spec}</td>
-        <td>${esc(it.service)}${it.cap?`<div class="cap small">${it.cap}</div>`:""}${x.detail.length?`<details class="small"><summary style="font-weight:400">price detail</summary>${x.detail.map(esc).join("<br>")}${it.fixed?`<br>Fixed: ${usd(it.fixed)}/month`:""}</details>`:""}</td>
-        <td class="num">${money(x.monthly/hrs, v, 4)}</td>
-        <td class="num">${money(x.monthly, v)}</td>
-        <td class="num">${per===null ? "–" : money(per, v)}</td></tr>`;
+        <td class="ck"><input type="checkbox" data-k="${esc(k)}" ${x.on?"checked":""} aria-label="Include ${esc(it.name)}"></td>
+        <td class="main"><div class="item-name">${esc(it.name)}${tags}</div><div class="item-spec">${esc(it.spec)}</div>${it.note?`<div class="item-note">${esc(it.note)}</div>`:""}</td>
+        <td class="svc">${esc(it.service)}${it.cap?`<div class="cap">${it.cap}</div>`:""}${x.detail.length||it.fixed?`<details class="detail"><summary>How it's priced</summary>${x.detail.map(esc).join("<br>")}${it.fixed?`${x.detail.length?"<br>":""}Fixed: ${usd(it.fixed)} a month`:""}</details>`:""}</td>
+        <td class="num hr" data-l="Per hour">${money(x.monthly/hrs, v, 4)}</td>
+        <td class="num" data-l="Per month">${money(x.monthly, v)}</td>
+        <td class="num" data-l="Per client a month">${per===null ? `<span class="small">client pays</span>` : money(per, v)}</td></tr>`;
     }
+    const tot = rows.filter(x => x.on).reduce((a,x) => a + x.monthly, 0);
+    const perTot = g==="shared" ? tot/c.clients : g==="client" ? tot : null;
+    html += `<tr class="sub"><td></td><td colspan="2">Subtotal</td><td class="num hr" data-l="Per hour">${usd4(tot*(1+v)/hrs)}</td><td class="num" data-l="Per month">${usd(tot*(1+v))}</td><td class="num" data-l="Per client a month">${perTot===null ? "" : usd(perTot*(1+v))}</td></tr>`;
   }
+  html += `<tr class="grand"><td></td><td colspan="2">Our cost per client</td><td class="num hr" data-l="Per hour">${usd4(r.perClient*(1+v)/hrs)}</td><td class="num"></td><td class="num" data-l="Per client a month"><span class="amt">${usd(r.perClient*(1+v))}</span></td></tr>`;
   html += `</tbody>`;
   $("tbl").innerHTML = html;
 }
 
 function renderDomains(c){
   const v = c.vat;
-  const reg = REGISTRARS.map(r => `<tr class="${r.id===c.registrar.id?"on":""}"><td><b>${esc(r.name)}</b>${r.rec?`<span class="tag rec">recommended</span>`:""}</td>
+  const reg = REGISTRARS.map(r => `<tr class="${r.id===c.registrar.id?"sel":""}"><td><b>${esc(r.name)}</b>${r.rec?`<span class="badge rec">recommended</span>`:""}</td>
     <td class="num">${money(r.year, v)}</td><td class="num">${money(r.year/12, v)}</td><td>${esc(r.pros)}</td><td>${esc(r.cons)}</td></tr>`).join("");
-  const mail = MAILPROVS.map(m => `<tr class="${m.id===c.mailProv.id?"on":""}"><td><b>${esc(m.name)}</b>${m.rec?`<span class="tag rec">recommended</span>`:""}</td>
+  const mail = MAILPROVS.map(m => `<tr class="${m.id===c.mailProv.id?"sel":""}"><td><b>${esc(m.name)}</b>${m.rec?`<span class="badge rec">recommended</span>`:""}</td>
     <td class="num">${money(m.user, v)}</td><td class="num">${money(m.user*12, v)}</td><td>${esc(m.pros)}</td><td>${esc(m.cons)}</td></tr>`).join("");
   $("domains").innerHTML = `
-    <p class="small" style="margin-top:0"><b>Sub-domains are free with every registrar.</b> Buy <code>namariq.com</code> once, then add one DNS record per client: <code>acme.namariq.com → A → client's reserved IP</code>. No extra cost per client. The registrar and e-mail you pick in "More assumptions" feed the shared costs above.</p>
-    <h3>Domain registrars (.com renewal price)</h3>
-    <div class="tblwrap"><table style="min-width:760px"><thead><tr><th>Registrar</th><th class="num">Per year</th><th class="num">Per month</th><th>Benefits</th><th>Watch out</th></tr></thead><tbody>${reg}</tbody></table></div>
-    <h3>Company mailboxes on your domain (per mailbox)</h3>
-    <div class="tblwrap"><table style="min-width:760px"><thead><tr><th>Provider</th><th class="num">Per month</th><th class="num">Per year</th><th>Benefits</th><th>Watch out</th></tr></thead><tbody>${mail}</tbody></table></div>
-    <p class="small">System e-mails (invoices, notifications) go through Oracle Email Delivery, not these mailboxes. Prices checked 2026-11-23; the .com wholesale price rose on 1 Nov 2026, so older articles show lower numbers.
-    Sources: <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a> · <a href="https://porkbun.com/products/domains" target="_blank" rel="noopener">Porkbun</a> · <a href="https://www.namecheap.com/domains/" target="_blank" rel="noopener">Namecheap</a> · <a href="https://www.godaddy.com/domains" target="_blank" rel="noopener">GoDaddy</a> · <a href="https://www.zoho.com/mail/zohomail-pricing.html" target="_blank" rel="noopener">Zoho Mail</a> · <a href="https://workspace.google.com/pricing" target="_blank" rel="noopener">Google Workspace</a> · <a href="https://www.microsoft.com/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener">Microsoft 365</a></p>`;
+    <p class="lead" style="color:var(--muted);max-width:72ch;margin:0 0 16px"><b style="color:var(--ink)">Sub-domains are free with every registrar.</b> Buy <code>namariq.com</code> once, then add one DNS record per client: <code>acme.namariq.com</code>, type A, pointing to that client's reserved IP. The registrar and e-mail provider chosen under "Usage details" feed the shared costs.</p>
+    <h3 class="sm">Domain registrars, .com renewal price</h3>
+    <div class="cmp"><table><thead><tr><th>Registrar</th><th class="num">A year</th><th class="num">A month</th><th>Benefits</th><th>Watch out for</th></tr></thead><tbody>${reg}</tbody></table></div>
+    <h3 class="sm">Company mailboxes on your domain, per mailbox</h3>
+    <div class="cmp"><table><thead><tr><th>Provider</th><th class="num">A month</th><th class="num">A year</th><th>Benefits</th><th>Watch out for</th></tr></thead><tbody>${mail}</tbody></table></div>
+    <p class="small" style="max-width:80ch">System e-mails such as invoices and notifications go through Oracle Email Delivery, not these mailboxes. Prices checked 2026-11-23; the .com wholesale price rose on 1 November 2026, so older articles show lower numbers.
+    Sources: <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a>, <a href="https://porkbun.com/products/domains" target="_blank" rel="noopener">Porkbun</a>, <a href="https://www.namecheap.com/domains/" target="_blank" rel="noopener">Namecheap</a>, <a href="https://www.godaddy.com/domains" target="_blank" rel="noopener">GoDaddy</a>, <a href="https://www.zoho.com/mail/zohomail-pricing.html" target="_blank" rel="noopener">Zoho Mail</a>, <a href="https://workspace.google.com/pricing" target="_blank" rel="noopener">Google Workspace</a>, <a href="https://www.microsoft.com/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener">Microsoft 365</a>.</p>`;
 }
 
 function renderCheck(){
   let rows = "", same = 0, diff = 0, missing = 0;
+  const fmt = t => t.map(x => `${x[2]===0?"free":usd4(x[2])}${x[1]!==null?` up to ${x[1].toLocaleString()}`:""}`).join(", then ");
   for(const [k, sku] of Object.entries(SNAP)){
     const live = LIVE[sku.pn];
-    const snapTxt = sku.tiers.map(t => `${t[2]===0?"free":usd4(t[2])}${t[1]!==null?` up to ${t[1].toLocaleString()}`:""}`).join(", then ");
     let liveTxt = "–", st = `<span class="small">not loaded</span>`;
     if(live){
-      liveTxt = live.map(t => `${t[2]===0?"free":usd4(t[2])}${t[1]!==null?` up to ${t[1].toLocaleString()}`:""}`).join(", then ");
+      liveTxt = fmt(live);
       const ok = paidRate(live) === paidRate(sku.tiers);
-      const freeNote = sku.freeCap && live.length>1 && live[0][1] !== sku.freeCap ? ` (free tier capped at ${sku.freeCap.toLocaleString()} per Always Free docs)` : "";
-      if(ok){ same++; st = `<span class="ok">✓ same</span>${freeNote}`; } else { diff++; st = `<span class="bad">✗ changed – live price used</span>`; }
-    } else if(priceSource === "live"){ missing++; st = `<span class="bad">not in live list</span>`; }
-    rows += `<tr><td>${esc(sku.pn)}</td><td>${esc(sku.name)}</td><td>${esc(sku.unit)}</td><td>${snapTxt}</td><td>${liveTxt}</td><td>${st}</td></tr>`;
+      const freeNote = sku.freeCap && live.length>1 && live[0][1] !== sku.freeCap ? `, free part capped at ${sku.freeCap.toLocaleString()} per the Always Free page` : "";
+      if(ok){ same++; st = `<span class="ok">Same</span>${freeNote}`; } else { diff++; st = `<span class="bad">Changed: live price used</span>`; }
+    } else if(priceSource === "live"){ missing++; st = `<span class="bad">Missing from live list</span>`; }
+    rows += `<tr><td>${esc(sku.pn)}</td><td>${esc(sku.name)}</td><td>${esc(sku.unit)}</td><td>${fmt(sku.tiers)}</td><td>${liveTxt}</td><td>${st}</td></tr>`;
   }
-  $("checkTbl").innerHTML = `<thead><tr><th>Part</th><th>Service</th><th>Unit</th><th>Snapshot</th><th>Live</th><th>Check</th></tr></thead><tbody>${rows}</tbody>`;
-  $("checkSummary").textContent = priceSource === "live" ? `${same} same, ${diff} changed, ${missing} missing` : "Live prices not loaded – using the snapshot.";
+  $("checkTbl").innerHTML = `<thead><tr><th>Part</th><th>Service</th><th>Unit</th><th>Snapshot</th><th>Live</th><th>Result</th></tr></thead><tbody>${rows}</tbody>`;
+  $("checkSummary").textContent = priceSource === "live" ? `${same} same, ${diff} changed, ${missing} missing.` : "Live prices aren't loaded, so the snapshot is in use.";
 }
 
 function render(){
   const c = cfg(), s = sizing(c), items = buildItems(c, s), r = compute(c, s, items);
-  document.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.tab===tab));
-  document.querySelectorAll("#usersBox .ubtn").forEach(b => b.setAttribute("aria-pressed", b.dataset.u===usersSel));
+  document.querySelectorAll("#tabs .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.tab===tab));
+  document.querySelectorAll("#usersBox .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.u===usersSel));
   $("vatCustomWrap").hidden = $("vat").value !== "custom";
-  renderNotes(); renderSizing(c, s); renderKpis(c, s, r); renderTable(c, r); renderDomains(c); renderCheck();
+  renderNotes(); renderHero(c, r); renderSizing(c, s); renderTable(c, r); renderDomains(c); renderCheck();
   window.__last = {c, s, r};               // for testing in the console
 }
 
 /* ---------------- live prices from Oracle ---------------- */
 async function loadLive(){
-  $("priceBanner").className = "banner info";
-  $("priceBanner").textContent = "Loading prices from Oracle…";
+  $("source").className = "source"; $("source").textContent = "Loading Oracle prices…";
   try{
+    // Oracle rejects requests that carry a local Referer, so send none.
     const res = await fetch("https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/?currencyCode=USD", {referrerPolicy:"no-referrer", credentials:"omit"});
     if(!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
@@ -613,35 +758,45 @@ async function loadLive(){
       sku.tiers = t;
     }
     priceSource = "live"; liveDate = (data.lastUpdated||"").slice(0,10);
-    $("priceBanner").className = "banner ok";
-    $("priceBanner").innerHTML = `<b>Live Oracle prices</b> loaded from Oracle's public price list (last updated by Oracle ${esc(liveDate)}). See "Price check" at the bottom for each part.`;
+    $("source").className = "source live";
+    $("source").textContent = `Live Oracle prices, list of ${liveDate}`;
+    $("fallback").hidden = true;
   }catch(e){
     priceSource = "snapshot";
-    $("priceBanner").className = "banner warn";
-    $("priceBanner").innerHTML = `<b>Using the saved price snapshot</b> (Oracle price list of ${SNAPSHOT_DATE}, checked 2026-11-23). Live prices could not be loaded (${esc(e.message)}). Oracle only allows this from a web address: open the page through a local web server (<code>python -m http.server</code>) or a hosted copy, not by double-clicking the file.`;
+    $("source").className = "source snap";
+    $("source").textContent = `Saved prices, Oracle list of ${SNAPSHOT_DATE}`;
+    $("fallback").hidden = false;
+    $("fallback").innerHTML = `Live Oracle prices didn't load (${esc(e.message)}), so the page uses prices saved on 2026-11-23. Oracle only answers pages opened from a web address: run <code>python -m http.server</code> in this folder and open <code>http://localhost:8000</code>, or use the hosted copy.`;
   }
   render();
 }
 
 /* ---------------- events ---------------- */
 function init(){
-  $("registrar").innerHTML = REGISTRARS.map(r => `<option value="${r.id}">${esc(r.name)} – ${usd(r.year)}/yr${r.rec?" (recommended)":""}</option>`).join("");
-  $("mailProv").innerHTML = MAILPROVS.map(m => `<option value="${m.id}">${esc(m.name)} – ${usd(m.user)}/mailbox/mo${m.rec?" (recommended)":""}</option>`).join("");
+  $("registrar").innerHTML = REGISTRARS.map(r => `<option value="${r.id}">${esc(r.name)}, ${usd(r.year)} a year${r.rec?" (recommended)":""}</option>`).join("");
+  $("mailProv").innerHTML = MAILPROVS.map(m => `<option value="${m.id}">${esc(m.name)}, ${usd(m.user)} a mailbox${m.rec?" (recommended)":""}</option>`).join("");
   const ids = ["clients","dbGB","filesGB","vat","vatCustom","plan","perf","region","hours","compress","changePct","volKept","verPct","growPct","emails","reqDay","outGB","logGB","mailboxes","registrar","mailProv","uCustom"];
   for(const id of ids){
     const saved = store.get("in:"+id, null);
     if(saved !== null) $(id).value = saved;
     $(id).addEventListener("input", () => { store.set("in:"+id, $(id).value); if(id==="uCustom"){ usersSel="custom"; store.set("usersSel","custom"); } render(); });
   }
-  document.querySelectorAll("#usersBox .ubtn").forEach(b => b.addEventListener("click", () => { usersSel = b.dataset.u; store.set("usersSel", usersSel); render(); }));
-  document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => { tab = b.dataset.tab; store.set("tab", tab); render(); }));
+  document.querySelectorAll("#usersBox button.chip").forEach(b => b.addEventListener("click", () => { usersSel = b.dataset.u; store.set("usersSel", usersSel); render(); }));
+  $("uCustom").addEventListener("focus", () => { usersSel = "custom"; store.set("usersSel","custom"); render(); });
+  document.querySelectorAll("#tabs .chip").forEach(b => b.addEventListener("click", () => { tab = b.dataset.tab; store.set("tab", tab); render(); }));
   $("tbl").addEventListener("change", e => { const k = e.target.dataset && e.target.dataset.k; if(k){ store.set("chk:"+k, e.target.checked); render(); } });
   $("reloadBtn").addEventListener("click", loadLive);
+  const curTheme = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const syncThemeBtn = () => {   // show the sun in dark mode (to go light) and the moon in light mode (to go dark)
+    const dark = curTheme() === "dark", label = dark ? "Switch to light mode" : "Switch to dark mode";
+    $("themeBtn").classList.toggle("dark", dark); $("themeBtn").setAttribute("aria-label", label); $("themeBtn").title = label;
+  };
   $("themeBtn").addEventListener("click", () => {
-    const cur = document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    const nx = cur === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", nx); store.set("theme", nx);
+    const nx = curTheme() === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", nx); store.set("theme", nx); syncThemeBtn();
   });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncThemeBtn);
   const th = store.get("theme", null); if(th) document.documentElement.setAttribute("data-theme", th);
+  syncThemeBtn();
   render();
   loadLive();
 }
