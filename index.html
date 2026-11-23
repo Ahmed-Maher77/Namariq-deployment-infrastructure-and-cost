@@ -11,7 +11,7 @@
 :root{
   --page:#EEF2F4; --sheet:#FFFFFF; --ink:#17262F; --muted:#5D6B76; --rule:#D3DBE1; --rule-strong:#9AA8B2;
   --green:#0B6E4F; --green-soft:#E3F1EB; --green-ink:#0A5A41;
-  --amber:#A86412; --amber-soft:#FBF0E1;
+  --amber:#A86412; --amber-soft:#FBF0E1; --amber-ink:#85500E;
   --red:#A3261B; --red-soft:#FBE9E7;
   --blue:#24557F; --blue-soft:#E6EEF6;
   --field:#F6F8F9;
@@ -23,7 +23,7 @@
   :root:not([data-theme="light"]){
     --page:#14212B; --sheet:#1B2A35; --ink:#E7EDF1; --muted:#9BAAB5; --rule:#2E3F4B; --rule-strong:#5A6E7C;
     --green:#4CC79A; --green-soft:#173A31; --green-ink:#7DDDB8;
-    --amber:#E8A955; --amber-soft:#3A2C17;
+    --amber:#E8A955; --amber-soft:#3A2C17; --amber-ink:#E8A955;
     --red:#F08C80; --red-soft:#3D2120;
     --blue:#8FB8E0; --blue-soft:#1C3145; --field:#16242E;
   }
@@ -31,7 +31,7 @@
 :root[data-theme="dark"]{
   --page:#14212B; --sheet:#1B2A35; --ink:#E7EDF1; --muted:#9BAAB5; --rule:#2E3F4B; --rule-strong:#5A6E7C;
   --green:#4CC79A; --green-soft:#173A31; --green-ink:#7DDDB8;
-  --amber:#E8A955; --amber-soft:#3A2C17;
+  --amber:#E8A955; --amber-soft:#3A2C17; --amber-ink:#E8A955;
   --red:#F08C80; --red-soft:#3D2120;
   --blue:#8FB8E0; --blue-soft:#1C3145; --field:#16242E;
 }
@@ -120,15 +120,17 @@ a{color:var(--blue)}
 .bill tr.grand td{border-bottom:none;padding-top:16px;padding-bottom:16px;font-family:var(--display);font-size:18px;font-weight:700}
 .bill tr.grand .num span.amt{border-bottom:4px double var(--ink);padding-bottom:2px}
 .bill .ck{width:44px}
-.bill input[type=checkbox]{width:18px;height:18px;margin:2px 0 0;accent-color:var(--green);cursor:pointer}
+.bill input[type=checkbox]{width:22px;height:22px;margin:0;accent-color:var(--green);cursor:pointer}
 .item-name{font-weight:600}
+label.item-name{display:block;cursor:pointer}
+label.item-name:hover{text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
 .item-spec{color:var(--muted);font-size:14px;margin-top:2px}
 .item-note{font-size:13px;margin-top:6px;padding:6px 10px;border-radius:6px;background:var(--amber-soft);color:var(--ink)}
 .svc{font-size:14px}
 .cap{font-size:13px;color:var(--muted);margin-top:4px}
 .cap b{color:var(--ink);font-weight:600}
 .detail{margin-top:6px;font-size:13px;color:var(--muted)}
-.detail summary{cursor:pointer;color:var(--blue);width:max-content}
+.detail summary{cursor:pointer;color:var(--blue);width:max-content;min-height:24px;padding:3px 4px 3px 0;display:list-item}
 .amt{font-weight:600}
 .vat{display:block;font-size:12px;color:var(--muted);font-weight:400}
 tr.on td.ck{box-shadow:inset 4px 0 0 var(--green)}
@@ -136,7 +138,7 @@ tr.on .amt{color:var(--green-ink)}
 tr.off .item-name, tr.off .svc{color:var(--muted)}
 tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
 .badge{display:inline-block;font-size:12px;font-weight:500;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:1px;white-space:nowrap}
-.badge.future{background:var(--amber-soft);color:var(--amber)}
+.badge.future{background:var(--amber-soft);color:var(--amber-ink)}
 .badge.free{background:var(--green-soft);color:var(--green-ink)}
 .badge.code{background:var(--red-soft);color:var(--red)}
 .badge.rec{background:var(--green);color:var(--sheet)}
@@ -196,6 +198,21 @@ tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thic
 .notes b{color:var(--ink)}
 .fallback{margin:14px 0 0;padding:10px 14px;border-radius:8px;background:var(--amber-soft);font-size:14px;max-width:86ch}
 code{font-family:var(--code);font-size:.9em}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* total that follows you once the sentence scrolls away */
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--ink);color:var(--sheet);transform:translateY(110%);transition:transform .25s ease}
+.stickybar.show{transform:none}
+.stickybar-in{max-width:1240px;margin:0 auto;padding:10px 16px;display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;flex-wrap:wrap;font-size:15px}
+.stickybar b{font-family:var(--display);font-size:18px;font-weight:700}
+.stickybar .small{color:inherit;opacity:.8}
+body.has-bar .wrap{padding-bottom:110px}
+@media (max-width:640px), (max-height:520px){
+  .stickybar-in{padding:8px 16px;font-size:14px}
+  .stickybar b{font-size:16px}
+  .stickybar #sMeta{display:none}
+}
+@media (prefers-reduced-motion: reduce){.stickybar{transition:none}}
 </style>
 </head>
 <body>
@@ -214,7 +231,7 @@ code{font-family:var(--code);font-size:.9em}
 
   <section class="hero" aria-labelledby="sentence">
     <p class="hero-q">What does one client cost us to host each month?</p>
-    <p class="sentence" id="sentence">
+    <h1 class="sentence" id="sentence">
       With
       <span class="pick" role="group" aria-label="Users per client" id="usersBox">
         <button class="chip" type="button" data-u="20">20</button>
@@ -230,7 +247,8 @@ code{font-family:var(--code);font-size:.9em}
         <button class="chip" type="button" data-tab="split">the client hosts the database and files</button>
       </span>
       one client costs us <span class="total" id="tMonth">$0</span> a month, or <span class="total" id="tUser">$0</span> per user.
-    </p>
+    </h1>
+    <p class="sr-only" id="liveTotal" aria-live="polite" aria-atomic="true"></p>
     <p class="hero-foot" id="heroFoot"></p>
     <div id="tabNotes"></div>
   </section>
@@ -320,6 +338,13 @@ code{font-family:var(--code);font-size:.9em}
         </details>
       </div>
     </aside>
+  </div>
+</div>
+
+<div class="stickybar" id="stickyBar" aria-hidden="true">
+  <div class="stickybar-in">
+    <span>One client costs us <b id="sMonth"></b> a month, <b id="sUser"></b> per user</span>
+    <span class="small" id="sMeta"></span>
   </div>
 </div>
 
@@ -644,6 +669,7 @@ function renderSizing(c, s){
       <p class="rules" style="margin-top:8px">Data disk: database size plus 30%.</p></div>`;
 }
 
+const NOTES_SHORT = {oracle:"we host everything", client:"client hosts everything", split:"client hosts the database and files"};
 let lastTotal = null;
 function renderHero(c, r){
   const v = c.vat, t = r.perClient*(1+v);
@@ -652,6 +678,10 @@ function renderHero(c, r){
   let foot = `That's <b>${usd(r.perClient)}</b> before ${c.vatLabel} VAT (${usd(vatPart(r.perClient, v, 2))}), <b>${usd4(t/c.hours)}</b> an hour and <b>${usd(t*12)}</b> a year. For all ${c.clients} clients we pay <b>${usd((r.clientM*c.clients + r.sharedM)*(1+v))}</b> a month.`;
   if(tab !== "oracle") foot += ` The client pays about <b>${usd(r.theirsM*(1+v))}</b> a month (${usd(r.theirsM*(1+v)/c.users)} per user) on their own Oracle account.`;
   $("heroFoot").innerHTML = foot;
+  $("sMonth").textContent = usd(t); $("sUser").textContent = usd(t/c.users);
+  $("sMeta").textContent = `${c.users} users, ${NOTES_SHORT[tab]}, incl. ${c.vatLabel} VAT`;
+  clearTimeout(renderHero.timer);       // announce once the person stops changing things
+  renderHero.timer = setTimeout(() => { $("liveTotal").textContent = `One client costs ${usd(t)} a month, ${usd(t/c.users)} per user.`; }, 700);
   if(lastTotal !== null && Math.abs(lastTotal - t) > 0.005){
     for(const el of [$("tMonth"), $("tUser")]){ el.classList.add("flash"); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("flash"))); }
   }
@@ -675,8 +705,8 @@ function renderTable(c, r){
       const tags = (it.future?`<span class="badge future">optional</span>`:"") + (it.tag==="free"?`<span class="badge free">free</span>`:"") + (it.tag==="code"?`<span class="badge code">needs code change</span>`:"");
       const per = g==="shared" ? x.monthly/c.clients : g==="client" ? x.monthly : null;
       html += `<tr class="${x.on?"on":"off"}">
-        <td class="ck"><input type="checkbox" data-k="${esc(k)}" ${x.on?"checked":""} aria-label="Include ${esc(it.name)}"></td>
-        <td class="main"><div class="item-name">${esc(it.name)}${tags}</div><div class="item-spec">${esc(it.spec)}</div>${it.note?`<div class="item-note">${esc(it.note)}</div>`:""}</td>
+        <td class="ck"><input type="checkbox" id="ck-${esc(k.replace(/:/g,"-"))}" data-k="${esc(k)}" ${x.on?"checked":""}></td>
+        <td class="main"><label class="item-name" for="ck-${esc(k.replace(/:/g,"-"))}">${esc(it.name)}${tags}</label><div class="item-spec">${esc(it.spec)}</div>${it.note?`<div class="item-note">${esc(it.note)}</div>`:""}</td>
         <td class="svc">${esc(it.service)}${it.cap?`<div class="cap">${it.cap}</div>`:""}${x.detail.length||it.fixed?`<details class="detail"><summary>How it's priced</summary>${x.detail.map(esc).join("<br>")}${it.fixed?`${x.detail.length?"<br>":""}Fixed: ${usd(it.fixed)} a month`:""}</details>`:""}</td>
         <td class="num hr" data-l="Per hour">${money(x.monthly/hrs, v, 4)}</td>
         <td class="num" data-l="Per month">${money(x.monthly, v)}</td>
@@ -797,6 +827,13 @@ function init(){
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncThemeBtn);
   const th = store.get("theme", null); if(th) document.documentElement.setAttribute("data-theme", th);
   syncThemeBtn();
+  // show the bottom total bar only while the sentence with the total is off screen
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(([e]) => {
+      const show = !e.isIntersecting && e.boundingClientRect.top < 0;
+      $("stickyBar").classList.toggle("show", show); document.body.classList.toggle("has-bar", show);
+    }).observe($("sentence"));
+  }
   render();
   loadLive();
 }
