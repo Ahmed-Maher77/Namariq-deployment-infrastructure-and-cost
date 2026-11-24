@@ -800,8 +800,7 @@ const NOTES = {
   split:{cls:"amber", head:"We host the app server; the client hosts the database and files.",
     items:["The client <b>can remove us from their database server</b> at any time and <b>remove our admin control from the database</b>, because they can edit users directly in PostgreSQL. The source code stays on our server.",
       "Both Oracle accounts must be in the <b>same region</b>, for example both in Jeddah. A different region slows every database query and adds traffic cost.",
-      "Link the two accounts with a <b>private connection</b> (Local Peering Gateway, or a DRG with cross-account policies). Give the database <b>no public IP</b>, allow port 5432 only from our app server's private IP, and turn on TLS for PostgreSQL.",
-      "Files in the client's Object Storage need an access key from their account, and the code change for object storage noted in the breakdown."]},
+      "Connect both accounts over a <b>private, encrypted link</b> so the database stays off the public internet and is reachable only from our app server."]},
 };
 function renderNotes(){
   const N = NOTES[tab];
