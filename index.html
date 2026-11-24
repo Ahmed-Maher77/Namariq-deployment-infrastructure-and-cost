@@ -299,6 +299,16 @@ tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thic
 .section h3.sm{font-size:15px;margin:0 0 8px}
 .ok{color:var(--green-ink)} .bad{color:var(--red)}
 .btn{font:inherit;font-size:14px;font-weight:500;color:var(--ink);background:var(--sheet);border:1px solid var(--rule-strong);border-radius:6px;padding:7px 14px;cursor:pointer}
+.reload-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:500;color:var(--blue);background:transparent;border:none;box-shadow:none;padding:4px 0;border-radius:4px;cursor:pointer}
+.reload-btn:hover:not(:disabled){text-decoration:underline;text-underline-offset:3px}
+.reload-btn:disabled{opacity:.65;cursor:wait}
+.reload-btn svg{flex:none}
+.reload-btn.loading svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skel{display:block;height:14px;border-radius:4px;background:linear-gradient(90deg,color-mix(in srgb,var(--rule) 45%,var(--sheet)) 25%,color-mix(in srgb,var(--rule) 85%,var(--sheet)) 50%,color-mix(in srgb,var(--rule) 45%,var(--sheet)) 75%);background-size:200% 100%;animation:shimmer 1.3s ease-in-out infinite}
+.skel.sm{height:11px;margin-top:6px;opacity:.75}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion: reduce){.reload-btn.loading svg,.skel{animation:none}}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
 .small{font-size:13px;color:var(--muted)}
 .notes{font-size:14px;color:var(--muted);max-width:80ch}
@@ -414,7 +424,7 @@ body.has-bar .wrap{padding-bottom:110px}
         <p class="lead" id="checkSummary"></p>
         <details class="more-info"><summary>Show the prices</summary>
           <p class="small" style="margin:10px 0">Prices before VAT, as Oracle lists them.</p>
-          <div class="row"><button class="btn" id="reloadBtn" type="button">Reload live prices</button></div>
+          <div class="row"><button class="reload-btn" id="reloadBtn" type="button"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 3v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Reload live prices</span></button></div>
           <div class="cmp"><table id="checkTbl"></table></div>
         </details>
       </section>
@@ -953,7 +963,23 @@ function labelCells(root){
     for(const tr of t.querySelectorAll("tbody tr")) [...tr.children].forEach((td, i) => { if(i > 0 && heads[i]) td.dataset.l = heads[i]; });
   }
 }
+let loadingLive = false;
 function renderCheck(){
+  const tbl = $("checkTbl");
+  if(loadingLive){
+    const skus = Object.values(SNAP);
+    const w1 = [58, 66, 54, 62, 52, 70, 60, 44, 64, 68, 72, 66, 62, 48, 56, 60, 46, 74, 76, 52];
+    const w2 = [56, 52, 58, 54, 56, 62, 54, 52, 60, 50, 56, 58, 54, 52, 50, 56, 52, 48, 50, 58];
+    const skelRows = skus.map((sku, i) => {
+      const hasFree = sku.tiers[0][2] === 0 && sku.tiers[0][1] !== null;
+      return `<tr><td><span class="skel" style="width:${w1[i % w1.length]}%"></span></td><td><span class="skel" style="width:${w2[i % w2.length]}%"></span>${hasFree ? `<span class="skel sm" style="width:96px"></span>` : ""}</td><td><span class="skel" style="width:44px"></span></td></tr>`;
+    }).join("");
+    tbl.setAttribute("aria-busy", "true");
+    tbl.innerHTML = `<caption class="sr-only">Loading live Oracle prices…</caption><thead><tr><th>Oracle service</th><th>Price</th><th>Matches Oracle</th></tr></thead><tbody>${skelRows}</tbody>`;
+    $("checkSummary").textContent = "Loading live Oracle prices…";
+    return;
+  }
+  tbl.removeAttribute("aria-busy");
   let rows = "", same = 0, diff = 0, missing = 0;
   const fmt = t => t.map(x => `${x[2]===0?"free":usd4(x[2])}${x[1]!==null?` up to ${x[1].toLocaleString()}`:""}`).join(", then ");
   for(const [k, sku] of Object.entries(SNAP)){
@@ -1039,13 +1065,30 @@ function shortDate(iso){   // "2026-11-02" -> "2 Nov 2026"
   const d = new Date(iso + "T00:00:00Z");
   return isNaN(d) ? iso : d.toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric", timeZone:"UTC"});
 }
-async function loadLive(){
+async function loadLive(manual = false){
+  if(loadingLive) return;
+  loadingLive = true;
+  const btn = $("reloadBtn");
+  btn.disabled = true;
+  btn.classList.add("loading");
+  btn.setAttribute("aria-busy", "true");
+  renderCheck();
+  const started = Date.now();
   $("source").className = "source"; $("source").textContent = "Loading Oracle prices…";
+  let data = null, err = null;
   try{
     // Oracle rejects requests that carry a local Referer, so send none.
     const res = await fetch("https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/?currencyCode=USD", {referrerPolicy:"no-referrer", credentials:"omit"});
     if(!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
+    data = await res.json();
+  }catch(e){
+    err = e;
+  }
+  if(manual){
+    const wait = 350 - (Date.now() - started);
+    if(wait > 0) await new Promise(r => setTimeout(r, wait));
+  }
+  if(!err && data){
     for(const it of data.items || []){
       const loc = (it.currencyCodeLocalizations||[]).find(l => l.currencyCode==="USD");
       if(!loc) continue;
@@ -1066,14 +1109,18 @@ async function loadLive(){
     $("source").textContent = `Live prices, ${shortDate(liveDate)}`;
     $("source").title = `Oracle's price list, last updated ${liveDate}`;
     $("fallback").hidden = true;
-  }catch(e){
+  }else{
     priceSource = "snapshot";
     $("source").className = "source snap";
     $("source").textContent = `Saved prices, ${shortDate(SNAPSHOT_DATE)}`;
     $("source").title = `Oracle's price list of ${SNAPSHOT_DATE}, saved in this page`;
     $("fallback").hidden = false;
-    $("fallback").innerHTML = `Live Oracle prices didn't load (${esc(e.message)}), so the page uses prices saved on 2026-11-23. Oracle only answers pages opened from a web address: run <code>python -m http.server</code> in this folder and open <code>http://localhost:8000</code>, or use the hosted copy.`;
+    $("fallback").innerHTML = `Live Oracle prices didn't load (${esc(err ? err.message : "unknown error")}), so the page uses prices saved on 2026-11-23. Oracle only answers pages opened from a web address: run <code>python -m http.server</code> in this folder and open <code>http://localhost:8000</code>, or use the hosted copy.`;
   }
+  loadingLive = false;
+  btn.disabled = false;
+  btn.classList.remove("loading");
+  btn.removeAttribute("aria-busy");
   render();
 }
 
@@ -1090,7 +1137,7 @@ function init(){
   $("uCustom").addEventListener("focus", () => { usersSel = "custom"; store.set("usersSel","custom"); render(); });
   document.querySelectorAll("#tabs .chip").forEach(b => b.addEventListener("click", () => { tab = b.dataset.tab; store.set("tab", tab); render(); }));
   $("tbl").addEventListener("change", e => { const k = e.target.dataset && e.target.dataset.k; if(k){ store.set("chk:"+k, e.target.checked); render(); } });
-  $("reloadBtn").addEventListener("click", loadLive);
+  $("reloadBtn").addEventListener("click", () => loadLive(true));
   // the data-size preset fills both size fields; typing your own numbers switches it to Custom (see syncDataSize)
   $("dataSize").addEventListener("change", () => {
     const p = DATA_SIZES[$("dataSize").value];
