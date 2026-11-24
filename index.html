@@ -460,6 +460,10 @@ body.has-bar .wrap{padding-bottom:110px}
           <select id="plan"><option value="basic" selected>Basic</option><option value="standard">Standard</option><option value="premium">Premium</option></select>
           <span class="term" id="planHint"></span>
         </label>
+        <label class="field">Uploaded files stored in
+          <select id="filesWhere"><option value="onedrive" selected>Client's OneDrive (client pays)</option><option value="oracle">Oracle Object Storage (we pay)</option></select>
+          <span class="term" id="filesHint"></span>
+        </label>
         <details class="more">
           <summary>More settings</summary>
           <p class="grp-h">Exact client data size</p>
@@ -562,7 +566,7 @@ function cfg(){
     dbGB: Math.max(1, n("dbGB")), filesGB: Math.max(0, n("filesGB")),
     vat: (vatSel==="custom" ? n("vatCustom") : parseFloat(vatSel)) / 100,
     vatLabel: vatSel==="custom" ? n("vatCustom")+"%" : vatSel+"%",
-    plan: $("plan").value, vpu: parseInt($("perf").value,10), region: $("region").value,
+    plan: $("plan").value, filesWhere: $("filesWhere").value, vpu: parseInt($("perf").value,10), region: $("region").value,
     hours: 744,   // Oracle bills by the hour; a 31-day month is the most a month can cost
     ...FIXED,
     registrar: REGISTRARS.find(r => r.rec) || REGISTRARS[0],
@@ -652,10 +656,15 @@ function buildItems(c, s){
       spec:`${s.dbDisk.toLocaleString()} GB: the ${c.dbGB.toLocaleString()} GB database plus 30% free space. Can grow while running but can't shrink. VPU is Oracle's disk-speed unit: more VPUs, faster disk.`, lines:[["BV",s.dbDisk],["VPU",s.dbDisk*c.vpu]],
       limit: s.dbDisks > 1 ? `One Oracle disk holds at most 32 TB, so this needs ${s.dbDisks} disks joined into one volume on the server. The price is the same.` : ""});
   };
+  const oneDrive = c.filesWhere === "onedrive";
   const storage = (scope) => {
-    add({id:"files", scope, name:"Uploaded files", service:"Object Storage, standard",
-      spec:`${c.filesGB} GB of documents and images, plus ${c.verPct}% kept as old versions: ${Math.round(s.filesObj)} GB.`,
-      lines:[["OBJ", s.filesObj], ["OBJREQ", c.users*300/10000]]});
+    if(oneDrive)
+      add({id:"files", scope, name:"Uploaded files", service:"Client's own OneDrive (Microsoft 365)",
+        spec:`${c.filesGB} GB of documents and images, saved to the client's OneDrive. The client pays for it in their Microsoft 365 plan. ClamAV still scans each file first.`, tag:"free"});
+    else
+      add({id:"files", scope, name:"Uploaded files", service:"Object Storage, standard",
+        spec:`${c.filesGB} GB of documents and images, plus ${c.verPct}% kept as old versions: ${Math.round(s.filesObj)} GB.`,
+        lines:[["OBJ", s.filesObj], ["OBJREQ", c.users*300/10000]]});
     add({id:"pgbr", scope, name:"Database backups", service:"Object Storage, standard",
       spec:`pgBackRest, ${s.plan.label} plan: ${s.plan.fulls} weekly full backups and ${s.plan.walDays} days of changes, so you can restore to any minute. About ${Math.round(s.backupStd)} GB.`,
       lines:[["OBJ", s.backupStd], ["OBJREQ", 200]]});
@@ -665,7 +674,7 @@ function buildItems(c, s){
     add({id:"volbk", scope, on:false, future:true, name:"Oracle disk snapshots of the database", service:"Block Volume backups, billed as Object Storage",
       spec:`Extra protection on top of pgBackRest: ${c.volKept} weekly snapshots of the database disk, about ${Math.round(s.volBackup)} GB.`,
       lines:[["OBJ", s.volBackup]]});
-    add({id:"replica", scope, on:false, future:true, name:"Copy of the files in a second region", service:"Object Storage replication",
+    if(!oneDrive) add({id:"replica", scope, on:false, future:true, name:"Copy of the files in a second region", service:"Object Storage replication",
       spec:`${Math.round(s.filesObj)} GB kept in a second region such as Riyadh, with about ${Math.round(c.filesGB*c.growPct/100)} GB copied across each month.`,
       lines:[["OBJ", s.filesObj], [OUT, c.filesGB*c.growPct/100]]});
     add({id:"bk2", scope, on:false, future:true, name:"Copy of the database backups in a second region", service:"Object Storage and Archive, second region",
@@ -1002,7 +1011,7 @@ function renderCheck(){
 }
 
 /* ---------------- input checks: say what was wrong and what the totals use instead ---------------- */
-const INPUT_IDS = ["clients","dbGB","filesGB","vat","vatCustom","plan","perf","region"];
+const INPUT_IDS = ["clients","dbGB","filesGB","vat","vatCustom","plan","filesWhere","perf","region"];
 const RULES = {
   clients:  [1, null, "Enter at least 1 client. The totals use 1 for now."],
   dbGB:     [1, null, "Enter the database size in GB, at least 1. The totals use 1 for now."],
@@ -1054,6 +1063,9 @@ function render(){
   $("planHint").textContent = `Restore to any minute in the last ${p.walDays} days, plus ${p.monthly} monthly copies` + (p.yearly ? ` and ${yrs(p.yearly)}.` : ".");
   document.querySelectorAll("#tabs .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.tab===tab));
   document.querySelectorAll("#usersBox .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.u===usersSel));
+  $("filesHint").textContent = c.filesWhere === "onedrive"
+    ? "Free for us. The client needs enough Microsoft 365 storage for their files."
+    : "We pay Oracle for the files and their old versions.";
   $("vatCustomWrap").hidden = $("vat").value !== "custom";
   renderNotes(); renderHero(c, r); renderSizing(c, s); renderTable(c, r); renderDomains(c); renderCheck();
   window.__last = {c, s, r};               // for testing in the console
