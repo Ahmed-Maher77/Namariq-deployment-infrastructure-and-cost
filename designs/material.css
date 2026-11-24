@@ -1,0 +1,77 @@
+/* Design 2: Google Material Design 3 (m3.material.io, Apache 2.0)
+   Roboto, baseline tonal palette, filled cards (12px), filter chips (8px), pill buttons, outlined text fields. */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+:root{
+  --page:#FEF7FF; --sheet:#F7F2FA; --ink:#1D1B20; --muted:#49454F; --rule:#CAC4D0; --rule-strong:#79747E;
+  --green:#6750A4; --green-soft:#EADDFF; --green-ink:#4F378B;
+  --amber:#7D5260; --amber-soft:#FFD8E4; --amber-ink:#633B48;
+  --red:#B3261E; --red-soft:#F9DEDC;
+  --blue:#6750A4; --blue-soft:#EADDFF; --field:transparent;
+  --display:"Roboto", system-ui, sans-serif; --text:"Roboto", system-ui, sans-serif;
+  --m-sec:#E8DEF8; --m-on-sec:#1D192B; --m-high:#ECE6F0; --m-highest:#E6E0E9; --m-on-primary:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#141218; --sheet:#1D1B20; --ink:#E6E0E9; --muted:#CAC4D0; --rule:#49454F; --rule-strong:#938F99;
+    --green:#D0BCFF; --green-soft:#4F378B; --green-ink:#EADDFF;
+    --amber:#EFB8C8; --amber-soft:#633B48; --amber-ink:#FFD8E4;
+    --red:#F2B8B5; --red-soft:#8C1D18;
+    --blue:#D0BCFF; --blue-soft:#4F378B; --field:transparent;
+    --m-sec:#4A4458; --m-on-sec:#E8DEF8; --m-high:#2B2930; --m-highest:#36343B; --m-on-primary:#381E72;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#141218; --sheet:#1D1B20; --ink:#E6E0E9; --muted:#CAC4D0; --rule:#49454F; --rule-strong:#938F99;
+  --green:#D0BCFF; --green-soft:#4F378B; --green-ink:#EADDFF;
+  --amber:#EFB8C8; --amber-soft:#633B48; --amber-ink:#FFD8E4;
+  --red:#F2B8B5; --red-soft:#8C1D18;
+  --blue:#D0BCFF; --blue-soft:#4F378B; --field:transparent;
+  --m-sec:#4A4458; --m-on-sec:#E8DEF8; --m-high:#2B2930; --m-highest:#36343B; --m-on-primary:#381E72;
+}
+body{font-size:14px;letter-spacing:.016em}
+.brand{font-family:var(--text);font-size:22px;font-weight:400;letter-spacing:0}
+
+/* display-small headline */
+.hero{border-bottom:none;padding:32px 0 24px}
+.hero-q{font-size:16px;letter-spacing:.03em}
+.sentence{font-weight:400;font-size:clamp(26px,3.4vw,40px);letter-spacing:0;line-height:1.35}
+.sentence .pick{gap:8px}
+/* filter chips */
+.chip{border-radius:8px;border:1px solid var(--rule-strong);background:transparent;font-size:14px;font-weight:500;letter-spacing:.007em;padding:6px 16px;min-height:32px}
+.chip:hover{background:color-mix(in srgb, var(--ink) 8%, transparent)}
+.chip[aria-pressed="true"]{background:var(--m-sec);color:var(--m-on-sec);border-color:transparent}
+.total{color:var(--green);font-weight:500}
+/* buttons: filled and tonal pills */
+.btn{border-radius:20px;border:1px solid var(--rule-strong);background:transparent;color:var(--green);font-weight:500;padding:9px 24px;letter-spacing:.007em}
+#copyBtn{background:var(--green);color:var(--m-on-primary);border-color:transparent}
+.icon-btn{border:none;background:transparent;width:40px;height:40px}
+.icon-btn:hover{background:color-mix(in srgb, var(--ink) 8%, transparent)}
+.linkbtn{color:var(--green)}
+.changed{border:none;background:var(--m-sec);color:var(--m-on-sec);border-radius:8px}
+
+/* cards */
+.model-note{border:none;border-radius:12px;background:var(--m-high)}
+.model-note.amber{background:var(--amber-soft)}
+.model-note.red{background:var(--red-soft)}
+.sizes,.bill,.panel,.cmp{border:none;border-radius:12px;background:var(--sheet)}
+.size{border-color:var(--rule)}
+.section > h2,.panel h2{font-weight:400;font-size:24px;letter-spacing:0}
+.size .shape{font-weight:400;font-size:22px}
+.bill th,.cmp th{font-weight:500;color:var(--muted);letter-spacing:.03em}
+.bill td,.cmp td{border-color:var(--rule)}
+.bill tr.grp td{border-bottom:none}
+.bill tr.grp .gname{font-weight:500;font-size:16px}
+.bill tr.sub td{background:var(--m-high);border-bottom:none}
+.bill tr.grand td{font-weight:500}
+tr.on{background:transparent}
+.badge{border-radius:8px;font-weight:500}
+.badge.rec{background:var(--green);color:var(--m-on-primary)}
+.bill input[type=checkbox],.switch input{accent-color:var(--green)}
+
+/* outlined text fields */
+.field{color:var(--muted)}
+.field input,.field select{background:transparent;border:1px solid var(--rule-strong);border-radius:4px;padding:12px 14px;font-size:16px}
+.field input:focus,.field select:focus{border:2px solid var(--green);padding:11px 13px;box-shadow:none}
+.item-note,.limit,.field-warn{border-radius:8px;border:none}
+.stickybar{background:var(--m-highest);color:var(--ink);border-radius:28px 28px 0 0}
+.stickybar b{color:var(--green)}

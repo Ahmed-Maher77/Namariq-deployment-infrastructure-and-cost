@@ -41,7 +41,7 @@ html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 var(--text);font-variant-numeric:tabular-nums}
 a{color:var(--blue);text-underline-offset:3px}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
-::selection{background:var(--green-soft);color:var(--ink)}
+::selection{background:var(--blue);color:var(--sheet)}
 html{scrollbar-color:var(--rule-strong) var(--page);caret-color:var(--green)}
 .wrap{max-width:1240px;margin:0 auto;padding:0 16px 72px}
 
@@ -66,7 +66,7 @@ html{scrollbar-color:var(--rule-strong) var(--page);caret-color:var(--green)}
 .hero{padding:34px 0 30px;border-bottom:1px solid var(--rule)}
 .hero-q{font-family:var(--text);font-size:14px;font-weight:400;letter-spacing:0;color:var(--muted);margin:0 0 14px}
 .sentence{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,44px);line-height:1.32;letter-spacing:-.02em;margin:0;max-width:30ch}
-.sentence .pick{display:inline-flex;flex-wrap:wrap;gap:6px;vertical-align:middle;margin:2px 0}
+.sentence .pick{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px;vertical-align:middle;margin:2px 0}
 .sentence #tabs::after{content:",";align-self:flex-end;margin-left:-4px}
 @media (max-width:640px){
   .sentence #tabs::after{display:none}
@@ -81,9 +81,12 @@ html{scrollbar-color:var(--rule-strong) var(--page);caret-color:var(--green)}
 .chip.custom:focus-within{outline:2px solid var(--blue);outline-offset:2px}
 .total{font-weight:700;color:var(--green);white-space:nowrap;border-radius:6px;padding:0 2px;transition:background-color .6s}
 .total.flash{background:var(--green-soft);transition:none}
+.vatpart{font-family:var(--text);font-size:max(14px,.42em);font-weight:500;letter-spacing:0;color:var(--muted);white-space:nowrap;margin:0 .15em 0 .3em;vertical-align:.25em}
+.stickybar .vatpart{color:inherit;opacity:.8;vertical-align:baseline;font-size:13px}
 .hero-foot{margin:18px 0 0;color:var(--muted);font-size:15px;max-width:70ch}
 .hero-foot b{color:var(--ink);font-weight:600}
 .hero-actions{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap;margin:14px 0 0}
+.hero-actions:not(:has(> :not([hidden]):not(:empty))){display:none}
 .changed{font-size:14px;color:var(--ink);display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;padding:4px 4px 4px 12px;border:1px solid var(--amber);background:var(--amber-soft);border-radius:10px}
 .linkbtn{font:inherit;font-size:14px;font-weight:600;color:var(--blue);background:transparent;border:none;padding:4px 8px;border-radius:999px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .linkbtn:hover{background:var(--blue-soft)}
@@ -121,9 +124,56 @@ html{scrollbar-color:var(--rule-strong) var(--page);caret-color:var(--green)}
 .size pre{font-family:var(--code);font-size:12.5px;background:var(--field);border:1px solid var(--rule);border-radius:6px;padding:8px 10px;margin:10px 0 0;overflow-x:auto}
 .size .rules{font-size:13px;color:var(--muted);margin:0}
 
+/* server cards with a capacity bar */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.srv{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:20px 22px}
+.srv h3{font-size:15px;font-weight:600;color:var(--muted);margin:0}
+.srv-size{font-family:var(--display);font-size:24px;font-weight:600;letter-spacing:-.01em;margin:4px 0 18px}
+.srv-size span{font-size:16px;font-weight:400;color:var(--muted)}
+.meter{margin:0 0 14px}
+.meter-bar{position:relative;display:flex;height:12px;border-radius:999px;overflow:visible;background:var(--field)}
+.meter-bar .z-ok{background:color-mix(in srgb, var(--green) 35%, var(--sheet));border-radius:999px 0 0 999px}
+.meter-bar .z-warn{background:color-mix(in srgb, var(--amber) 35%, var(--sheet));border-radius:0 999px 999px 0}
+.meter-you{position:absolute;top:-5px;width:4px;height:22px;margin-left:-2px;background:var(--ink);border-radius:2px;box-shadow:0 0 0 2px var(--sheet)}
+.meter-scale{position:relative;height:18px;margin-top:6px;font-size:12px;color:var(--muted)}
+.meter-scale span{position:absolute;top:0;white-space:nowrap;transform:translateX(-50%)}
+.meter-scale span:first-child{left:0;transform:none}
+.meter-scale span.end{right:0;left:auto;transform:none}
+.srv-state{margin:0 0 6px;font-size:14px}
+.srv-state.warn b{color:var(--amber-ink)}
+.srv-state.over b{color:var(--red)}
+.srv-fact{margin:0;font-size:14px;color:var(--muted)}
+.size-rules{margin:12px 0 0;font-size:13px;color:var(--muted);max-width:90ch}
+
 /* the bill */
 .bill{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;overflow-x:auto}
-.bill table{width:100%;border-collapse:collapse;min-width:720px}
+
+/* breakdown groups: one card each, separated by a clear gap */
+.bill-groups{display:flex;flex-direction:column;gap:28px}
+.bgroup{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.bgroup .bill{border:none;border-radius:0}
+.bgroup-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 24px;flex-wrap:wrap;padding:18px 20px;background:var(--green-soft);border-bottom:1px solid var(--rule)}
+.bgroup-shared .bgroup-head{background:var(--blue-soft)}
+.bgroup-theirs .bgroup-head{background:var(--amber-soft)}
+.bgroup-head h3, .grand-card h3{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em;margin:0}
+.bgroup-head p, .grand-card p{margin:4px 0 0;color:var(--muted);font-size:14px;max-width:52ch}
+.bgroup-total{display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.bg-val{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.1;color:var(--ink)}
+.bg-lbl{font-size:13px;color:var(--muted)}
+.bg-note{font-size:13px;color:var(--ink);margin-top:2px}
+.grand-card{display:flex;justify-content:space-between;align-items:center;gap:12px 24px;flex-wrap:wrap;padding:20px;border:2px solid var(--ink);border-radius:12px;background:var(--sheet)}
+.grand-card .bg-val{font-size:30px}
+.grand-card .amt{border-bottom:4px double var(--ink);padding-bottom:2px}
+.grand-card .bg-lbl{margin-top:10px}
+@media (max-width:640px){
+  .bgroup-head,.grand-card{padding:16px}
+  .bgroup-total{align-items:flex-start;text-align:left}
+}
+.bill table{width:100%;border-collapse:collapse}
+.bill td{padding-top:16px;padding-bottom:16px}
+.bill td.num{width:150px;font-size:16px}
+.bill .item-name{font-size:15px}
+.bill .item-spec{max-width:62ch}
 @media (max-width:1000px){.bill .hr{display:none}.bill table{min-width:0}}
 @media (max-width:760px){.bill table{min-width:0}}
 .bill th{font-size:13px;font-weight:500;color:var(--muted);text-align:left;padding:10px 14px;border-bottom:1px solid var(--rule)}
@@ -143,11 +193,15 @@ html{scrollbar-color:var(--rule-strong) var(--page);caret-color:var(--green)}
 label.item-name{display:block;cursor:pointer}
 label.item-name:hover{text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px}
 .item-spec{color:var(--muted);font-size:14px;margin-top:2px}
-.item-note{font-size:13px;margin-top:6px;padding:6px 10px;border-radius:6px;background:var(--amber-soft);color:var(--ink)}
+.item-note{font-size:13px;margin-top:6px;color:var(--amber-ink);font-weight:500}
 .svc{font-size:14px}
 .cap{font-size:13px;color:var(--muted);margin-top:4px}
 .cap b{color:var(--ink);font-weight:600}
 .detail{margin-top:6px;font-size:13px;color:var(--muted)}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:8px 0 0;padding:12px 14px;background:var(--field);border-radius:8px;max-width:640px}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;color:var(--ink)}
+.facts .cap{margin:0;color:var(--ink);font-size:13px}
 .detail summary{cursor:pointer;color:var(--blue);width:max-content;min-height:24px;padding:3px 4px 3px 0;display:list-item}
 .amt{font-weight:600}
 .vat{display:block;font-size:12px;color:var(--muted);font-weight:400}
@@ -155,8 +209,6 @@ tr.on{background:color-mix(in srgb, var(--green-soft) 45%, transparent)}
 tr.on .amt{color:var(--green-ink)}
 tr.freerow-sum td{background:var(--field)}
 tr.freerow[hidden]{display:none}
-body.hide-vat .vat{display:none}
-.billbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px}
 .switch{display:inline-flex;gap:8px;align-items:center;font-size:14px;cursor:pointer}
 .switch input{width:24px;height:24px;margin:0;flex:none;accent-color:var(--green)}
 tr.off .item-name, tr.off .svc{color:var(--muted)}
@@ -171,7 +223,10 @@ tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thic
 @media (max-width:760px){
   .bill table, .bill tbody{display:block;width:100%}
   .bill thead{display:none}
-  .bill tr{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(0,1fr);gap:4px 10px;padding:12px;border-bottom:1px solid var(--rule)}
+  .bill tr{display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 10px;padding:12px;border-bottom:1px solid var(--rule)}
+  .bill td.num{width:auto;grid-column:2}
+  .facts{grid-template-columns:1fr;gap:2px}
+  .facts dd{margin-bottom:6px}
   .bill td.num{white-space:normal;overflow-wrap:anywhere}
   .bill td{display:block;padding:0;border:none}
   .bill td.ck{grid-row:span 4}
@@ -187,9 +242,9 @@ tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thic
 }
 
 /* assumptions panel */
-.aside{position:sticky;top:16px}
+.aside{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
 @media (max-width:1100px){
-  .aside{position:static}
+  .aside{position:static;max-height:none;overflow:visible}
   .panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 18px}
   .panel h2, .panel details{grid-column:1 / -1}
   .panel details[open]{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 18px}
@@ -201,7 +256,9 @@ tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thic
 .field{display:flex;flex-direction:column;gap:4px;margin:0 0 12px;font-size:13px;color:var(--muted)}
 .field input,.field select{font:inherit;font-size:15px;color:var(--ink);background:var(--field);border:1px solid var(--rule);border-radius:6px;padding:7px 9px;width:100%}
 .field input:focus,.field select:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 2px var(--blue-soft)}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;align-items:end}
+.grp-h{grid-column:1 / -1;margin:14px 0 8px;padding-top:12px;border-top:1px solid var(--rule);font-size:13px;font-weight:600;color:var(--ink)}
+.more > summary + .grp-h{border-top:none;padding-top:0;margin-top:6px}
 .panel details summary{cursor:pointer;font-weight:600;font-size:14px;margin:2px 0 6px;padding:6px 0;min-height:32px}
 
 /* domains & check */
@@ -211,6 +268,20 @@ tr.off .amt{color:var(--muted);text-decoration:line-through;text-decoration-thic
 .cmp td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top;font-size:14px}
 .cmp tr:last-child td{border-bottom:none}
 .cmp .num{text-align:right;white-space:nowrap}
+/* short summaries with the full detail behind a toggle */
+.provs{background:var(--sheet);border:1px solid var(--rule);border-radius:12px}
+.prov{display:grid;grid-template-columns:200px 1fr auto;gap:4px 16px;align-items:baseline;padding:14px 18px;border-bottom:1px solid var(--rule)}
+.prov:last-child{border-bottom:none}
+.prov-what{color:var(--muted);font-size:14px}
+.prov-name{font-weight:600}
+.prov-price{font-weight:600;white-space:nowrap}
+@media (max-width:640px){.prov{grid-template-columns:1fr}}
+.more-info{margin-top:12px}
+.cmp-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px}
+.cmp-pair .cmp table{min-width:0}
+.cmp-pair .cmp{margin:0}
+.more-info > summary{cursor:pointer;color:var(--blue);font-weight:600;font-size:14px;width:max-content;padding:4px 0}
+.more-info[open] > summary{margin-bottom:10px}
 /* phone: comparison tables become one block per row, each value labelled */
 @media (max-width:760px){
   .cmp{overflow:visible}
@@ -265,6 +336,16 @@ body.has-bar .wrap{padding-bottom:110px}
   a{color:#000}
 }
 </style>
+<script>
+// design previews: index.html?design=primer loads designs/primer.css on top of the base styles
+(function(){
+  var d = new URLSearchParams(location.search).get("design");
+  if(d && /^[a-z0-9-]+$/.test(d)){
+    var l = document.createElement("link"); l.rel = "stylesheet"; l.href = "designs/" + d + ".css";
+    document.head.appendChild(l); document.documentElement.setAttribute("data-design", d);
+  }
+})();
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -297,14 +378,12 @@ body.has-bar .wrap{padding-bottom:110px}
         <button class="chip" type="button" data-tab="client">the client hosts everything</button>
         <button class="chip" type="button" data-tab="split">the client hosts the database and files</button>
       </span>
-      one client costs us <span class="total" id="tMonth">$0</span> a month, or <span class="total" id="tUser">$0</span> per user.
+      one client costs us <span class="total" id="tMonth">$0</span><span class="vatpart" id="tMonthVat"></span> a month, or <span class="total" id="tUser">$0</span><span class="vatpart" id="tUserVat"></span> per user.
     </p>
     <p class="sr-only" id="liveTotal" aria-live="polite" aria-atomic="true"></p>
     <p class="hero-foot" id="heroFoot"></p>
     <div class="hero-actions">
       <span class="changed" id="changed" hidden><span id="changedText"></span><button class="linkbtn" id="resetBtn" type="button">Reset to defaults</button></span>
-      <button class="btn" id="copyBtn" type="button">Copy summary</button>
-      <button class="btn" id="printBtn" type="button">Print</button>
       <span class="small" id="copyStatus" role="status"></span>
     </div>
     <div id="tabNotes"></div>
@@ -314,17 +393,15 @@ body.has-bar .wrap{padding-bottom:110px}
     <main>
       <section class="section" aria-labelledby="hSizes">
         <h2 id="hSizes">Server sizes for <span id="sizeUsers"></span> users</h2>
-        <p class="lead">Sizes and gunicorn settings follow the user count. Copy the settings into each server's <code>.env</code>.</p>
-        <div class="sizes" id="sizing"></div>
+        <p class="lead">Each client gets these two servers. The bars show how much room is left for more users.</p>
+        <div class="srv-grid" id="sizing"></div>
+        <p class="size-rules" id="sizeRules"></p>
       </section>
 
       <section class="section" aria-labelledby="hBill">
         <h2 id="hBill">Cost breakdown</h2>
         <p class="lead">Untick a part to leave it out of the total. Optional and future parts start unticked. Every amount includes VAT.</p>
-        <div class="billbar">
-          <label class="switch"><input type="checkbox" id="vatSplit" checked> Show the price before VAT and the VAT under each amount</label>
-        </div>
-        <div class="bill"><table id="tbl"></table></div>
+        <div class="bill-groups" id="tbl"></div>
       </section>
 
       <section class="section" aria-labelledby="hDom">
@@ -334,68 +411,57 @@ body.has-bar .wrap{padding-bottom:110px}
 
       <section class="section" aria-labelledby="hCheck">
         <h2 id="hCheck">Price check against Oracle</h2>
-        <p class="lead">Each Oracle price used above, with its part number. The snapshot was checked on 2026-11-23 against Oracle's price list of 2026-11-02; "live" is what Oracle returns now.</p>
-        <div class="row"><button class="btn" id="reloadBtn" type="button">Reload live prices</button><span class="small" id="checkSummary"></span></div>
-        <div class="cmp"><table id="checkTbl"></table></div>
+        <p class="lead" id="checkSummary"></p>
+        <details class="more-info"><summary>Show the prices</summary>
+          <p class="small" style="margin:10px 0">Prices before VAT, as Oracle lists them.</p>
+          <div class="row"><button class="btn" id="reloadBtn" type="button">Reload live prices</button></div>
+          <div class="cmp"><table id="checkTbl"></table></div>
+        </details>
       </section>
 
       <section class="section" aria-labelledby="hNotes">
         <h2 id="hNotes">How the numbers are worked out</h2>
+        <p class="lead">Prices come from Oracle's public price list, plus fixed usage assumptions for backups, files, traffic and e-mail.</p>
+        <details class="more-info"><summary>Show the assumptions and sources</summary>
         <ul class="notes">
-          <li>Oracle charges the same price in every commercial region and quotes prices before tax. The VAT you choose is added to everything, Oracle and other providers. Check with your accountant whether VAT applies to your Oracle invoice; it depends on the billing country and VAT registration.</li>
-          <li>Free allowances (Always Free, the first 10 GB, the first 3,000 e-mails) apply <b>once per Oracle account</b>. The calculator adds up every client's usage, applies the free allowance once, and spreads the result over the parts that use that service. A client with their own Oracle account gets their own free allowances.</li>
-          <li><b>Always Free Arm server:</b> Oracle's Always Free page says 1,500 OCPU-hours and 9,000 GB-hours a month (2 OCPU, 12 GB). The price list still shows 3,000 and 18,000. This page uses the lower number.</li>
-          <li>Always Free servers exist only in the account's <b>home region</b>, and Arm capacity is sometimes unavailable for a while. Keep the paid ClamAV fallback in mind.</li>
-          <li>User and request capacity are planning estimates for this Django app, about 50 active users per OCPU on the app server. Confirm them with <code>ops/loadtest.py</code> before promising numbers to a client.</li>
-          <li>Domain and e-mail prices are public list prices in USD before tax, checked 2026-11-23. Promotions and local prices differ.</li>
+          <li><b>Backups:</b> a backup is half the database size; 2% of the data changes a day.</li>
+          <li><b>Each client a month:</b> 2,000 e-mails, 50 GB of traffic, 0.5 GB of logs.</li>
+          <li><b>Free allowances</b> (such as the first 10 GB) count once per Oracle account.</li>
+          <li><b>VAT</b> is added to every price. Check with your accountant whether it applies to your Oracle bill.</li>
+          <li><b>User capacity</b> is an estimate. Test it with <code>ops/loadtest.py</code> before promising it to a client.</li>
           <li>Sources: <a href="https://apexapps.oracle.com/pls/apex/cetools/api/v1/products/?currencyCode=USD" target="_blank" rel="noopener">Oracle price list API</a>, <a href="https://www.oracle.com/cloud/price-list/" target="_blank" rel="noopener">Oracle price list</a>, <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm" target="_blank" rel="noopener">Oracle Always Free resources</a>, <a href="https://www.oracle.com/cloud/costestimator.html" target="_blank" rel="noopener">Oracle cost estimator</a>.</li>
         </ul>
+        </details>
       </section>
     </main>
 
     <aside class="aside" aria-labelledby="hAssume">
       <div class="panel">
-        <h2 id="hAssume">Assumptions</h2>
-        <label class="field">Number of clients sharing the shared costs<input id="clients" type="number" min="1" value="10"></label>
-        <div class="pair">
-          <label class="field">Database per client (GB)<input id="dbGB" type="number" min="1" value="1024"></label>
-          <label class="field">Files per client (GB)<input id="filesGB" type="number" min="0" value="1024"></label>
-        </div>
+        <h2 id="hAssume">Settings</h2>
+        <label class="field">How many clients we host<input id="clients" type="number" min="1" value="1"></label>
+        <label class="field">Client data size
+          <select id="dataSize"><option value="small">Small</option><option value="medium">Medium</option><option value="large" selected>Large</option><option value="huge">Huge</option><option value="custom">Custom sizes</option></select>
+        </label>
         <label class="field">VAT
           <select id="vat"><option value="14">Egypt, 14%</option><option value="15">Saudi Arabia, 15%</option><option value="0">No VAT</option><option value="custom">Other rate</option></select>
         </label>
         <label class="field" id="vatCustomWrap" hidden>VAT rate (%)<input id="vatCustom" type="number" min="0" step="0.1" value="5"></label>
-        <label class="field">Backup plan
-          <select id="plan"><option value="basic">Basic: 14 days, 3 monthly copies</option><option value="standard" selected>Standard: 30 days, 12 monthly, 3 yearly</option><option value="premium">Premium: 90 days, 12 monthly, 7 yearly</option></select>
+        <label class="field">Backups
+          <select id="plan"><option value="basic" selected>Basic</option><option value="standard">Standard</option><option value="premium">Premium</option></select>
+          <span class="term" id="planHint"></span>
         </label>
-        <label class="field">Database disk speed
-          <select id="perf"><option value="20" selected>Higher Performance (20 VPU)</option><option value="10">Balanced (10 VPU)</option></select>
-          <span class="term">VPU is Oracle's disk-speed unit: more VPUs per GB means a faster disk at a higher price.</span>
-        </label>
-        <label class="field">Region
-          <select id="region"><option value="me">Jeddah or Riyadh</option><option value="eu">Frankfurt</option></select>
-        </label>
-        <label class="field">Hours in the month<input id="hours" type="number" min="1" max="744" value="744"></label>
-        <details>
-          <summary>Usage details</summary>
-          <label class="field">Backup size as a share of the database<input id="compress" type="number" min="0.05" max="1" step="0.05" value="0.5"></label>
+        <details class="more">
+          <summary>More settings</summary>
+          <p class="grp-h">Exact client data size</p>
           <div class="pair">
-            <label class="field">Daily data change (%)<input id="changePct" type="number" min="0" step="0.5" value="2"></label>
-            <label class="field">Volume backups kept<input id="volKept" type="number" min="1" value="2"></label>
+            <label class="field">Database (GB)<input id="dbGB" type="number" min="1" value="500"></label>
+            <label class="field">Uploaded files (GB)<input id="filesGB" type="number" min="0" value="500"></label>
           </div>
-          <div class="pair">
-            <label class="field">Old file versions (%)<input id="verPct" type="number" min="0" value="5"></label>
-            <label class="field">New files a month (%)<input id="growPct" type="number" min="0" value="5"></label>
-          </div>
-          <label class="field">System e-mails per client a month<input id="emails" type="number" min="0" value="2000"></label>
-          <label class="field">Requests per user a day (for the firewall)<input id="reqDay" type="number" min="0" value="1000"></label>
-          <div class="pair">
-            <label class="field">Traffic out per client (GB)<input id="outGB" type="number" min="0" value="50"></label>
-            <label class="field">Logs per client (GB)<input id="logGB" type="number" min="0" step="0.1" value="0.5"></label>
-          </div>
-          <label class="field">Our team mailboxes<input id="mailboxes" type="number" min="0" value="3"></label>
-          <label class="field">Domain registrar<select id="registrar"></select></label>
-          <label class="field">Team e-mail provider<select id="mailProv"></select></label>
+          <p class="grp-h">Servers</p>
+          <label class="field">Database disk speed
+            <select id="perf"><option value="10" selected>Standard (Balanced)</option><option value="20">Fast (Higher Performance)</option></select>
+          </label>
+          <label class="field">Region<select id="region"><option value="me">Jeddah / Riyadh</option><option value="eu">Frankfurt</option></select></label>
         </details>
       </div>
     </aside>
@@ -442,28 +508,16 @@ let priceSource = "snapshot", liveDate = "";
 
 /* ---------------- Domain registrars and e-mail providers (USD, before tax, checked 2026-11-23) ---------------- */
 const REGISTRARS = [
-  {id:"cloudflare", name:"Cloudflare Registrar", year:11.17, rec:true,
-   pros:"Sold at wholesale cost with no mark-up. Free DNS, WHOIS privacy and e-mail forwarding. Unlimited sub-domains.",
-   cons:"The domain must use Cloudflare's name servers (DNS-only is fine). No mailbox hosting."},
-  {id:"porkbun", name:"Porkbun", year:11.81,
-   pros:"Close to wholesale price. Free WHOIS privacy, DNS and e-mail forwarding. Unlimited sub-domains.",
-   cons:"Smaller company. Mailboxes are a paid add-on."},
-  {id:"namecheap", name:"Namecheap", year:19.98,
-   pros:"Cheap first-year offers, free WHOIS privacy, simple dashboard.",
-   cons:"Renewal costs about 80% more than Cloudflare."},
-  {id:"godaddy", name:"GoDaddy", year:22.99,
-   pros:"Well known, with phone support.",
-   cons:"Most expensive renewal and many paid extras."},
+  {id:"cloudflare", name:"Cloudflare", year:11.17, rec:true, note:"Cheapest; no mark-up, free DNS"},
+  {id:"porkbun", name:"Porkbun", year:11.81, note:"Nearly as cheap"},
+  {id:"namecheap", name:"Namecheap", year:19.98, note:"Cheap first year, pricey renewal"},
+  {id:"godaddy", name:"GoDaddy", year:22.99, note:"Most expensive"},
 ];
 const MAILPROVS = [
-  {id:"zoho", name:"Zoho Mail Lite", user:1.00, rec:true,
-   pros:"$1 per mailbox a month on a yearly plan. Webmail and mobile apps on your domain.", cons:"The cheapest plan has 5 GB storage and few office tools."},
-  {id:"google", name:"Google Workspace Business Starter", user:7.00,
-   pros:"Gmail on your domain with 30 GB, Docs, Drive and Meet.", cons:"$7 on a yearly plan, $8.40 month to month."},
-  {id:"m365", name:"Microsoft 365 Business Basic", user:7.00,
-   pros:"Outlook on your domain, Teams and web Office.", cons:"Went up from $6 to $7 on 1 July 2026."},
-  {id:"cfrouting", name:"Cloudflare Email Routing", user:0,
-   pros:"Free. Forwards info@namariq.com to an inbox you already have.", cons:"Forwarding only: no mailbox, and you can't send as your domain."},
+  {id:"zoho", name:"Zoho Mail Lite", user:1.00, rec:true, note:"Cheapest real mailbox, 5 GB"},
+  {id:"google", name:"Google Workspace", user:7.00, note:"Gmail, 30 GB, Docs and Drive"},
+  {id:"m365", name:"Microsoft 365 Basic", user:7.00, note:"Outlook and Teams"},
+  {id:"cfrouting", name:"Cloudflare Email Routing", user:0, note:"Forwarding only, can't send"},
 ];
 
 /* ---------------- helpers ---------------- */
@@ -499,17 +553,39 @@ function cfg(){
     vat: (vatSel==="custom" ? n("vatCustom") : parseFloat(vatSel)) / 100,
     vatLabel: vatSel==="custom" ? n("vatCustom")+"%" : vatSel+"%",
     plan: $("plan").value, vpu: parseInt($("perf").value,10), region: $("region").value,
-    hours: Math.min(744, Math.max(1, n("hours"))),
-    compress: Math.min(1, Math.max(0.05, n("compress"))), changePct: Math.min(100, Math.max(0, n("changePct"))), volKept: Math.max(1, Math.round(n("volKept"))),
-    verPct: n("verPct"), growPct: n("growPct"), emails: n("emails"), reqDay: n("reqDay"),
-    outGB: n("outGB"), logGB: n("logGB"), mailboxes: Math.max(0, Math.round(n("mailboxes"))),
-    registrar: REGISTRARS.find(r => r.id===$("registrar").value) || REGISTRARS[0],
-    mailProv: MAILPROVS.find(m => m.id===$("mailProv").value) || MAILPROVS[0],
+    hours: 744,   // Oracle bills by the hour; a 31-day month is the most a month can cost
+    ...FIXED,
+    registrar: REGISTRARS.find(r => r.rec) || REGISTRARS[0],
+    mailProv: MAILPROVS.find(m => m.rec) || MAILPROVS[0],
   };
 }
 
 /* ---------------- sizing rules ---------------- */
 const LIMITS = {ocpu: 94, diskGB: 32768};
+// fixed usage assumptions (listed under "How the numbers are worked out")
+const FIXED = {
+  compress: 0.5,   // a compressed backup is about half the database size
+  changePct: 2,    // % of the database that changes each day
+  volKept: 2,      // weekly Oracle disk snapshots kept
+  verPct: 5,       // % of files kept as old versions
+  growPct: 5,      // % new files each month
+  emails: 2000,    // system e-mails per client a month
+  reqDay: 1000,    // requests per user a day (firewall pricing)
+  outGB: 50,       // internet traffic out per client a month
+  logGB: 0.5,      // logs per client a month
+  mailboxes: 3,    // our own company mailboxes
+};
+// typical client data sizes (rough guesses until real clients are measured): [database GB, uploaded files GB, label]
+const DATA_SIZES = {
+  small:  [50,   25,   "Small (about 75 GB)"],
+  medium: [200,  100,  "Medium (about 300 GB)"],
+  large:  [500,  500,  "Large (about 1 TB)"],
+  huge:   [1024, 1024, "Huge (about 2 TB)"],
+};
+function syncDataSize(){
+  const hit = Object.entries(DATA_SIZES).find(([, [db, f]]) => +$("dbGB").value === db && +$("filesGB").value === f);
+  $("dataSize").value = hit ? hit[0] : "custom";
+}
 const PLANS = {
   basic:    {fulls:2,  walDays:14, monthly:3,  yearly:0, label:"Basic"},
   standard: {fulls:5,  walDays:30, monthly:12, yearly:3, label:"Standard"},
@@ -549,7 +625,7 @@ function buildItems(c, s){
   const appCap = `Comfortable up to <b>${s.app.comfortUsers} users</b> (about ${s.app.comfortRps} requests a second). Upper limit <b>${s.app.upperUsers} users</b> (about ${s.app.upperRps} a second, slower). Handles ${s.app.concurrent} requests at once.`;
   const dbCap = `Comfortable up to <b>${s.db.comfortUsers} users</b>. Upper limit <b>${s.db.upperUsers} users</b>, with slower reports. max_connections ${s.maxConn}.`;
   const appServer = (scope, extraRam=0, idp="app") => {
-    add({id:idp+"Compute", scope, name:"App server", service:"Compute VM.Standard.E5.Flex",
+    add({id:idp+"Compute", scope, name:"App server (backend)", service:"Compute VM.Standard.E5.Flex",
       spec:`Runs the api, scheduler, portal and Caddy containers. ${s.appOcpu} OCPU (${s.appOcpu*2} vCPU), ${s.appRam+extraRam} GB RAM, gunicorn ${s.workers} workers × ${s.threads} threads`+(extraRam?`, including ${extraRam} GB for ClamAV`:"")+".",
       cap:appCap, lines:[["E5_OCPU", s.appOcpu*h], ["E5_MEM", (s.appRam+extraRam)*h]],
       limit: s.appServers > 1 ? `That's more than one server can hold (${LIMITS.ocpu} OCPU), so it means ${s.appServers} app servers behind a load balancer. The price is the same, but tick the load balancer too.` : ""});
@@ -558,31 +634,26 @@ function buildItems(c, s){
   };
   const dbServer = (scope) => {
     add({id:"dbCompute", scope, name:"Database server", service:"Compute VM.Standard.E5.Flex",
-      spec:`PostgreSQL 16 with pgBackRest, the database backup tool. ${s.dbOcpu} OCPU (${s.dbOcpu*2} vCPU), ${s.dbRam} GB RAM, shared_buffers ${Math.round(s.dbRam/4)} GB.`, cap:dbCap,
+      spec:`PostgreSQL 16 with pgBackRest (the database backup tool). ${s.dbOcpu} OCPU (${s.dbOcpu*2} vCPU), ${s.dbRam} GB RAM, shared_buffers ${Math.round(s.dbRam/4)} GB.`, cap:dbCap,
       lines:[["E5_OCPU", s.dbOcpu*h], ["E5_MEM", s.dbRam*h]],
       limit: s.dbOverLimit ? `One database server tops out at ${LIMITS.ocpu} OCPU, and PostgreSQL can't split one database across servers. This many users needs read replicas or a different design, so treat this price as a rough guide.` : ""});
     add({id:"dbBoot", scope, name:"Database server system disk", service:"Block Volume, Balanced (10 VPU)", spec:"50 GB for the operating system.", lines:[["BV",50],["VPU",500]]});
     add({id:"dbDisk", scope, name:"Database data disk", service:`Block Volume, ${c.vpu===20?"Higher Performance (20":"Balanced (10"} VPU)`,
-      spec:`${s.dbDisk.toLocaleString()} GB: the ${c.dbGB.toLocaleString()} GB database plus 30% free space. Can grow while running but can't shrink.`, lines:[["BV",s.dbDisk],["VPU",s.dbDisk*c.vpu]],
+      spec:`${s.dbDisk.toLocaleString()} GB: the ${c.dbGB.toLocaleString()} GB database plus 30% free space. Can grow while running but can't shrink. VPU is Oracle's disk-speed unit: more VPUs, faster disk.`, lines:[["BV",s.dbDisk],["VPU",s.dbDisk*c.vpu]],
       limit: s.dbDisks > 1 ? `One Oracle disk holds at most 32 TB, so this needs ${s.dbDisks} disks joined into one volume on the server. The price is the same.` : ""});
   };
   const storage = (scope) => {
     add({id:"files", scope, name:"Uploaded files", service:"Object Storage, standard",
-      spec:`${c.filesGB} GB of documents and images, plus ${c.verPct}% kept as old versions: ${Math.round(s.filesObj)} GB.`, tag:"code",
-      note:"Needs a code change: the app saves files on the server's own disk today (about 15 places use local file paths). Until then, use the disk option below.",
+      spec:`${c.filesGB} GB of documents and images, plus ${c.verPct}% kept as old versions: ${Math.round(s.filesObj)} GB.`,
       lines:[["OBJ", s.filesObj], ["OBJREQ", c.users*300/10000]]});
-    const fd = Math.max(50,Math.ceil(c.filesGB*1.2/50)*50);
-    add({id:"filesDisk", scope, on:false, name:"Uploaded files on a disk", service:"Block Volume, Balanced (10 VPU)",
-      spec:`Works today with no code change: a ${fd} GB disk on the app server, protected by Oracle volume backups.`,
-      lines:[["BV",fd],["VPU",fd*10]]});
     add({id:"pgbr", scope, name:"Database backups", service:"Object Storage, standard",
       spec:`pgBackRest, ${s.plan.label} plan: ${s.plan.fulls} weekly full backups and ${s.plan.walDays} days of changes, so you can restore to any minute. About ${Math.round(s.backupStd)} GB.`,
       lines:[["OBJ", s.backupStd], ["OBJREQ", 200]]});
     add({id:"pgbrArch", scope, name:"Monthly and yearly backup copies", service:"Archive Storage",
       spec: s.plan.monthly+s.plan.yearly ? `${s.plan.monthly} monthly and ${s.plan.yearly} yearly full copies, about ${Math.round(s.backupArch)} GB. A restore takes about an hour to start.` : "None in this plan.",
       lines:[["ARCH", s.backupArch]]});
-    add({id:"volbk", scope, name:"Oracle volume backups of the database disk", service:"Block Volume backups, billed as Object Storage",
-      spec:`${c.volKept} weekly incremental backups, about ${Math.round(s.volBackup)} GB. A second safety net next to pgBackRest.`,
+    add({id:"volbk", scope, on:false, future:true, name:"Oracle disk snapshots of the database", service:"Block Volume backups, billed as Object Storage",
+      spec:`Extra protection on top of pgBackRest: ${c.volKept} weekly snapshots of the database disk, about ${Math.round(s.volBackup)} GB.`,
       lines:[["OBJ", s.volBackup]]});
     add({id:"replica", scope, on:false, future:true, name:"Copy of the files in a second region", service:"Object Storage replication",
       spec:`${Math.round(s.filesObj)} GB kept in a second region such as Riyadh, with about ${Math.round(c.filesGB*c.growPct/100)} GB copied across each month.`,
@@ -612,7 +683,7 @@ function buildItems(c, s){
   };
   const sharedOurs = (withClam, withEmail, servers) => {
     if(withClam){
-      add({id:"clam", scope:"shared", name:"ClamAV file antivirus, one for all clients", service:"Always Free Ampere A1 (Arm)",
+      add({id:"clam", scope:"shared", freeFirst:true, name:"ClamAV file antivirus, one for all clients", service:"Always Free Ampere A1 (Arm)",
         spec:"2 OCPU, 12 GB and a 50 GB system disk, running the clamav/clamav-debian image (it has an Arm build).", tag:"free",
         cap:"Load test: a 5 MB file takes about 0.7 s and a 25 MB file about 2.2 s. Big bursts queue up and retry later.",
         note:"Arm capacity is sometimes unavailable, and Always Free only exists in the home region. If you can't get it, tick the paid fallback.",
@@ -626,17 +697,17 @@ function buildItems(c, s){
     add({id:"obs", scope:"shared", name:"Monitoring, alarms and logs", service:"OCI Monitoring, Notifications and Logging",
       spec:`${servers} servers at about 1.3 million datapoints each, ${(c.logGB*c.clients).toFixed(1)} GB of logs and alarm e-mails. Free up to 500 million datapoints, 10 GB of logs and 1,000 e-mails.`,
       lines:[["MON", servers*1.34], ["LOG", c.logGB*c.clients], ["NOTIF", 0.2]]});
-    add({id:"kuma", scope:"shared", name:"Uptime monitoring with Uptime Kuma", service:"Always Free VM.Standard.E2.1.Micro (AMD)",
-      spec:"Checks every client's site (acme.namariq.com/api/health/ready/) every minute and e-mails you when one is down. 50 GB system disk.", tag:"free",
+    add({id:"kuma", scope:"shared", freeFirst:true, name:"Uptime monitoring with Uptime Kuma", service:"Always Free VM.Standard.E2.1.Micro (AMD)",
+      spec:"Checks every client's site (first-parts.namariq.com/api/health/ready/) every minute and e-mails you when one is down. 50 GB system disk.", tag:"free",
       lines:[["BV",50],["VPU",500]]});
     add({id:"health", scope:"shared", on:false, future:true, name:"Oracle Health Checks", service:"OCI Health Checks, basic",
       spec:`An alternative to Uptime Kuma: ${c.clients} sites checked from Oracle's network.`, lines:[["HEALTH", c.clients]]});
     add({id:"free", scope:"shared", name:"Bastion, DDoS protection and Vault", service:"OCI Bastion, built-in DDoS protection, Vault",
       spec:"Bastion gives SSH access without opening port 22. DDoS protection is automatic. Vault stores up to 150 secrets free.", tag:"free"});
     add({id:"domain", scope:"shared", name:"Domain namariq.com", service:c.registrar.name,
-      spec:`${usd(c.registrar.year)} a year. Each client gets a free sub-domain such as acme.namariq.com.`, fixed:c.registrar.year/12});
-    add({id:"mail", scope:"shared", name:"Our company e-mail", service:c.mailProv.name,
-      spec:`${c.mailboxes} mailboxes (such as support@namariq.com) at ${usd(c.mailProv.user)} a month each.`, fixed:c.mailboxes*c.mailProv.user});
+      spec:`${usd(c.registrar.year)} a year. Each client gets a free sub-domain such as first-parts.namariq.com.`, fixed:c.registrar.year/12});
+    add({id:"mail", scope:"shared", on:false, future:true, name:"Our company e-mail", service:c.mailProv.name,
+      spec:`A business cost rather than a hosting cost: ${c.mailboxes} mailboxes (such as support@namariq.com) at ${usd(c.mailProv.user)} a month each.`, fixed:c.mailboxes*c.mailProv.user});
     add({id:"staging", scope:"shared", on:false, future:true, name:"Staging and demo server", service:"Compute E5.Flex and Block Volume",
       spec:"For testing updates before they reach clients: app and database on one server, 1 OCPU, 8 GB, 50 GB system disk and 200 GB data disk.",
       lines:[["E5_OCPU", h], ["E5_MEM", 8*h], ["BV", 250], ["VPU", 2500]]});
@@ -668,21 +739,30 @@ function isOn(it){ return store.get("chk:"+keyOf(it), it.on); }
 
 function compute(c, s, items){
   // usage per Oracle part, per account: ours (client items × clients + shared) and one client's own account
-  const ours = {}, theirs = {};
+  // "first" = usage of the always-free servers (ClamAV, Uptime Kuma): Oracle's free allowance is given to them first
+  const ours = {}, theirs = {}, first = {};
   for(const it of items){
     if(!isOn(it)) continue;
     for(const [k,q] of it.lines){
       if(it.scope === "theirs") theirs[k] = (theirs[k]||0) + q;
       else ours[k] = (ours[k]||0) + q * (it.scope === "client" ? c.clients : 1);
+      if(it.freeFirst) first[k] = (first[k]||0) + q;
     }
   }
-  const rate = (pool, k) => { const q = pool[k]||0; return q > 0 ? tierCost(SKUS[k].tiers, q)/q : 0; };
+  const freeUnits = k => { const t = SKUS[k].tiers; return t[0][2] === 0 && t[0][1] !== null ? t[0][1] : 0; };
+  // average rate for a part; with the free allowance taken first by the always-free servers when they use this part
+  const rate = (pool, k, isFirst) => {
+    const q = pool[k]||0; if(q <= 0) return 0;
+    const total = tierCost(SKUS[k].tiers, q), p = pool === ours ? (first[k]||0) : 0, free = freeUnits(k);
+    if(p > 0 && p <= free){ return isFirst ? 0 : (q - p > 0 ? total / (q - p) : 0); }
+    return total / q;
+  };
   const res = items.map(it => {
     const pool = it.scope === "theirs" ? theirs : ours;
     let m = it.fixed;
     const detail = [];
     for(const [k,q] of it.lines){
-      const r = isOn(it) ? rate(pool,k) : paidRate(SKUS[k].tiers);
+      const r = isOn(it) ? rate(pool, k, !!it.freeFirst) : paidRate(SKUS[k].tiers);
       m += q*r;
       detail.push(`${SKUS[k].name}: ${(+q.toFixed(2)).toLocaleString()} ${SKUS[k].unit} at ${usd4(r)}`);
     }
@@ -697,7 +777,8 @@ function compute(c, s, items){
 // VAT shown as (rounded total − rounded net) so the three numbers always add up on screen
 function rnd(x, d){ const p = Math.pow(10, d); return Math.round(x*p)/p; }
 function vatPart(net, vat, d){ return rnd(net*(1+vat), d) - rnd(net, d); }
-function money(net, vat, d){ const f = d===4 ? usd4 : usd, dd = d===4 ? 4 : 2; return `<span class="amt">${f(net*(1+vat))}</span><span class="vat">${f(net)} + ${f(vatPart(net, vat, dd))} VAT</span>`; }
+// amounts in the breakdown show only the total including VAT (the VAT split is shown next to the big price at the top)
+function money(net, vat, d){ const f = d===4 ? usd4 : usd; return `<span class="amt">${f(net*(1+vat))}</span>`; }
 
 const NOTES = {
   oracle:{cls:"", head:"We pay for all hosting and include it in the subscription.",
@@ -717,24 +798,33 @@ function renderNotes(){
   $("tabNotes").innerHTML = `<div class="model-note ${N.cls}" role="note"><p>${N.head}</p><ul>${N.items.map(i => `<li>${i}</li>`).join("")}</ul></div>`;
 }
 
+// one server card: size, a capacity bar (comfortable zone, slower zone, your users) and one fact
+function serverCard(name, ocpu, ram, users, comfort, upper, fact){
+  const pct = x => Math.min(100, Math.max(0, x / upper * 100));
+  const state = users === comfort ? ["ok", `Right at its comfortable limit. More users will slow it down at peak times.`]
+              : users < comfort ? ["ok", `Room for ${comfort - users} more ${comfort - users === 1 ? "user" : "users"} before it slows down.`]
+              : users <= upper ? ["warn", `Busy: ${users} users is past the comfortable ${comfort}. Pages slow down at peak times.`]
+              : ["over", `Too small: ${users} users is past the limit of ${upper}. The next size up is needed.`];
+  return `<article class="srv">
+    <h3>${name}</h3>
+    <p class="srv-size">${ocpu} OCPU <span>(${ocpu*2} vCPU)</span>, ${ram} GB RAM</p>
+    <div class="meter" role="img" aria-label="${users} users. Comfortable up to ${comfort}, upper limit ${upper}.">
+      <div class="meter-bar"><span class="z-ok" style="width:${pct(comfort)}%"></span><span class="z-warn" style="width:${100 - pct(comfort)}%"></span>
+        <span class="meter-you" style="left:${pct(users)}%"></span></div>
+      <div class="meter-scale"><span>0</span><span style="left:${pct(comfort)}%">${comfort} comfortable</span><span class="end">${upper} max</span></div>
+    </div>
+    <p class="srv-state ${state[0]}"><b>${users} users.</b> ${state[1]}</p>
+    <p class="srv-fact">${fact}</p>
+  </article>`;
+}
 function renderSizing(c, s){
   $("sizeUsers").textContent = c.users;
-  $("sizing").innerHTML = `
-    <div class="size"><h3>App server</h3><p class="shape">${s.appOcpu} OCPU, ${s.appRam} GB</p>
-      <dl><dt>Comfortable</dt><dd>${s.app.comfortUsers} users, about ${s.app.comfortRps} requests a second</dd>
-      <dt>Upper limit</dt><dd>${s.app.upperUsers} users, slower but working</dd>
-      <dt>At once</dt><dd>${s.app.concurrent} requests</dd></dl>
-      <pre>WEB_WORKERS=${s.workers}\nWEB_THREADS=${s.threads}</pre></div>
-    <div class="size"><h3>Database server</h3><p class="shape">${s.dbOcpu} OCPU, ${s.dbRam} GB</p>
-      <dl><dt>Comfortable</dt><dd>${s.db.comfortUsers} users</dd>
-      <dt>Upper limit</dt><dd>${s.db.upperUsers} users, heavy reports get slower</dd>
-      <dt>Data disk</dt><dd>${s.dbDisk} GB for a ${c.dbGB} GB database</dd></dl>
-      <pre>max_connections = ${s.maxConn}\nshared_buffers = ${Math.round(s.dbRam/4)}GB\neffective_cache_size = ${Math.round(s.dbRam*3/4)}GB</pre></div>
-    <div class="size"><h3>How sizes are chosen</h3>
-      <p class="rules">An OCPU is one physical processor core; Oracle counts it as 2 virtual CPUs (vCPU). One server holds up to ${LIMITS.ocpu} OCPU.</p>
-      <p class="rules" style="margin-top:8px">App server: 1 OCPU for every 50 users, 8 GB per OCPU, workers = 2 × OCPU + 1, 8 threads each.</p>
-      <p class="rules" style="margin-top:8px">Database: 1 OCPU for every 40 users. RAM is the larger of 8 GB per OCPU and 16, 32, 48 or 64 GB for databases under 100, 300, 700 GB or larger.</p>
-      <p class="rules" style="margin-top:8px">Data disk: database size plus 30%.</p></div>`;
+  $("sizing").innerHTML =
+    serverCard("App server (backend)", s.appOcpu, s.appRam, c.users, s.app.comfortUsers, s.app.upperUsers,
+      `Handles ${s.app.concurrent} requests at the same time.`) +
+    serverCard("Database server", s.dbOcpu, s.dbRam, c.users, s.db.comfortUsers, s.db.upperUsers,
+      `${s.dbDisk.toLocaleString()} GB disk for a ${c.dbGB.toLocaleString()} GB database.`);
+  $("sizeRules").textContent = `How sizes are chosen: the app server gets 1 OCPU per 50 users and 8 GB per OCPU; the database gets 1 OCPU per 40 users and 16 to 64 GB of RAM depending on data size; the disk is the database size plus 30%. 1 OCPU is one processor core (2 vCPU), and one server holds up to ${LIMITS.ocpu}.`;
 }
 
 const NOTES_SHORT = {oracle:"we host everything", client:"client hosts everything", split:"client hosts the database and files"};
@@ -743,9 +833,12 @@ function renderHero(c, r){
   const v = c.vat, t = r.perClient*(1+v);
   $("tMonth").textContent = usd(t);
   $("tUser").textContent = usd(t/c.users);
-  let foot = `That's <b>${usd(r.perClient)}</b> before ${c.vatLabel} VAT (${usd(vatPart(r.perClient, v, 2))}), <b>${usd4(t/c.hours)}</b> an hour and <b>${usd(t*12)}</b> a year. For all ${c.clients} clients we pay <b>${usd((r.clientM*c.clients + r.sharedM)*(1+v))}</b> a month.`;
-  if(tab !== "oracle") foot += ` The client pays about <b>${usd(r.theirsM*(1+v))}</b> a month (${usd(r.theirsM*(1+v)/c.users)} per user) on their own Oracle account.`;
-  $("heroFoot").innerHTML = foot;
+  const split = net => v ? `(${usd(net)} + ${usd(vatPart(net, v, 2))} VAT)` : "(no VAT)";
+  $("tMonthVat").textContent = split(r.perClient);
+  $("tUserVat").textContent = split(r.perClient/c.users);
+  // only the client-hosted options need a line here: what the client pays on their own account
+  $("heroFoot").innerHTML = tab !== "oracle" ? `The client pays about <b>${usd(r.theirsM*(1+v))}</b> a month (${usd(r.theirsM*(1+v)/c.users)} per user) on their own Oracle account.` : "";
+  $("heroFoot").hidden = tab === "oracle";
   $("sMonth").textContent = usd(t); $("sUser").textContent = usd(t/c.users);
   $("sMeta").textContent = `${c.users} users, ${NOTES_SHORT[tab]}, incl. ${c.vatLabel} VAT`;
   clearTimeout(renderHero.timer);       // announce once the person stops changing things
@@ -760,14 +853,17 @@ function renderTable(c, r){
   const v = c.vat, hrs = c.hours;
   const groups = [
     ["client", "Each client, paid by us", "One set for every client."],
-    ["shared", "Shared by all clients, paid by us", `Paid once, split over ${c.clients} clients.`],
+    ["shared", "Shared by all clients, paid by us", c.clients > 1 ? `Paid once, split over ${c.clients} clients.` : "Paid once. With one client, it carries all of it."],
     ["theirs", "Paid by the client", "On their own Oracle account, with their own free allowances."],
   ];
-  let html = `<thead><tr><th class="ck"><span class="vh" hidden>Included</span></th><th>Part</th><th>Oracle service and capacity</th><th class="num hr">Per hour</th><th class="num">Per month</th><th class="num">Per client a month</th></tr></thead><tbody>`;
+  let out = "", totals = {};
   for(const [g, title, sub] of groups){
     const rows = r.res.filter(x => x.it.scope === g);
     if(!rows.length) continue;
-    html += `<tr class="grp"><td></td><td colspan="5"><span class="gname">${title}</span><span class="gsub">${sub}</span></td></tr>`;
+    // one amount per row: what one client costs us a month (or what the client pays, for their own parts)
+    const amtLabel = g === "theirs" ? "A month" : "Per client a month";
+    const head = `<thead><tr><th class="ck"><span class="vh" hidden>Included</span></th><th>Part</th><th class="num">${amtLabel}</th></tr></thead>`;
+    let html = "";
     // parts that never cost anything are folded into one row so the paid ones stand out
     const isZero = x => !x.it.lines.length && !x.it.fixed;
     const paid = rows.filter(x => !isZero(x)), zero = rows.filter(isZero);
@@ -775,29 +871,54 @@ function renderTable(c, r){
     const rowHtml = (x, extra) => {
       const it = x.it, k = keyOf(it);
       const tags = (it.future?`<span class="badge future">optional</span>`:"") + (it.tag==="free"?`<span class="badge free">free</span>`:"") + (it.tag==="code"?`<span class="badge code">needs code change</span>`:"");
-      const per = g==="shared" ? x.monthly/c.clients : g==="client" ? x.monthly : null;
+      const amount = g === "shared" ? x.monthly / c.clients : x.monthly;
+      const pricing = x.detail.map(esc).join("<br>") + (it.fixed ? `${x.detail.length ? "<br>" : ""}Fixed: ${usd(it.fixed)} a month` : "");
+      const facts = [
+        ["Oracle service", esc(it.service)],
+        it.cap ? ["Capacity", it.cap] : null,
+        g === "shared" && c.clients > 1 ? ["Total a month", usd(x.monthly*(1+v))] : null,
+        ["Per hour", usd4(amount*(1+v)/hrs)],
+        pricing ? ["How it's priced", pricing] : null,
+      ].filter(Boolean);
       return `<tr class="${x.on?"on":"off"}${extra}" ${extra && !open ? "hidden" : ""}>
         <td class="ck"><input type="checkbox" id="ck-${esc(k.replace(/:/g,"-"))}" data-k="${esc(k)}" ${x.on?"checked":""}></td>
-        <td class="main"><label class="item-name" for="ck-${esc(k.replace(/:/g,"-"))}">${esc(it.name)}${tags}</label><div class="item-spec">${esc(it.spec)}</div>${it.note?`<div class="item-note">${esc(it.note)}</div>`:""}${it.limit?`<div class="limit" role="note">${esc(it.limit)}</div>`:""}</td>
-        <td class="svc">${esc(it.service)}${it.cap?`<div class="cap">${it.cap}</div>`:""}${x.detail.length||it.fixed?`<details class="detail"><summary>How it's priced</summary>${x.detail.map(esc).join("<br>")}${it.fixed?`${x.detail.length?"<br>":""}Fixed: ${usd(it.fixed)} a month`:""}</details>`:""}</td>
-        <td class="num hr" data-l="Per hour">${money(x.monthly/hrs, v, 4)}</td>
-        <td class="num" data-l="Per month">${money(x.monthly, v)}</td>
-        <td class="num" data-l="Per client a month">${per===null ? `<span class="small">client pays</span>` : money(per, v)}</td></tr>`;
+        <td class="main"><label class="item-name" for="ck-${esc(k.replace(/:/g,"-"))}">${esc(it.name)}${tags}</label><div class="item-spec">${esc(it.spec)}</div>${it.note?`<div class="item-note">${esc(it.note)}</div>`:""}${it.limit?`<div class="limit" role="note">${esc(it.limit)}</div>`:""}
+          <details class="detail"><summary>Details</summary><dl class="facts">${facts.map(([a,b]) => `<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl></details></td>
+        <td class="num" data-l="${amtLabel}">${money(amount, v)}</td></tr>`;
     };
     for(const x of paid) html += rowHtml(x, "");
     if(zero.length){
-      html += `<tr class="freerow-sum"><td></td><td colspan="5"><div class="row" style="margin:0;justify-content:space-between">
+      html += `<tr class="freerow-sum"><td></td><td colspan="2"><div class="row" style="margin:0;justify-content:space-between">
         <span><b>${zero.length === 1 ? "1 part that costs nothing" : zero.length + " parts that cost nothing"}</b><span class="item-spec" style="display:block">${zero.map(x => esc(x.it.name)).join(", ")}.</span></span>
         <button class="linkbtn" type="button" data-free="${g}" aria-expanded="${open}">${open ? "Hide them" : "Show them"}</button></div></td></tr>`;
       for(const x of zero) html += rowHtml(x, " freerow");
     }
     const tot = rows.filter(x => x.on).reduce((a,x) => a + x.monthly, 0);
-    const perTot = g==="shared" ? tot/c.clients : g==="client" ? tot : null;
-    html += `<tr class="sub"><td></td><td colspan="2">Subtotal</td><td class="num hr" data-l="Per hour">${usd4(tot*(1+v)/hrs)}</td><td class="num" data-l="Per month">${usd(tot*(1+v))}</td><td class="num" data-l="Per client a month">${perTot===null ? "" : usd(perTot*(1+v))}</td></tr>`;
+    totals[g] = tot;
+    const count = rows.filter(x => x.on).length;
+    // the group's total sits in its header, so each card reads on its own
+    const many = c.clients > 1;   // with one client, the "total" line would repeat the same number
+    const figure = g === "shared"
+      ? `<span class="bg-val">${usd(tot*(1+v)/c.clients)}</span><span class="bg-lbl">per client a month</span>${many ? `<span class="bg-note">${usd(tot*(1+v))} a month in total</span>` : ""}`
+      : g === "client"
+        ? `<span class="bg-val">${usd(tot*(1+v))}</span><span class="bg-lbl">per client a month</span>${many ? `<span class="bg-note">${usd(tot*(1+v)*c.clients)} for ${c.clients} clients</span>` : ""}`
+        : `<span class="bg-val">${usd(tot*(1+v))}</span><span class="bg-lbl">a month, paid by the client</span>`;
+    out += `<section class="bgroup bgroup-${g}" aria-label="${title}">
+      <header class="bgroup-head">
+        <div><h3>${title}</h3><p>${sub} ${count} ${count === 1 ? "part" : "parts"} included.</p></div>
+        <div class="bgroup-total">${figure}</div>
+      </header>
+      <div class="bill"><table>${head}<tbody>${html}</tbody></table></div>
+    </section>`;
   }
-  html += `<tr class="grand"><td></td><td colspan="2">Our cost per client</td><td class="num hr" data-l="Per hour">${usd4(r.perClient*(1+v)/hrs)}</td><td class="num"></td><td class="num" data-l="Per client a month"><span class="amt">${usd(r.perClient*(1+v))}</span></td></tr>`;
-  html += `</tbody>`;
-  $("tbl").innerHTML = html;
+  if(totals.client !== undefined || totals.shared !== undefined){
+    const a = (totals.client||0)*(1+v), b = (totals.shared||0)*(1+v)/c.clients;
+    out += `<div class="grand-card">
+      <div><h3>Our cost per client</h3><p>${usd(a)} for the client's own parts + ${usd(b)} share of the shared parts, including VAT.</p></div>
+      <div class="bgroup-total"><span class="bg-val"><span class="amt">${usd(r.perClient*(1+v))}</span></span><span class="bg-lbl">a month, ${usd4(r.perClient*(1+v)/hrs)} an hour</span></div>
+    </div>`;
+  }
+  $("tbl").innerHTML = out;
 }
 
 function renderDomains(c){
@@ -805,18 +926,24 @@ function renderDomains(c){
 }
 function renderDomainsHtml(c){
   const v = c.vat;
-  const reg = REGISTRARS.map(r => `<tr class="${r.id===c.registrar.id?"sel":""}"><td><b>${esc(r.name)}</b>${r.rec?`<span class="badge rec">recommended</span>`:""}</td>
-    <td class="num">${money(r.year, v)}</td><td class="num">${money(r.year/12, v)}</td><td>${esc(r.pros)}</td><td>${esc(r.cons)}</td></tr>`).join("");
-  const mail = MAILPROVS.map(m => `<tr class="${m.id===c.mailProv.id?"sel":""}"><td><b>${esc(m.name)}</b>${m.rec?`<span class="badge rec">recommended</span>`:""}</td>
-    <td class="num">${money(m.user, v)}</td><td class="num">${money(m.user*12, v)}</td><td>${esc(m.pros)}</td><td>${esc(m.cons)}</td></tr>`).join("");
+  const row = (p, price) => `<tr class="${p.rec?"sel":""}"><td><b>${esc(p.name)}</b>${p.rec?`<span class="badge rec">recommended</span>`:""}</td><td class="num">${price}</td><td>${esc(p.note)}</td></tr>`;
+  const reg = REGISTRARS.map(r => row(r, usd(r.year*(1+v)))).join("");
+  const mail = MAILPROVS.map(m => row(m, m.user ? usd(m.user*(1+v)) : "Free")).join("");
+  const rr = c.registrar, mp = c.mailProv;
+  const wasOpen = !!document.querySelector("#domains details.more-info[open]");   // keep the toggle open across updates
   $("domains").innerHTML = `
-    <p class="lead" style="color:var(--muted);max-width:72ch;margin:0 0 16px"><b style="color:var(--ink)">Sub-domains are free with every registrar.</b> Buy <code>namariq.com</code> once, then add one DNS record per client: <code>acme.namariq.com</code>, type A, pointing to that client's reserved IP. The registrar and e-mail provider chosen under "Usage details" feed the shared costs.</p>
-    <h3 class="sm">Domain registrars, .com renewal price</h3>
-    <div class="cmp"><table><thead><tr><th>Registrar</th><th class="num">A year</th><th class="num">A month</th><th>Benefits</th><th>Watch out for</th></tr></thead><tbody>${reg}</tbody></table></div>
-    <h3 class="sm">Company mailboxes on your domain, per mailbox</h3>
-    <div class="cmp"><table><thead><tr><th>Provider</th><th class="num">A month</th><th class="num">A year</th><th>Benefits</th><th>Watch out for</th></tr></thead><tbody>${mail}</tbody></table></div>
-    <p class="small" style="max-width:80ch">System e-mails such as invoices and notifications go through Oracle Email Delivery, not these mailboxes. Prices checked 2026-11-23; the .com wholesale price rose on 1 November 2026, so older articles show lower numbers.
-    Sources: <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a>, <a href="https://porkbun.com/products/domains" target="_blank" rel="noopener">Porkbun</a>, <a href="https://www.namecheap.com/domains/" target="_blank" rel="noopener">Namecheap</a>, <a href="https://www.godaddy.com/domains" target="_blank" rel="noopener">GoDaddy</a>, <a href="https://www.zoho.com/mail/zohomail-pricing.html" target="_blank" rel="noopener">Zoho Mail</a>, <a href="https://workspace.google.com/pricing" target="_blank" rel="noopener">Google Workspace</a>, <a href="https://www.microsoft.com/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener">Microsoft 365</a>.</p>`;
+    <div class="provs">
+      <div class="prov"><span class="prov-what">Domain</span><span class="prov-name"><code>namariq.com</code> at ${esc(rr.name)}</span><span class="prov-price">${usd(rr.year*(1+v))} a year</span></div>
+      <div class="prov"><span class="prov-what">Company mailboxes <span class="small">(optional)</span></span><span class="prov-name">${esc(mp.name)}</span><span class="prov-price">${usd(mp.user*(1+v))} per mailbox a month</span></div>
+    </div>
+    <p class="small" style="margin:10px 0 0">Each client gets a free sub-domain, such as <code>first-parts.namariq.com</code>.</p>
+    <details class="more-info"${wasOpen ? " open" : ""}><summary>Compare other providers</summary>
+    <div class="cmp-pair">
+      <div class="cmp"><table><thead><tr><th>Domain (.com)</th><th class="num">A year</th><th></th></tr></thead><tbody>${reg}</tbody></table></div>
+      <div class="cmp"><table><thead><tr><th>Mailbox</th><th class="num">A month</th><th></th></tr></thead><tbody>${mail}</tbody></table></div>
+    </div>
+    <p class="small" style="max-width:80ch">Prices include VAT, checked 23 Nov 2026. Sources: <a href="https://www.cloudflare.com/products/registrar/" target="_blank" rel="noopener">Cloudflare Registrar</a>, <a href="https://porkbun.com/products/domains" target="_blank" rel="noopener">Porkbun</a>, <a href="https://www.namecheap.com/domains/" target="_blank" rel="noopener">Namecheap</a>, <a href="https://www.godaddy.com/domains" target="_blank" rel="noopener">GoDaddy</a>, <a href="https://www.zoho.com/mail/zohomail-pricing.html" target="_blank" rel="noopener">Zoho Mail</a>, <a href="https://workspace.google.com/pricing" target="_blank" rel="noopener">Google Workspace</a>, <a href="https://www.microsoft.com/microsoft-365/business/microsoft-365-plans-and-pricing" target="_blank" rel="noopener">Microsoft 365</a>.</p>
+    </details>`;
 }
 
 // copies each column heading onto its cells, so the phone layout can label every value
@@ -831,34 +958,31 @@ function renderCheck(){
   const fmt = t => t.map(x => `${x[2]===0?"free":usd4(x[2])}${x[1]!==null?` up to ${x[1].toLocaleString()}`:""}`).join(", then ");
   for(const [k, sku] of Object.entries(SNAP)){
     const live = LIVE[sku.pn];
-    let liveTxt = "–", st = `<span class="small">not loaded</span>`;
+    let st = `<span class="small">Not checked</span>`;
     if(live){
-      liveTxt = fmt(live);
-      const ok = paidRate(live) === paidRate(sku.tiers);
-      const freeNote = sku.freeCap && live.length>1 && live[0][1] !== sku.freeCap ? `, free part capped at ${sku.freeCap.toLocaleString()} per the Always Free page` : "";
-      if(ok){ same++; st = `<span class="ok">Same</span>${freeNote}`; } else { diff++; st = `<span class="bad">Changed: live price used</span>`; }
-    } else if(priceSource === "live"){ missing++; st = `<span class="bad">Missing from live list</span>`; }
-    rows += `<tr><td>${esc(sku.pn)}</td><td>${esc(sku.name)}</td><td>${esc(sku.unit)}</td><td>${fmt(sku.tiers)}</td><td>${liveTxt}</td><td>${st}</td></tr>`;
+      if(paidRate(live) === paidRate(sku.tiers)){ same++; st = `<span class="ok">Yes</span>`; }
+      else { diff++; st = `<span class="bad">Changed</span>`; }
+    } else if(priceSource === "live"){ missing++; st = `<span class="bad">Missing</span>`; }
+    // one short price: the paid rate, plus the free amount when there is one
+    const t = SKUS[k].tiers, paid = paidRate(t), freeUp = t[0][2] === 0 && t[0][1] !== null ? t[0][1] : 0;
+    const price = `${usd4(paid)} per ${esc(sku.unit)}` + (freeUp ? `<span class="small" style="display:block">first ${freeUp.toLocaleString()} free</span>` : "");
+    rows += `<tr><td>${esc(sku.name.replace(/ \(first .*\)$/, ""))}</td><td>${price}</td><td>${st}</td></tr>`;
   }
-  $("checkTbl").innerHTML = `<thead><tr><th>Part</th><th>Service</th><th>Unit</th><th>Snapshot</th><th>Live</th><th>Result</th></tr></thead><tbody>${rows}</tbody>`;
+  $("checkTbl").innerHTML = `<thead><tr><th>Oracle service</th><th>Price</th><th>Matches Oracle</th></tr></thead><tbody>${rows}</tbody>`;
   labelCells($("checkTbl").parentElement);
-  $("checkSummary").textContent = priceSource === "live" ? `${same} same, ${diff} changed, ${missing} missing.` : "Live prices aren't loaded, so the snapshot is in use.";
+  const total = Object.keys(SNAP).length;
+  $("checkSummary").textContent = priceSource !== "live" ? "Live Oracle prices didn't load, so the page uses the prices saved on 2026-11-23."
+    : diff || missing ? `${diff} of ${total} Oracle prices changed${missing ? ` and ${missing} are missing from Oracle's list` : ""}. The page uses Oracle's current prices.`
+    : `All ${total} Oracle prices used here match Oracle's live price list (${shortDate(liveDate)}).`;
 }
 
 /* ---------------- input checks: say what was wrong and what the totals use instead ---------------- */
-const INPUT_IDS = ["clients","dbGB","filesGB","vat","vatCustom","plan","perf","region","hours","compress","changePct","volKept","verPct","growPct","emails","reqDay","outGB","logGB","mailboxes","registrar","mailProv"];
+const INPUT_IDS = ["clients","dbGB","filesGB","vat","vatCustom","plan","perf","region"];
 const RULES = {
   clients:  [1, null, "Enter at least 1 client. The totals use 1 for now."],
   dbGB:     [1, null, "Enter the database size in GB, at least 1. The totals use 1 for now."],
   filesGB:  [0, null, "Enter 0 GB or more. The totals use 0 for now."],
-  hours:    [1, 744, "Enter 1 to 744 hours; 744 is a 31-day month. The totals use the nearest allowed value for now."],
-  compress: [0.05, 1, "Enter 0.05 to 1. A backup is never bigger than the database. The totals use the nearest allowed value for now."],
-  changePct:[0, 100, "Enter 0 to 100%. The totals use the nearest allowed value for now."],
-  volKept:  [1, null, "Keep at least 1 volume backup. The totals use 1 for now."],
-  verPct:   [0, null, "Enter 0% or more."], growPct:[0, null, "Enter 0% or more."],
-  emails:   [0, null, "Enter 0 or more e-mails."], reqDay:[0, null, "Enter 0 or more requests."],
-  outGB:    [0, null, "Enter 0 GB or more."], logGB:[0, null, "Enter 0 GB or more."],
-  mailboxes:[0, null, "Enter 0 mailboxes or more."], vatCustom:[0, 100, "Enter a VAT rate from 0 to 100%."],
+  vatCustom:[0, 100, "Enter a VAT rate from 0 to 100%."],
   uCustom:  [1, 2000, "Enter 1 to 2,000 users. The totals use the nearest allowed value for now."],
 };
 function renderWarnings(){
@@ -897,39 +1021,12 @@ function resetDefaults(){
   render();
 }
 
-/* ---------------- copy summary ---------------- */
-function summaryText(){
-  const {c, r} = window.__last, v = c.vat;
-  const lines = [
-    `Namariq Matrix hosting cost (${priceSource === "live" ? "live Oracle prices, list of " + liveDate : "saved Oracle prices of " + SNAPSHOT_DATE})`,
-    `Scenario: ${c.users} users per client, ${NOTES_SHORT[tab]}, ${c.clients} clients, ${c.dbGB} GB database, ${c.filesGB} GB files, ${PLANS[c.plan].label} backups, VAT ${c.vatLabel}.`,
-    `One client: ${usd(r.perClient*(1+v))} a month including VAT (${usd(r.perClient)} + ${usd(vatPart(r.perClient, v, 2))} VAT), ${usd(r.perClient*(1+v)/c.users)} per user, ${usd(r.perClient*(1+v)*12)} a year.`,
-    `All ${c.clients} clients: ${usd((r.clientM*c.clients + r.sharedM)*(1+v))} a month.`,
-  ];
-  if(tab !== "oracle") lines.push(`The client pays about ${usd(r.theirsM*(1+v))} a month on their own Oracle account.`);
-  const part = (x, label) => `- ${x.it.name}: ${usd(x.monthly*(1+v))} a month${label}`;
-  const on = r.res.filter(x => x.on && (x.monthly > 0));
-  lines.push("", "Parts that cost money (including VAT):");
-  for(const x of on.filter(x => x.it.scope === "client")) lines.push(part(x, ""));
-  for(const x of on.filter(x => x.it.scope === "shared")) lines.push(part(x, `, shared (${usd(x.monthly*(1+v)/c.clients)} per client)`));
-  for(const x of on.filter(x => x.it.scope === "theirs")) lines.push(part(x, ", paid by the client"));
-  return lines.join("\n");
-}
-async function copySummary(){
-  const text = summaryText();
-  let ok = false;
-  try{ await navigator.clipboard.writeText(text); ok = true; }
-  catch(e){
-    const ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select(); try{ ok = document.execCommand("copy"); }catch(e2){} ta.remove();
-  }
-  $("copyStatus").textContent = ok ? "Summary copied." : "Couldn't copy here. Use Print and save as PDF instead.";
-}
-
 let openFree = store.get("openFree", {});
 function render(){
   const c = cfg(), s = sizing(c), items = buildItems(c, s), r = compute(c, s, items);
-  renderWarnings(); renderChanged(items);
+  syncDataSize(); renderWarnings(); renderChanged(items);
+  const p = PLANS[c.plan], yrs = n => n === 1 ? "1 yearly copy" : `${n} yearly copies`;
+  $("planHint").textContent = `Restore to any minute in the last ${p.walDays} days, plus ${p.monthly} monthly copies` + (p.yearly ? ` and ${yrs(p.yearly)}.` : ".");
   document.querySelectorAll("#tabs .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.tab===tab));
   document.querySelectorAll("#usersBox .chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.u===usersSel));
   $("vatCustomWrap").hidden = $("vat").value !== "custom";
@@ -982,8 +1079,7 @@ async function loadLive(){
 
 /* ---------------- events ---------------- */
 function init(){
-  $("registrar").innerHTML = REGISTRARS.map(r => `<option value="${r.id}">${esc(r.name)}, ${usd(r.year)} a year${r.rec?" (recommended)":""}</option>`).join("");
-  $("mailProv").innerHTML = MAILPROVS.map(m => `<option value="${m.id}">${esc(m.name)}, ${usd(m.user)} a mailbox${m.rec?" (recommended)":""}</option>`).join("");
+  for(const [k, [, , label]] of Object.entries(DATA_SIZES)){ const o = $("dataSize").querySelector(`option[value="${k}"]`); if(o) o.textContent = label; }
   const ids = [...INPUT_IDS, "uCustom"];
   for(const id of ids){
     const saved = store.get("in:"+id, null);
@@ -995,15 +1091,18 @@ function init(){
   document.querySelectorAll("#tabs .chip").forEach(b => b.addEventListener("click", () => { tab = b.dataset.tab; store.set("tab", tab); render(); }));
   $("tbl").addEventListener("change", e => { const k = e.target.dataset && e.target.dataset.k; if(k){ store.set("chk:"+k, e.target.checked); render(); } });
   $("reloadBtn").addEventListener("click", loadLive);
+  // the data-size preset fills both size fields; typing your own numbers switches it to Custom (see syncDataSize)
+  $("dataSize").addEventListener("change", () => {
+    const p = DATA_SIZES[$("dataSize").value];
+    if(!p){ document.querySelector(".panel details.more").open = true; $("dbGB").focus(); $("dbGB").select(); return; }
+    for(const [id, v] of [["dbGB", p[0]], ["filesGB", p[1]]]){ $(id).value = v; store.set("in:"+id, String(v)); }
+    render();
+  });
   $("tbl").addEventListener("click", e => {
     const b = e.target.closest("button[data-free]"); if(!b) return;
     const key = tab + ":" + b.dataset.free; openFree[key] = !openFree[key]; store.set("openFree", openFree); render();
   });
   $("resetBtn").addEventListener("click", resetDefaults);
-  $("copyBtn").addEventListener("click", copySummary);
-  $("printBtn").addEventListener("click", () => window.print());
-  const vs = store.get("vatSplit", true); $("vatSplit").checked = vs; document.body.classList.toggle("hide-vat", !vs);
-  $("vatSplit").addEventListener("change", () => { store.set("vatSplit", $("vatSplit").checked); document.body.classList.toggle("hide-vat", !$("vatSplit").checked); });
   const curTheme = () => document.documentElement.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   const syncThemeBtn = () => {   // show the sun in dark mode (to go light) and the moon in light mode (to go dark)
     const dark = curTheme() === "dark", label = dark ? "Switch to light mode" : "Switch to dark mode";

@@ -1,0 +1,85 @@
+/* Design 5: shadcn/ui (ui.shadcn.com, MIT licence), the style used by Vercel and many SaaS tools
+   Geist, zinc neutrals, near-black primary, rounded-xl cards with shadow-sm, Tabs list, outline buttons, 36px inputs. */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono&display=swap");
+:root{
+  --page:#ffffff; --sheet:#ffffff; --ink:#09090b; --muted:#71717a; --rule:#e4e4e7; --rule-strong:#d4d4d8;
+  --green:#09090b; --green-soft:#f4f4f5; --green-ink:#09090b;
+  --amber:#b45309; --amber-soft:#fffbeb; --amber-ink:#92400e;
+  --red:#dc2626; --red-soft:#fef2f2;
+  --blue:#09090b; --blue-soft:#f4f4f5; --field:#ffffff;
+  --display:"Geist", system-ui, sans-serif; --text:"Geist", system-ui, sans-serif; --code:"Geist Mono", ui-monospace, monospace;
+  --s-muted:#f4f4f5; --s-primary:#18181b; --s-on-primary:#fafafa; --s-ring:rgba(161,161,170,.5); --s-shadow:0 1px 2px 0 rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#09090b; --sheet:#09090b; --ink:#fafafa; --muted:#a1a1aa; --rule:#27272a; --rule-strong:#3f3f46;
+    --green:#fafafa; --green-soft:#18181b; --green-ink:#fafafa;
+    --amber:#fbbf24; --amber-soft:#1c1400; --amber-ink:#fcd34d;
+    --red:#f87171; --red-soft:#1f0a0a;
+    --blue:#fafafa; --blue-soft:#18181b; --field:#09090b;
+    --s-muted:#27272a; --s-primary:#fafafa; --s-on-primary:#18181b; --s-ring:rgba(113,113,122,.5); --s-shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#09090b; --sheet:#09090b; --ink:#fafafa; --muted:#a1a1aa; --rule:#27272a; --rule-strong:#3f3f46;
+  --green:#fafafa; --green-soft:#18181b; --green-ink:#fafafa;
+  --amber:#fbbf24; --amber-soft:#1c1400; --amber-ink:#fcd34d;
+  --red:#f87171; --red-soft:#1f0a0a;
+  --blue:#fafafa; --blue-soft:#18181b; --field:#09090b;
+  --s-muted:#27272a; --s-primary:#fafafa; --s-on-primary:#18181b; --s-ring:rgba(113,113,122,.5); --s-shadow:none;
+}
+body{font-size:14px;line-height:1.5}
+:focus-visible{outline:none;box-shadow:0 0 0 3px var(--s-ring)}
+.top{border-bottom:1px solid var(--rule);margin:0 -16px;padding:12px 16px}
+.brand{font-weight:600;font-size:15px;letter-spacing:-.02em}
+
+/* hero: tight tracking headline + Tabs list */
+.hero{padding:40px 0 28px}
+.sentence{font-weight:600;font-size:clamp(26px,3.6vw,44px);letter-spacing:-.04em;line-height:1.2}
+.sentence .pick{background:var(--s-muted);border-radius:10px;padding:3px;gap:0}
+.chip{border:1px solid transparent;border-radius:7px;background:transparent;color:var(--muted);font-size:14px;font-weight:500;letter-spacing:0;padding:4px 12px;min-height:29px}
+.chip:hover{color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--page);color:var(--ink);border-color:var(--rule);box-shadow:var(--s-shadow)}
+.chip.custom input{color:var(--ink)}
+.total{color:var(--ink);font-weight:700}
+.total.flash{background:var(--s-muted)}
+/* buttons: default (primary) and outline */
+.btn{border:1px solid var(--rule);border-radius:6px;background:var(--page);font-size:14px;font-weight:500;padding:0 16px;min-height:36px;box-shadow:var(--s-shadow)}
+.btn:hover{background:var(--s-muted)}
+#copyBtn{background:var(--s-primary);color:var(--s-on-primary);border-color:transparent}
+#copyBtn:hover{opacity:.9}
+.icon-btn{border-radius:6px;width:36px;height:36px;box-shadow:var(--s-shadow)}
+.linkbtn{color:var(--ink)}
+.changed{border:1px solid var(--rule);background:var(--page);border-radius:8px}
+
+/* Alert */
+.model-note{border:1px solid var(--rule);background:var(--page);border-radius:10px}
+.model-note.amber{border-color:#fcd34d}
+.model-note.red{border-color:#fca5a5;color:var(--ink)}
+
+/* Card + Table */
+.sizes,.bill,.panel,.cmp{border:1px solid var(--rule);border-radius:12px;box-shadow:var(--s-shadow)}
+.section > h2,.panel h2{font-weight:600;font-size:20px;letter-spacing:-.02em}
+.size .shape{font-weight:600;letter-spacing:-.02em}
+.bill th,.cmp th{color:var(--muted);font-weight:500;height:40px}
+.bill td,.cmp td{border-color:var(--rule)}
+.bill tr.grp td{border-bottom:1px solid var(--rule)}
+.bill tr.grp .gname{font-size:15px;letter-spacing:-.01em}
+.bill tr.sub td{background:color-mix(in srgb, var(--s-muted) 50%, transparent);border-bottom:1px solid var(--rule)}
+.bill tr.grand .num span.amt{border-bottom:none}
+tr.on{background:transparent}
+.bill tbody tr:hover td{background:color-mix(in srgb, var(--s-muted) 50%, transparent)}
+.bill input[type=checkbox],.switch input{accent-color:var(--s-primary)}
+/* Badge */
+.badge{border-radius:6px;border:1px solid transparent;font-size:12px;font-weight:500;padding:1px 8px}
+.badge.future{background:var(--s-muted);color:var(--ink)}
+.badge.free{background:transparent;border-color:var(--rule);color:var(--ink)}
+.badge.code{background:var(--red);color:#fff}
+.badge.rec{background:var(--s-primary);color:var(--s-on-primary)}
+/* Input */
+.field{color:var(--ink);font-weight:500;font-size:14px}
+.field input,.field select{border:1px solid var(--rule);border-radius:6px;padding:4px 12px;min-height:36px;font-size:14px;background:transparent;box-shadow:var(--s-shadow);font-weight:400}
+.field input:focus,.field select:focus{border-color:var(--rule-strong);box-shadow:0 0 0 3px var(--s-ring)}
+.term{font-weight:400}
+.item-note,.limit,.field-warn{border-radius:8px}
+.stickybar{background:var(--page);color:var(--ink);border-top:1px solid var(--rule)}

@@ -1,0 +1,84 @@
+/* Design 1: GitHub Primer (primer.style, MIT licence)
+   System font stack, 14px base, 6px radius, functional colour tokens, segmented controls, Flash banners, Labels. */
+:root{
+  --page:#f6f8fa; --sheet:#ffffff; --ink:#1f2328; --muted:#59636e; --rule:#d1d9e0; --rule-strong:#d1d9e0;
+  --green:#1a7f37; --green-soft:#dafbe1; --green-ink:#1a7f37;
+  --amber:#9a6700; --amber-soft:#fff8c5; --amber-ink:#7d4e00;
+  --red:#d1242f; --red-soft:#ffebe9;
+  --blue:#0969da; --blue-soft:#ddf4ff; --field:#f6f8fa;
+  --display:-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --text:-apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  --code:ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --p-btn:#f6f8fa; --p-btn-hover:#eff2f5; --p-primary:#1f883d; --p-shadow:0 1px 0 rgba(31,35,40,.04);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --page:#0d1117; --sheet:#151b23; --ink:#f0f6fc; --muted:#9198a1; --rule:#3d444d; --rule-strong:#3d444d;
+    --green:#3fb950; --green-soft:rgba(46,160,67,.15); --green-ink:#3fb950;
+    --amber:#d29922; --amber-soft:rgba(187,128,9,.15); --amber-ink:#d29922;
+    --red:#f85149; --red-soft:rgba(248,81,73,.1);
+    --blue:#4493f8; --blue-soft:rgba(56,139,253,.1); --field:#0d1117;
+    --p-btn:#212830; --p-btn-hover:#262c36; --p-primary:#238636; --p-shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --page:#0d1117; --sheet:#151b23; --ink:#f0f6fc; --muted:#9198a1; --rule:#3d444d; --rule-strong:#3d444d;
+  --green:#3fb950; --green-soft:rgba(46,160,67,.15); --green-ink:#3fb950;
+  --amber:#d29922; --amber-soft:rgba(187,128,9,.15); --amber-ink:#d29922;
+  --red:#f85149; --red-soft:rgba(248,81,73,.1);
+  --blue:#4493f8; --blue-soft:rgba(56,139,253,.1); --field:#0d1117;
+  --p-btn:#212830; --p-btn-hover:#262c36; --p-primary:#238636; --p-shadow:none;
+}
+body{font-size:14px;line-height:1.5}
+.top{border-bottom:1px solid var(--rule);margin:0 -16px;padding:12px 16px;background:var(--sheet)}
+.brand{font-weight:600;font-size:16px}
+
+/* hero: page title + segmented controls */
+.hero{padding:28px 0 24px}
+.hero-q{font-size:14px;color:var(--muted)}
+.sentence{font-size:clamp(22px,2.6vw,32px);font-weight:600;letter-spacing:-.01em;line-height:1.5;max-width:34ch}
+.sentence .pick{background:var(--p-btn-hover);border:1px solid var(--rule);border-radius:6px;padding:2px;gap:2px}
+.chip{border:1px solid transparent;border-radius:6px;background:transparent;font-size:14px;font-weight:500;padding:4px 12px;min-height:30px}
+.chip:hover{background:var(--p-btn)}
+.chip[aria-pressed="true"]{background:var(--sheet);color:var(--ink);border-color:var(--rule);box-shadow:0 1px 2px rgba(31,35,40,.12);font-weight:600}
+.total{color:var(--green)}
+.btn{background:var(--p-btn);border:1px solid var(--rule);border-radius:6px;font-size:14px;font-weight:500;padding:5px 16px;box-shadow:var(--p-shadow)}
+.btn:hover{background:var(--p-btn-hover)}
+#copyBtn{background:var(--p-primary);border-color:rgba(31,35,40,.15);color:#fff}
+.icon-btn{border-radius:6px;background:var(--p-btn)}
+.changed{border-radius:6px;border-color:rgba(212,167,44,.4)}
+
+/* Flash banners */
+.model-note{border-radius:6px;border:1px solid rgba(26,127,55,.25)}
+.model-note.amber{border-color:rgba(212,167,44,.4)}
+.model-note.red{border-color:rgba(255,129,130,.4)}
+.model-note{background:var(--green-soft)}
+
+/* Boxes: Primer "Box" with header row */
+.sizes,.bill,.panel,.cmp{border-radius:6px;border-color:var(--rule)}
+.size h3{font-size:14px}
+.size .shape{font-size:18px}
+.section > h2,.panel h2{font-size:20px;font-weight:600}
+.bill th,.cmp th{background:var(--p-btn);font-size:12px;font-weight:600;color:var(--muted)}
+.bill tr.grp td{background:var(--p-btn);border-bottom:1px solid var(--rule);padding-top:12px;padding-bottom:12px}
+.bill tr.grp .gname{font-size:14px}
+.bill tr.sub td{background:var(--sheet);border-bottom:1px solid var(--rule)}
+.bill tr.grand td{font-size:16px}
+tr.on{background:transparent}
+tr.on .amt{color:var(--ink)}
+.item-name{font-weight:600;color:var(--blue)}
+.item-spec,.cap{font-size:12px}
+
+/* Labels */
+.badge{border:1px solid var(--rule);background:transparent;border-radius:2em;font-size:12px;font-weight:500;padding:0 7px;line-height:18px}
+.badge.future{border-color:var(--amber);color:var(--amber-ink);background:transparent}
+.badge.free{border-color:var(--green);color:var(--green-ink);background:transparent}
+.badge.code{border-color:var(--red);color:var(--red);background:transparent}
+.badge.rec{background:var(--p-primary);border-color:transparent;color:#fff}
+
+/* Form controls */
+.field input,.field select{border-radius:6px;font-size:14px;padding:5px 12px;min-height:32px;background:var(--field);box-shadow:inset 0 1px 0 rgba(208,215,222,.2)}
+.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.item-note,.limit,.field-warn{border-radius:6px}
+.stickybar{background:var(--sheet);color:var(--ink);border-top:1px solid var(--rule);box-shadow:0 -8px 24px rgba(140,149,159,.2)}
+.stickybar b{color:var(--green)}
